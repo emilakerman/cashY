@@ -1,4 +1,3 @@
 package com.example.cashy
 
-class Expense {
-}
+class Expense(var amount : Int, var category : String, var paymentMethod : String) {}
