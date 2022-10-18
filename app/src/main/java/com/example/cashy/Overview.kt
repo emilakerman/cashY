@@ -19,6 +19,14 @@ class Overview : AppCompatActivity() {
         setContentView(R.layout.activity_overview)
         supportActionBar?.hide()
 
+        //starting up the firestore database and authentication
+        val db = Firebase.firestore
+        auth = Firebase.auth
+
+        //finding the current user and assigning a variable to the user id
+        val user = Firebase.auth.currentUser
+        var uid = user?.uid
+
         //test för att dra ut en lång lista i recyclerview
         for (i in 1..100) {
             expenses.add(Expense(420, "test123", "debit"))

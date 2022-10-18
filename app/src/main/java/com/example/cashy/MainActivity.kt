@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
 
         getStarted_buttonView = findViewById(R.id.getstarted_button)
         getStarted_buttonView.setOnClickListener{
-            val overview = Intent(this, Overview::class.java)
-            startActivity(overview)
+            val login = Intent(this, Login::class.java)
+            startActivity(login)
         }
     //joel first commit
     }
