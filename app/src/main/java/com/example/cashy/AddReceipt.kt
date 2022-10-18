@@ -75,7 +75,7 @@ class AddReceipt : AppCompatActivity() {
             .addOnCompleteListener {
                 Log.d("!!!", "add item")
             }
-
+                //Här kan vi använda en "Alert" "att det är sparad"
 
     }
 }
