@@ -35,7 +35,7 @@ class AddReceipt : AppCompatActivity() {
 
         }
 
-        // read items
+        // read receipts - kommenterade detta för visste inte om vi ska använda recycler view
         /*val user = auth.currentUser
         if(user != null) {
             db.collection("users").document(user.uid)
@@ -62,7 +62,7 @@ class AddReceipt : AppCompatActivity() {
         addValue.setText("")
         val ItemCompany = Receipt(company = addCompany.text.toString())
         addCompany.setText("")
-        val itemText = Receipt(company = addNotification.text.toString())
+        val itemText = Receipt(notis = addNotification.text.toString())
         addNotification.setText("")
 
 
@@ -71,7 +71,7 @@ class AddReceipt : AppCompatActivity() {
             return
         }
 
-        db.collection("users").document(user.uid).collection("items").add(item)
+        db.collection("users").document(user.uid).collection("receipt").add(item) //Hur lägger man i fler
             .addOnCompleteListener {
                 Log.d("!!!", "add item")
             }

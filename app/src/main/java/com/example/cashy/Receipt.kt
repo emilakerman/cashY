@@ -14,7 +14,7 @@ data class Receipt(
     //var time =
                    //val category: Enum.Companion = Enum,
     @DocumentId var documentId: String?="",
-    var sum: String ="", // Här ville jag ge en int- Användaren kan endast användas INT
+    var sum: String = "", // Här ville jag ge en int- Användaren kan endast användas INT
     var company: String="",
     var notis: String="",
                     //var cashOrCard: Enum.Companion = Enum,
