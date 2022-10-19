@@ -19,6 +19,6 @@ class MainActivity : AppCompatActivity() {
             val overview = Intent(this, Overview::class.java)
             startActivity(overview)
         }
-    //joel first commit
+    //joel first commit settingButton
     }
 }
