@@ -15,6 +15,7 @@ class AddReceipt : AppCompatActivity() {
     lateinit var addNotification : EditText
     lateinit var addCompany:EditText
     lateinit var addValue : EditText
+
     lateinit var db: FirebaseFirestore
     lateinit var auth: FirebaseAuth
     lateinit var saveButton: Button
