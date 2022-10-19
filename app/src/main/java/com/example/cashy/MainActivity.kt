@@ -19,6 +19,5 @@ class MainActivity : AppCompatActivity() {
             val login = Intent(this, Login::class.java)
             startActivity(login)
         }
-    //joel first commit
     }
 }
