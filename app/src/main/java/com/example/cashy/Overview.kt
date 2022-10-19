@@ -16,8 +16,8 @@ import com.google.firebase.ktx.Firebase
 class Overview : AppCompatActivity() {
 
     lateinit var toAddReceiptButton : FloatingActionButton
-    lateinit var db : FirebaseFirestore
 
+    lateinit var db : FirebaseFirestore
     private lateinit var auth: FirebaseAuth
 
         //DUMMY DATA - Dessa objekt skall ändras till variablar och tas från en databas
