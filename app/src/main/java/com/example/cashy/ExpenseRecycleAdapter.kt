@@ -19,9 +19,10 @@ class ExpenseRecycleAdapter(val context : Context, val expenses : List<Expense>)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val expense = expenses[position]
-        holder.expense_txtView.text = expense.amount.toString()
+        holder.expense_txtView.text = expense.sum.toString()
         holder.category_txtView.text = expense.category
-        holder.paymentMethod_txtView.text = expense.paymentMethod
+        holder.paymentMethod_txtView.text = expense.paymentmethod
+        holder.company_txtView.text = expense.company
     }
 
     override fun getItemCount(): Int {
@@ -32,5 +33,6 @@ class ExpenseRecycleAdapter(val context : Context, val expenses : List<Expense>)
         var expense_txtView = itemView.findViewById<TextView>(R.id.expense_txt)
         var category_txtView = itemView.findViewById<TextView>(R.id.category_txt)
         var paymentMethod_txtView = itemView.findViewById<TextView>(R.id.paymentMethod_txt)
+        var company_txtView = itemView.findViewById<TextView>(R.id.company_txt)
     }
 }

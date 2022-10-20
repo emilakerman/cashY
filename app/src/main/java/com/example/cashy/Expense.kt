@@ -1,3 +1,8 @@
 package com.example.cashy
 
-class Expense(var amount : Int, var category : String, var paymentMethod : String) {}
+import com.google.firebase.firestore.DocumentId
+
+class Expense(var sum : Int? = null,
+              var category : String? = null,
+              var paymentmethod : String? = null,
+              var company : String? = null) {}
