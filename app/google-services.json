@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1088145785538",
+    "project_id": "cashy-a0ac8",
+    "storage_bucket": "cashy-a0ac8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1088145785538:android:e51e440fd5d4461751315b",
+        "android_client_info": {
+          "package_name": "com.example.cashy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1088145785538-agrc4ol7khfu07p0aif2io985kn5s9e9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJJ50yrf79fHPMtT8ug_KDuHf9OvB82fU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1088145785538-agrc4ol7khfu07p0aif2io985kn5s9e9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

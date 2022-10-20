@@ -35,69 +35,140 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:text="Overview"
-        android:textColor="#020101"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/overview_Static"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="25dp"
+        android:text="Overview"
+        android:textColor="#020101"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/expenses_Static"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
         android:text="Expenses"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/overview_Static" />
 
     <TextView
         android:id="@+id/totalSpent_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:text="total amount"
         android:textColor="#000000"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <LinearLayout
-        android:layout_width="140dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="40dp"
-        android:background="#7051DE9A"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalSpent_txt"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="140dp"
-        android:layout_height="130dp"
-        android:layout_marginEnd="40dp"
-        android:background="#7051DE9A"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalSpent_txt"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/expenses_Static" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
+        android:layout_marginBottom="50dp"
         android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_img"
         app:srcCompat="@android:drawable/ic_input_add"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="140dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalSpent_txt">
+
+        <TextView
+            android:id="@+id/cash_static"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cash"
+            android:textColor="#000000"
+            android:translationX="30px"
+            android:translationY="180px" />
+
+        <TextView
+            android:id="@+id/cashAmount"
+            android:layout_width="66dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="1000"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="30px"
+            android:translationY="230px" />
+
+        <ImageView
+            android:id="@+id/cash_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:translationX="30px"
+            android:translationY="30px"
+            app:srcCompat="@drawable/cashimg" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="140dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalSpent_txt"
+        app:layout_constraintVertical_bias="0.493">
+
+        <ImageView
+            android:id="@+id/card_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:translationX="30px"
+            android:translationY="30px"
+            app:srcCompat="@drawable/card_img" />
+
+        <TextView
+            android:id="@+id/card_static"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Card"
+            android:textColor="#000000"
+            android:translationX="30px"
+            android:translationY="180px" />
+
+        <TextView
+            android:id="@+id/cardAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1000"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="30px"
+            android:translationY="230px" />
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/settings_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_info_details" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
