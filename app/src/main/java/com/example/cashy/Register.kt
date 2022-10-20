@@ -55,7 +55,7 @@ class Register : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success
 
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, Overview::class.java)
                     startActivity(intent)
 
                     Toast.makeText(baseContext, "Success.",
