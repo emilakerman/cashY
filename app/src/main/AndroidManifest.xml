@@ -14,10 +14,10 @@
         android:theme="@style/Theme.CashY"
         tools:targetApi="31">
         <activity
-            android:name=".Login"
+            android:name=".Register"
             android:exported="false" />
         <activity
-            android:name=".Register"
+            android:name=".Login"
             android:exported="false" />
         <activity
             android:name=".Overview"
@@ -26,17 +26,11 @@
             android:name=".AddReceipt"
             android:exported="false" />
         <activity
-            android:name=".Login"
-            android:exported="false" />
-        <activity
-            android:name=".Register"
-            android:exported="false" />
-        <activity
-            android:name=".Overview"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"> />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
