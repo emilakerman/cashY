@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import kotlin.math.log
 
 class Overview : AppCompatActivity() {
 
@@ -44,6 +45,13 @@ class Overview : AppCompatActivity() {
 
 
         readFrom()
+
+        val logoutButton = findViewById<Button>(R.id.logoutButton)
+        logoutButton.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+        }
 
         toAddReceiptButton = findViewById<FloatingActionButton>(R.id.floatingActionButton2)
         toAddReceiptButton.setOnClickListener{

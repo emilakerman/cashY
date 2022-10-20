@@ -22,6 +22,14 @@ class Login : AppCompatActivity() {
 
         auth = Firebase.auth
 
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            // User is signed in
+            val i = Intent(this, Overview::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(i)
+        }
+
         val registerText: TextView = findViewById(R.id.textView_register)
         registerText.setOnClickListener {
             val intent = Intent(this, Register::class.java)
