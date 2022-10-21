@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/background_1.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/background_2.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/background_front.xml" value="0.2085" />
+        <entry key="app/src/main/res/drawable/custom_border.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/rounded_shape.xml" value="0.2085" />
         <entry key="app/src/main/res/layout/activity_add_receipt.xml" value="0.2410788494607677" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.24591283383576767" />
