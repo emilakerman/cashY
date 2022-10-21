@@ -28,6 +28,8 @@ class Overview : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     var totalSum : Int = 0
+    var cashSum : Int = 0
+    var cardSum : Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +49,11 @@ class Overview : AppCompatActivity() {
         readFrom()
         //reads total SUM data and adds to total sum up top
         readTotalSum()
+        //reads total of CASH SUM and adds to correct place
+        readToPaymentmethodCash()
+        //reads total of CARD SUM and adds to correct place
+        readToPaymentmethodCard()
+
 
         //temporary logout button
         val logoutButton = findViewById<Button>(R.id.logoutButton)
@@ -66,10 +73,51 @@ class Overview : AppCompatActivity() {
             startActivity(settingsLink)
         }
     }
+    fun readToPaymentmethodCard() {
+        val user = auth.currentUser
+        if (user != null) {
+            db.collection("users").document(user.uid).collection("receipts")
+                .whereEqualTo("paymentmethod", "card")
+                .get()
+                .addOnSuccessListener { documentSnapshot ->
+                    for (document in documentSnapshot.documents) {
+                        val item = document.toObject<Expense>()
+                        if (item != null) {
+                            val cardAmount = findViewById<TextView>(R.id.cardAmount)
+                            val expenses = mutableListOf<Expense>()
+                            expenses.add(item)
+                            cardSum += item.sum!!
+                            cardAmount.text = cardSum.toString()
+                        }
+                    }
+                }
+        }
+    }
+    fun readToPaymentmethodCash() {
+        val user = auth.currentUser
+        if (user != null) {
+            db.collection("users").document(user.uid).collection("receipts")
+                .whereEqualTo("paymentmethod", "cash")
+                .get()
+                .addOnSuccessListener { documentSnapshot ->
+                    for (document in documentSnapshot.documents) {
+                        val item = document.toObject<Expense>()
+                        if (item != null) {
+                            val cashAmount = findViewById<TextView>(R.id.cashAmount)
+                            val expenses = mutableListOf<Expense>()
+                            expenses.add(item)
+                            cashSum += item.sum!!
+                            cashAmount.text = cashSum.toString()
+                        }
+                    }
+                }
+        }
+    }
     fun readFrom() {
         val user = auth.currentUser
         if (user != null) {
-            db.collection("users").document(user.uid).collection("receipts").orderBy("timestamp", Query.Direction.DESCENDING)
+            db.collection("users").document(user.uid).collection("receipts")
+                .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                     .addOnSuccessListener { documentSnapshot ->
                         val expenses = mutableListOf<Expense>()
