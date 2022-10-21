@@ -13,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.firestore.ktx.toObject
@@ -47,8 +48,6 @@ class Overview : AppCompatActivity() {
         //reads total SUM data and adds to total sum up top
         readTotalSum()
 
-
-
         //temporary logout button
         val logoutButton = findViewById<Button>(R.id.logoutButton)
         logoutButton.setOnClickListener {
@@ -70,7 +69,7 @@ class Overview : AppCompatActivity() {
     fun readFrom() {
         val user = auth.currentUser
         if (user != null) {
-            db.collection("users").document(user.uid).collection("receipts")
+            db.collection("users").document(user.uid).collection("receipts").orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                     .addOnSuccessListener { documentSnapshot ->
                         val expenses = mutableListOf<Expense>()
