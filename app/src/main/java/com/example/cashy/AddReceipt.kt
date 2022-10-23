@@ -28,9 +28,11 @@ class AddReceipt : AppCompatActivity() {
         db = Firebase.firestore
         auth = Firebase.auth
 
+
+
         //nameView = findViewById(R.id.nameView)
 
-        saveButton = findViewById<Button>(R.id.addValue)
+        saveButton = findViewById<Button>(R.id.saveReceiptButton)
         saveButton.setOnClickListener {
             saveItem()
 
@@ -72,13 +74,15 @@ class AddReceipt : AppCompatActivity() {
             return
         }
 
-        db.collection("users").document(user.uid).collection("receipt").add(item) //Hur lägger man i fler
+        db.collection("users").document(user.uid).collection("receipts").add(item) //Hur lägger man i fler
             .addOnCompleteListener {
                 Log.d("!!!", "add item")
             }
                 //Här kan vi använda en "Alert" "att det är sparad"
 
     }
+
+
 }
 
 

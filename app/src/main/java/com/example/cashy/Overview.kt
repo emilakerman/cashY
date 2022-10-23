@@ -1,12 +1,13 @@
 package com.example.cashy
 
+import android.content.ClipData
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -71,6 +72,13 @@ class Overview : AppCompatActivity() {
         settings_img.setOnClickListener {
             val settingsLink = Intent(this, SettingsActivity::class.java)
             startActivity(settingsLink)
+        }
+        /////popup menu test
+        val card_img = findViewById<ImageView>(R.id.card_img)
+        card_img.setOnClickListener {
+            val popup = PopupMenu(this, card_img)
+            popup.inflate((R.menu.popup))
+            popup.show()
         }
     }
     fun readToPaymentmethodCard() {

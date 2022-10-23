@@ -3,6 +3,7 @@ package com.example.cashy
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.RoundedCorner
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
