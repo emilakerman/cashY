@@ -4,10 +4,12 @@ import android.content.ClipData
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuView
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -128,11 +130,16 @@ class Overview : AppCompatActivity() {
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                     .addOnSuccessListener { documentSnapshot ->
+                        //recyclerview skapas i den här funktionen istället pga krashproblem i onCreate
                         val expenses = mutableListOf<Expense>()
                             val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
                             recyclerView.layoutManager = LinearLayoutManager(this)
                             val adapter = ExpenseRecycleAdapter(this, expenses)
                             recyclerView.adapter = adapter
+                                recyclerView.apply {
+                                    setHasFixedSize(true)
+                                    addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
+                                }
                     for (document in documentSnapshot.documents) {
                         val item = document.toObject<Expense>()
                         if (item != null) {

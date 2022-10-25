@@ -13,8 +13,9 @@
         <entry key="app/src/main/res/layout/activity_add_receipt.xml" value="0.2410788494607677" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2474279658376993" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2549728393554687" />
-        <entry key="app/src/main/res/layout/activity_overview.xml" value="0.33323270563493695" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.28869815008276806" />
+        <entry key="app/src/main/res/layout/activity_overview.xml" value="0.30511033799913184" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.15760869565217392" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.39363469662873635" />
         <entry key="app/src/main/res/menu/popup.xml" value="0.23802083333333332" />
       </map>
