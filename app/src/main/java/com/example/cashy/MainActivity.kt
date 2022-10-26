@@ -17,11 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        setting_buttonView = findViewById(R.id.settingButton)
-        setting_buttonView.setOnClickListener {
-            val startSettingButton = Intent(this, SettingsActivity::class.java)
-            startActivity(startSettingButton)
-        }
+
 
 
             getStarted_buttonView = findViewById(R.id.getstarted_button)
