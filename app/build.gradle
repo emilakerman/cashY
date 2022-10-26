@@ -5,11 +5,14 @@ plugins {
 }
 
 android {
+    buildFeatures {
+        viewBinding true
+    }
     compileSdk 33
 
     defaultConfig {
         applicationId "com.example.cashy"
-        minSdk 25
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"

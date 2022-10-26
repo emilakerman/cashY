@@ -3,6 +3,7 @@ package com.example.cashy
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.RoundedCorner
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -21,6 +22,14 @@ class Login : AppCompatActivity() {
         supportActionBar?.hide()
 
         auth = Firebase.auth
+
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            // User is signed in
+            val i = Intent(this, Overview::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(i)
+        }
 
         val registerText: TextView = findViewById(R.id.textView_register)
         registerText.setOnClickListener {
