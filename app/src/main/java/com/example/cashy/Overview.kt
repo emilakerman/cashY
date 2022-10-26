@@ -3,6 +3,8 @@ package com.example.cashy
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -86,7 +88,7 @@ class Overview : AppCompatActivity() {
         settings_img = findViewById(R.id.settings_img)
         settings_img.setOnClickListener {
             val settingsLink = Intent(this, SettingsActivity::class.java)
-            startActivity(settingsLink)
+             startActivity(settingsLink)
         }
         /////popup menu test
         val card_img = findViewById<ImageView>(R.id.card_img)
