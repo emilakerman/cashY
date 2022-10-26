@@ -91,11 +91,11 @@ class Overview : AppCompatActivity() {
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
                     for (document in documentSnapshot.documents) {
-                        val item = document.toObject<Expense>()
+                        val item = document.toObject<Receipt>()
                         if (item != null) {
                             val cardAmount = findViewById<TextView>(R.id.cardAmount)
-                            val expenses = mutableListOf<Expense>()
-                            expenses.add(item)
+                            val receipts = mutableListOf<Receipt>()
+                            receipts.add(item)
                             cardSum += item.sum!!
                             cardAmount.text = cardSum.toString()
                         }
@@ -111,11 +111,11 @@ class Overview : AppCompatActivity() {
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
                     for (document in documentSnapshot.documents) {
-                        val item = document.toObject<Expense>()
+                        val item = document.toObject<Receipt>()
                         if (item != null) {
                             val cashAmount = findViewById<TextView>(R.id.cashAmount)
-                            val expenses = mutableListOf<Expense>()
-                            expenses.add(item)
+                            val receipts = mutableListOf<Receipt>()
+                            receipts.add(item)
                             cashSum += item.sum!!
                             cashAmount.text = cashSum.toString()
                         }
@@ -131,19 +131,19 @@ class Overview : AppCompatActivity() {
                 .get()
                     .addOnSuccessListener { documentSnapshot ->
                         //recyclerview skapas i den här funktionen istället pga krashproblem i onCreate
-                        val expenses = mutableListOf<Expense>()
+                        val receipts = mutableListOf<Receipt>()
                             val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
                             recyclerView.layoutManager = LinearLayoutManager(this)
-                            val adapter = ExpenseRecycleAdapter(this, expenses)
+                            val adapter = ExpenseRecycleAdapter(this, receipts)
                             recyclerView.adapter = adapter
-                                recyclerView.apply {
-                                    setHasFixedSize(true)
-                                    addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
-                                }
+                            recyclerView.apply {
+                                setHasFixedSize(true)
+                                addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
+                            }
                     for (document in documentSnapshot.documents) {
-                        val item = document.toObject<Expense>()
+                        val item = document.toObject<Receipt>()
                         if (item != null) {
-                            expenses.add(item)
+                            receipts.add(item)
                         }
                     }
                 }
@@ -162,11 +162,11 @@ class Overview : AppCompatActivity() {
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
                     for (document in documentSnapshot.documents) {
-                        val item = document.toObject<Expense>()
+                        val item = document.toObject<Receipt>()
                         if (item != null) {
                             val totalspent_txt = findViewById<TextView>(R.id.totalSpent_txt)
-                            val expenses = mutableListOf<Expense>()
-                            expenses.add(item)
+                            val receipts = mutableListOf<Receipt>()
+                            receipts.add(item)
                             totalSum += item.sum!!
                             totalspent_txt.text = totalSum.toString()
                         }

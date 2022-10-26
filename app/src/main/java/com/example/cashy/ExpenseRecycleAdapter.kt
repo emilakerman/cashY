@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ExpenseRecycleAdapter(val context : Context, var expenses : List<Expense>) :
+class ExpenseRecycleAdapter(val context : Context, var receipts : List<Receipt>) :
     RecyclerView.Adapter<ExpenseRecycleAdapter.ViewHolder>() {
 
     val layoutInflater = LayoutInflater.from(context)
@@ -21,14 +21,14 @@ class ExpenseRecycleAdapter(val context : Context, var expenses : List<Expense>)
         return ViewHolder(itemView)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val expense = expenses[position]
-        holder.expense_txtView.text = expense.sum.toString()
-        holder.category_txtView.text = expense.category
-        holder.paymentMethod_txtView.text = expense.paymentmethod
-        holder.company_txtView.text = expense.company
+        val receipt = receipts[position]
+        holder.expense_txtView.text = receipt.sum.toString()
+        holder.category_txtView.text = receipt.category
+        holder.paymentMethod_txtView.text = receipt.paymentmethod
+        holder.company_txtView.text = receipt.company
     }
     override fun getItemCount(): Int {
-        return expenses.size
+        return receipts.size
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var expense_txtView = itemView.findViewById<TextView>(R.id.expense_txt)

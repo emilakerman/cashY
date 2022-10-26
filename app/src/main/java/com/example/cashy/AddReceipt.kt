@@ -1,10 +1,11 @@
 package com.example.cashy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -12,61 +13,70 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class AddReceipt : AppCompatActivity() {
-    lateinit var addNotification : EditText
-    lateinit var addCompany:EditText
-    lateinit var addValue : EditText
+    lateinit var addMsg: EditText
+    lateinit var addCompany: EditText
+    lateinit var addValue: EditText
+    lateinit var addCategory: EditText
+    lateinit var addPaymentmethod: EditText
+
 
     lateinit var db: FirebaseFirestore
     lateinit var auth: FirebaseAuth
     lateinit var saveButton: Button
+    lateinit var exitButton: Button
 
+    val receipts = mutableListOf<Receipt>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_receipt)
+        supportActionBar?.hide()
 
         db = Firebase.firestore
         auth = Firebase.auth
 
-
-
-        //nameView = findViewById(R.id.nameView)
-
-        saveButton = findViewById<Button>(R.id.saveReceiptButton)
+        saveButton = findViewById(R.id.saveReceiptButton)
         saveButton.setOnClickListener {
-            saveItem()
-
+            if (addValue.text.isEmpty() || addCategory.text.isEmpty() || addPaymentmethod.text.isEmpty() ) {
+                Toast.makeText(this, "Please fill all the required fields.", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                saveItem()
+            }
         }
+        addValue = findViewById(R.id.addValue)
+        addMsg = findViewById(R.id.addMsg)
+        addCompany = findViewById(R.id.addCompany)
+        addCategory = findViewById(R.id.addCategory)
+        addPaymentmethod = findViewById(R.id.addPaymentmethod)
 
-        // read receipts - kommenterade detta för visste inte om vi ska använda recycler view
-        /*val user = auth.currentUser
-        if(user != null) {
-            db.collection("users").document(user.uid)
-                .collection("items")
-                .addSnapshotListener { snapshot , e ->
-                    if (snapshot != null) {
-                        for (document in snapshot.documents) {
-                            val receipt = document.toObject<Receipt>()
-                            Log.d("!!!", "item: ${receipt}")
-                        }
-                    }
-
-
-                }
-
-
-        }*/
-
-
+        exitButton = findViewById(R.id.exitAddButton)
+        exitButton.setOnClickListener{
+            exitActivity()
+        }
     }
 
     fun saveItem() {
-        val item = Receipt(sum = addValue.text.toString())
+        addValue = findViewById(R.id.addValue)
+        addMsg = findViewById(R.id.addMsg)
+        addCompany = findViewById(R.id.addCompany)
+        addCategory = findViewById(R.id.addCategory)
+        addPaymentmethod = findViewById(R.id.addPaymentmethod)
+
+        val item = Receipt(
+
+            sum = addValue.text.toString().toInt(),
+            company = addCompany.text.toString(),
+            notis = addMsg.text.toString(),
+            category = addCategory.text.toString(),
+            paymentmethod = addPaymentmethod.text.toString(),
+            timestamp = java.util.Date()
+        )
         addValue.setText("")
-        val ItemCompany = Receipt(company = addCompany.text.toString())
         addCompany.setText("")
-        val itemText = Receipt(notis = addNotification.text.toString())
-        addNotification.setText("")
+        addMsg.setText("")
+        addCategory.setText("")
+        addPaymentmethod.setText("")
 
 
         val user = auth.currentUser
@@ -74,31 +84,18 @@ class AddReceipt : AppCompatActivity() {
             return
         }
 
-        db.collection("users").document(user.uid).collection("receipts").add(item) //Hur lägger man i fler
+        db.collection("users").document(user.uid).collection("receipts")
+            .add(item)
             .addOnCompleteListener {
-                Log.d("!!!", "add item")
+                receipts.add(item)
+                Toast.makeText(baseContext, "Saved to cloud!",
+                    Toast.LENGTH_SHORT).show()
             }
-                //Här kan vi använda en "Alert" "att det är sparad"
-
     }
 
+    fun exitActivity(){
+        val exitTheActivityIntent = Intent(/* packageContext = */ this, /* cls = */ Overview::class.java)
+        startActivity(exitTheActivityIntent)
 
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
