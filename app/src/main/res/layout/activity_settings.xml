@@ -31,7 +31,7 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
+        tools:listitem="@layout/row" />
 
 
 
