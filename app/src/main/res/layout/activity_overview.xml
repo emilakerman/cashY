@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Overview">
 
-    <FrameLayout
-        android:id="@+id/frameLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="#E9FAF2"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
@@ -33,6 +24,15 @@
         tools:listitem="@layout/list_item">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <FrameLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#E9FAF2"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/textView"
@@ -193,10 +193,19 @@
 
     <SearchView
         android:id="@+id/search_expenses"
-        android:layout_width="250dp"
+        android:layout_width="200dp"
         android:layout_height="25dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintStart_toEndOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/timeShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/search_expenses"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/time_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

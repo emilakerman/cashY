@@ -1,14 +1,11 @@
 package com.example.cashy
 
-import android.content.ClipData
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,14 +15,16 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+
 
 class Overview : AppCompatActivity() {
 
     lateinit var toAddReceiptButton : FloatingActionButton
     lateinit var settings_img : ImageView
+    lateinit var timeShow : ImageView
+    lateinit var companyShow : ImageView
 
     lateinit var db : FirebaseFirestore
     private lateinit var auth: FirebaseAuth
@@ -35,6 +34,7 @@ class Overview : AppCompatActivity() {
     var cardSum : Int = 0
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_overview)
@@ -47,6 +47,20 @@ class Overview : AppCompatActivity() {
         //finding the current user and assigning a variable to the user id
         val user = Firebase.auth.currentUser
         var uid = user?.uid
+
+        val receipts = mutableListOf<Receipt>()
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val adapter = ExpenseRecycleAdapter(this, receipts)
+        recyclerView.adapter = adapter
+        recyclerView.apply {
+            setHasFixedSize(true)
+            addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
+        }
+        timeShow = findViewById(R.id.timeShow)
+        timeShow.setOnClickListener {
+            showTime()
+        }
 
         //reads data and populates the recyclerview (also enables the recyclerview)
         readFrom()
@@ -65,8 +79,7 @@ class Overview : AppCompatActivity() {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
         }
-
-        toAddReceiptButton = findViewById<FloatingActionButton>(R.id.floatingActionButton2)
+        toAddReceiptButton = findViewById(R.id.floatingActionButton2)
         toAddReceiptButton.setOnClickListener{
             toAddReceiptButton()
         }
@@ -82,6 +95,10 @@ class Overview : AppCompatActivity() {
             popup.inflate((R.menu.popup))
             popup.show()
         }
+    }
+    fun showTime() {
+        val intent1 = Intent(this, ListFullScreen::class.java)
+        startActivity(intent1)
     }
     fun readToPaymentmethodCard() {
         val user = auth.currentUser
@@ -130,16 +147,16 @@ class Overview : AppCompatActivity() {
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                     .addOnSuccessListener { documentSnapshot ->
-                        //recyclerview skapas i den här funktionen istället pga krashproblem i onCreate
+                        //recyclerview finns både här och i onCreate... crash issues, låt det vara så här for now
                         val receipts = mutableListOf<Receipt>()
-                            val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-                            recyclerView.layoutManager = LinearLayoutManager(this)
-                            val adapter = ExpenseRecycleAdapter(this, receipts)
-                            recyclerView.adapter = adapter
-                            recyclerView.apply {
-                                setHasFixedSize(true)
-                                addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
-                            }
+                        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+                        recyclerView.layoutManager = LinearLayoutManager(this)
+                        val adapter = ExpenseRecycleAdapter(this, receipts)
+                        recyclerView.adapter = adapter
+                        recyclerView.apply {
+                            setHasFixedSize(true)
+                            addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
+                        }
                     for (document in documentSnapshot.documents) {
                         val item = document.toObject<Receipt>()
                         if (item != null) {
