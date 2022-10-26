@@ -4,68 +4,140 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_front"
     tools:context=".AddReceipt">
 
     <EditText
         android:id="@+id/addValue"
-        android:layout_width="359dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginBottom="13dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_login_register"
         android:ems="10"
+        android:hint="Enter amount*"
         android:inputType="number|textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/addNotification"
+        android:textColor="#FBFBFB"
+        android:textColorHint="#FFFFFF"
+        android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/enterStatic" />
 
     <EditText
-        android:id="@+id/addNotification"
-        android:layout_width="360dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="13dp"
+        android:id="@+id/addMsg"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_login_register"
         android:ems="10"
+        android:hint="Enter a comment"
         android:inputType="textPersonName|text"
+        android:paddingLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addValue" />
+        app:layout_constraintTop_toBottomOf="@+id/addCompany" />
 
     <Button
         android:id="@+id/saveReceiptButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
         android:layout_marginStart="160dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="159dp"
-        android:layout_marginBottom="366dp"
+        android:backgroundTint="#CE2A5E"
         android:text="Save"
-        app:layout_constraintBottom_toTopOf="@+id/exitAddButton"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/exitAddButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Exit"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="651dp" />
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#CE2A5E"
+        android:text="Back"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/addCompany"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="109dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="22dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_login_register"
         android:ems="10"
+        android:paddingLeft="10dp"
+        android:hint="From what company?"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/saveReceiptButton"
+        android:minHeight="48dp"
+        android:textColor="#FFF5F5"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addNotification" />
+        app:layout_constraintTop_toBottomOf="@+id/addPaymentmethod" />
+
+    <EditText
+        android:id="@+id/addCategory"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_login_register"
+        android:ems="10"
+        android:paddingLeft="10dp"
+        android:hint="Select category*"
+        android:inputType="textPersonName"
+        android:textColor="#F6F6F6"
+        android:textColorHint="#F4F4F4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addValue" />
+
+    <EditText
+        android:id="@+id/addPaymentmethod"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_login_register"
+        android:ems="10"
+        android:paddingLeft="10dp"
+        android:hint="Select payment method*"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addCategory" />
+
+    <TextView
+        android:id="@+id/enterStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Enter your expense"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Fields marked with an asterisk (*) are required"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addMsg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
