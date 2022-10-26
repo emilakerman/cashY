@@ -6,7 +6,6 @@
     app:cardCornerRadius="2dp"
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true"
-    android:background="@color/white"
     >
 
     <LinearLayout
@@ -20,8 +19,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/code_name"
-            android:text="Code Name"
+            android:id="@+id/title_name"
+            android:text="Title"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:padding="16dp"
@@ -37,8 +36,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/version"
-                android:text="Version"
+                android:id="@+id/subheading"
+                android:text="Subheading"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -48,7 +47,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/api_level"
+                android:id="@+id/section"
                 android:text="API Level"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -65,7 +64,7 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:padding="16dp"
-                android:layout_below="@+id/version"
+                android:layout_below="@+id/subheading"
                 />
 
         </RelativeLayout>

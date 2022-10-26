@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -16,6 +17,7 @@ import com.google.firebase.ktx.Firebase
 class Overview : AppCompatActivity() {
 
     lateinit var toAddReceiptButton : FloatingActionButton
+    lateinit var settings_img : ImageView
 
     lateinit var db : FirebaseFirestore
     private lateinit var auth: FirebaseAuth
@@ -54,11 +56,16 @@ class Overview : AppCompatActivity() {
 
 
         toAddReceiptButton = findViewById<FloatingActionButton>(R.id.floatingActionButton2)
-        toAddReceiptButton.setOnClickListener{toAddReceiptButton()}
+        toAddReceiptButton.setOnClickListener{
+            toAddReceiptButton()
+        }
+        settings_img = findViewById(R.id.settings_img)
+        settings_img.setOnClickListener {
+            val settingsLink = Intent(this, SettingsActivity::class.java)
+             startActivity(settingsLink)
+        }
+
     }
-
-
-
        fun toAddReceiptButton(){
            val resultButtonIntent = Intent(/* packageContext = */ this, /* cls = */ AddReceipt::class.java)
             startActivity(resultButtonIntent)

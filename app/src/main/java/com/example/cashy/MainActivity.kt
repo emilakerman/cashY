@@ -7,17 +7,25 @@ import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var getStarted_buttonView : Button
+    lateinit var getStarted_buttonView: Button
+    lateinit var setting_buttonView: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        getStarted_buttonView = findViewById(R.id.getstarted_button)
-        getStarted_buttonView.setOnClickListener{
-            val login = Intent(this, Login::class.java)
-            startActivity(login)
+        setting_buttonView = findViewById(R.id.settingButton)
+        setting_buttonView.setOnClickListener {
+            val startSettingButton = Intent(this, SettingsActivity::class.java)
+            startActivity(startSettingButton)
+        }
+
+
+            getStarted_buttonView = findViewById(R.id.getstarted_button)
+            getStarted_buttonView.setOnClickListener {
+                val login = Intent(this, Login::class.java)
+                startActivity(login)
+            }
         }
     }
-}
