@@ -7,8 +7,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +24,8 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import java.util.*
+import android.widget.SearchView
 
 
 class Overview : AppCompatActivity() {
@@ -28,6 +34,8 @@ class Overview : AppCompatActivity() {
     lateinit var settings_img : ImageView
     lateinit var timeShow : ImageView
     lateinit var statisticsLink : ImageView
+
+    lateinit var editText : AppCompatEditText
 
     lateinit var db : FirebaseFirestore
     private lateinit var auth: FirebaseAuth
@@ -54,7 +62,7 @@ class Overview : AppCompatActivity() {
         val receipts = mutableListOf<Receipt>()
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = ExpenseRecycleAdapter(this, receipts)
+        val adapter = ExpenseRecycleAdapter(receipts)
         recyclerView.adapter = adapter
         recyclerView.apply {
             setHasFixedSize(true)
@@ -80,13 +88,13 @@ class Overview : AppCompatActivity() {
         readToPaymentmethodCard()
 
         toAddReceiptButton = findViewById(R.id.floatingActionButton2)
-        toAddReceiptButton.setOnClickListener{
+        toAddReceiptButton.setOnClickListener {
             toAddReceiptButton()
         }
         settings_img = findViewById(R.id.settings_img)
         settings_img.setOnClickListener {
             val settingsLink = Intent(this, SettingsActivity::class.java)
-             startActivity(settingsLink)
+            startActivity(settingsLink)
         }
         /////popup menu test
         val card_img = findViewById<ImageView>(R.id.card_img)
@@ -151,7 +159,7 @@ class Overview : AppCompatActivity() {
                         val receipts = mutableListOf<Receipt>()
                         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
                         recyclerView.layoutManager = LinearLayoutManager(this)
-                        val adapter = ExpenseRecycleAdapter(this, receipts)
+                        val adapter = ExpenseRecycleAdapter(receipts)
                         recyclerView.adapter = adapter
                         recyclerView.apply {
                             setHasFixedSize(true)
@@ -168,7 +176,7 @@ class Overview : AppCompatActivity() {
     }
        fun toAddReceiptButton() {
            val resultButtonIntent =
-               Intent(/* packageContext = */ this, /* cls = */ AddReceipt::class.java)
+               Intent(this, AddReceipt::class.java)
            startActivity(resultButtonIntent)
        }
     //reads total sum of all fields correctly and populates the top total sum textview
@@ -193,6 +201,5 @@ class Overview : AppCompatActivity() {
                     Log.w("!!!", "Error getting documents: ", exception)
                 }
         }
-
     }
 }

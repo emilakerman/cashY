@@ -4,8 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.SearchView
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +32,6 @@ class ListFullScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_full_screen)
-        supportActionBar?.hide()
 
         db = Firebase.firestore
         auth = Firebase.auth
@@ -39,7 +43,7 @@ class ListFullScreen : AppCompatActivity() {
         val receipts = mutableListOf<Receipt>()
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewFullScreen)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = FullScreenAdapter(this, receipts)
+        val adapter = FullScreenAdapter(receipts)
         recyclerView.adapter = adapter
         recyclerView.apply {
             setHasFixedSize(true)
@@ -63,7 +67,7 @@ class ListFullScreen : AppCompatActivity() {
                     val receipts = mutableListOf<Receipt>()
                     val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewFullScreen)
                     recyclerView.layoutManager = LinearLayoutManager(this)
-                    val adapter = FullScreenAdapter(this, receipts)
+                    val adapter = FullScreenAdapter(receipts)
                     recyclerView.adapter = adapter
                     recyclerView.apply {
                         setHasFixedSize(true)
@@ -76,6 +80,48 @@ class ListFullScreen : AppCompatActivity() {
                         }
                     }
                 }
+        }
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.search_menu, menu)
+        val searchItem : MenuItem = menu!!.findItem(R.id.actionSearch)
+        val searchView : SearchView = searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
+            override fun onQueryTextChange(msg: String): Boolean {
+                filter(msg)
+                return false
+            }
+        })
+        return true
+    }
+    fun filter(text: String) {
+        ///recycler again
+        val receipts = mutableListOf<Receipt>()
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewFullScreen)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val adapter = FullScreenAdapter(receipts)
+        recyclerView.adapter = adapter
+        recyclerView.apply {
+            setHasFixedSize(true)
+            addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
+        }
+        ////
+        val filteredList = mutableListOf<Receipt>()
+
+        for (item in receipts) {
+            if (item.company!!.contains(text)) {
+                filteredList.add(item)
+            }
+        }
+        if (filteredList.isEmpty()) {
+            Toast.makeText(this, "No data found...", Toast.LENGTH_SHORT).show()
+        } else {
+            adapter.filterList(filteredList)
         }
     }
 }

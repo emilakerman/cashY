@@ -16,11 +16,8 @@ data class Receipt(
     var timestamp: Date? = null,
     var img : Int? = null
 
-    //var cashOrCard: Enum.Companion = Enum,
-    //var image : String = "",
     //var spinner :Spinner
 ) {
-
     init {
         setImageCategory()
     }
