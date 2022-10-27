@@ -1,5 +1,6 @@
 package com.example.expandablerecycleviewkotlin
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +11,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cashy.R
 import com.example.cashy.Settings
 
-class SettingAdapter(val settingList: List<Settings>) :
+class SettingAdapter(val context: Context, val settingList: List<Settings>) :
     RecyclerView.Adapter<SettingAdapter.SettingVH>() {
+
+    val layoutInflater = LayoutInflater.from(context)
+
     class SettingVH (itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        var codeNameTxt : TextView = itemView.findViewById(R.id.code_name)
-        var versionTxt : TextView = itemView.findViewById(R.id.version)
-        var apiLevelTxt : TextView = itemView.findViewById(R.id.api_level)
+        var titleTxt : TextView = itemView.findViewById(R.id.title_name)
+        var subheadingTxt : TextView = itemView.findViewById(R.id.subheading)
+        var sectionTxt : TextView = itemView.findViewById(R.id.section)
         var descriptionTxt : TextView = itemView.findViewById(R.id.description)
         var linearLayout : LinearLayout = itemView.findViewById(R.id.linearLayout)
         var expandablelayout : RelativeLayout = itemView.findViewById(R.id.expandable_layout)
@@ -30,6 +34,7 @@ class SettingAdapter(val settingList: List<Settings>) :
         return SettingVH(view)
     }
 
+
     override fun getItemCount(): Int {
         return settingList.size
     }
@@ -37,9 +42,10 @@ class SettingAdapter(val settingList: List<Settings>) :
     override fun onBindViewHolder(holder: SettingVH, position: Int) {
 
         val settings : Settings = settingList[position]
-        holder.codeNameTxt.text = settings.codeName
-        holder.versionTxt.text = settings.version
-        holder.apiLevelTxt.text = settings.apiLevel
+
+        holder.titleTxt.text = settings.title
+        holder.subheadingTxt.text = settings.subheading
+        holder.sectionTxt.text = settings.section
         holder.descriptionTxt.text = settings.description
 
         val isExpandable : Boolean = settingList[position].expandable

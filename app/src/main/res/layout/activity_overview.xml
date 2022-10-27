@@ -14,13 +14,25 @@
         android:layout_marginTop="400dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        android:requiresFadingEdge="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:listitem="@layout/list_item" />
+        tools:listitem="@layout/list_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <FrameLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#E9FAF2"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/textView"
@@ -51,18 +63,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Expenses"
+        android:layout_marginTop="15dp"
+        android:text="Total Expenses"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/overview_Static" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout3" />
 
     <TextView
         android:id="@+id/totalSpent_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="total amount"
+        android:layout_marginTop="10dp"
+        android:text="0"
         android:textColor="#000000"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,13 +84,11 @@
         android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="15dp"
         android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_img"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout3"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout3"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_input_add"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -104,10 +114,10 @@
 
         <TextView
             android:id="@+id/cashAmount"
-            android:layout_width="66dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1000"
+            android:text="0"
             android:textColor="#000000"
             android:textSize="24sp"
             android:translationX="30px"
@@ -119,10 +129,11 @@
             android:layout_height="20dp"
             android:translationX="30px"
             android:translationY="30px"
-            app:srcCompat="@drawable/cashimg" />
+            app:srcCompat="@drawable/ic_baseline_money_24" />
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/frameLayout2"
         android:layout_width="140dp"
         android:layout_height="130dp"
         android:layout_marginStart="40dp"
@@ -138,7 +149,7 @@
             android:layout_height="20dp"
             android:translationX="30px"
             android:translationY="30px"
-            app:srcCompat="@drawable/card_img" />
+            app:srcCompat="@drawable/ic_baseline_credit_card_24" />
 
         <TextView
             android:id="@+id/card_static"
@@ -153,7 +164,7 @@
             android:id="@+id/cardAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1000"
+            android:text="0"
             android:textColor="#000000"
             android:textSize="24sp"
             android:translationX="30px"
@@ -165,10 +176,36 @@
         android:id="@+id/settings_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toEndOf="@+id/overview_Static"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="9dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SearchView
+        android:id="@+id/search_expenses"
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/timeShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/search_expenses"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/time_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

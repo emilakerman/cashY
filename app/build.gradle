@@ -5,11 +5,14 @@ plugins {
 }
 
 android {
+    buildFeatures {
+        viewBinding true
+    }
     compileSdk 33
 
     defaultConfig {
         applicationId "com.example.cashy"
-        minSdk 25
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -36,6 +39,10 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
+    // recycler view
+    implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
+    //cardView library
+    implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
