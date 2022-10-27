@@ -2,6 +2,7 @@ package com.example.cashy
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -26,7 +27,7 @@ class Overview : AppCompatActivity() {
     lateinit var toAddReceiptButton : FloatingActionButton
     lateinit var settings_img : ImageView
     lateinit var timeShow : ImageView
-    lateinit var companyShow : ImageView
+    lateinit var statisticsLink : ImageView
 
     lateinit var db : FirebaseFirestore
     private lateinit var auth: FirebaseAuth
@@ -63,6 +64,11 @@ class Overview : AppCompatActivity() {
         timeShow.setOnClickListener {
             showTime()
         }
+        statisticsLink = findViewById(R.id.statisticsLink)
+        statisticsLink.setOnClickListener {
+            val intent = Intent(this, StatisticsActivity::class.java)
+            startActivity(intent)
+        }
 
         //reads data and populates the recyclerview (also enables the recyclerview)
         readFrom()
@@ -73,14 +79,6 @@ class Overview : AppCompatActivity() {
         //reads total of CARD SUM and adds to correct place
         readToPaymentmethodCard()
 
-
-        //temporary logout button
-        val logoutButton = findViewById<Button>(R.id.logoutButton)
-        logoutButton.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-        }
         toAddReceiptButton = findViewById(R.id.floatingActionButton2)
         toAddReceiptButton.setOnClickListener{
             toAddReceiptButton()

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
@@ -27,6 +28,7 @@ class ExpenseRecycleAdapter(val context : Context, var receipts : List<Receipt>)
         holder.category_txtView.text = receipt.category
         holder.paymentMethod_txtView.text = receipt.paymentmethod
         holder.company_txtView.text = receipt.company
+        //holder.icon_img.setImageResource(receipt.img!!)
     }
     override fun getItemCount(): Int {
         return receipts.size
@@ -36,5 +38,6 @@ class ExpenseRecycleAdapter(val context : Context, var receipts : List<Receipt>)
         var category_txtView = itemView.findViewById<TextView>(R.id.category_txt)
         var paymentMethod_txtView = itemView.findViewById<TextView>(R.id.paymentMethod_txt)
         var company_txtView = itemView.findViewById<TextView>(R.id.company_txt)
+        //var icon_img = itemView.findViewById<ImageView>(R.id.icon_img)
     }
 }

@@ -13,12 +13,31 @@ data class Receipt(
     var notis: String? = null,
     var category: String? = null,
     var paymentmethod: String? = null,
-    var timestamp: Date? = null
+    var timestamp: Date? = null,
+    //var img : Int? = null
 
     //var cashOrCard: Enum.Companion = Enum,
     //var image : String = "",
     //var spinner :Spinner
 )
+    /*
+    init {
+        setImageCategory()
+    }
+    fun setImageCategory() {
+        when (category) {
+            "Other" -> img = R.drawable.other
+            "Entertainment" -> img = R.drawable.entertainment
+            "Food & Beverage" -> img = R.drawable.foodbeverage
+            "Lifestyle" -> img = R.drawable.lifestyle
+            "Transport" -> img = R.drawable.ic_baseline_directions_transit_24
+            //else -> img = R.drawable.temporary
+        }
+    }
+
+     */
+
+
 
 /*enum class category(){
     FOODBEVARAGE,

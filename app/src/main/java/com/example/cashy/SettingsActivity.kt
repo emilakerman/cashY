@@ -1,12 +1,14 @@
 package com.example.cashy
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expandablerecycleviewkotlin.SettingAdapter
+import com.google.firebase.auth.FirebaseAuth
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -17,13 +19,16 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+        supportActionBar?.hide()
 
 
         logoutButtonView = findViewById(R.id.buttonLogOut)
 //        logoutButtonView.layoutManager = LinearLayoutManager(this)
-//        logoutButtonView.setOnClickListener {
-//            val logOutButton = Intent(this, SettingsActivity::class.java)
-//            startActivity(logOutButton)
+        logoutButtonView.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+        }
 
         initData()
         setRecyclerView()
