@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardBackgroundColor="@color/cashy_turquoise"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="6dp"
+    app:contentPadding="4dp">
+
+    <RelativeLayout
+        android:layout_width="373dp"
+        android:layout_height="63dp">
+
+        <ImageView
+            android:id="@+id/item_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp" />
+
+        <TextView
+            android:id="@+id/item_transaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_category"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/item_img"
+            android:layout_toRightOf="@+id/item_img"
+            android:text="Transactions"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sumCatTxv"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="6dp"
+            android:layout_toEndOf="@+id/item_category"
+            android:text="Total"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/item_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/item_img"
+            android:layout_toRightOf="@+id/item_img"
+            android:text="Category"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

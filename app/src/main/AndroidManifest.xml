@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CashY"
         tools:targetApi="31">
         <activity
-            android:name=".ListFullScreen"
+            android:name=".StatisticsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
