@@ -182,15 +182,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_info_details" />
 
-    <Button
-        android:id="@+id/logoutButton"
-        android:layout_width="9dp"
-        android:layout_height="22dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <SearchView
         android:id="@+id/search_expenses"
         android:layout_width="200dp"
@@ -207,5 +198,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/search_expenses"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/time_icon" />
+
+    <ImageView
+        android:id="@+id/statisticsLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/timeShow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/under_construction_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
