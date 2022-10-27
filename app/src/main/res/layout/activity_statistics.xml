@@ -7,13 +7,13 @@
     tools:context=".StatisticsActivity">
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch2"
-        android:layout_width="239dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="52dp"
+        android:id="@+id/idSwitch"
+        android:layout_width="263dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="24dp"
         android:thumb="@drawable/thumb"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.418"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:track="@drawable/statistics_switch_track" />
@@ -31,27 +31,35 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.536" />
+        app:layout_constraintVertical_bias="0.237" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categ_RV"
-        android:layout_width="380dp"
-        android:layout_height="282dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="409dp"
+        android:layout_height="469dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="1.0"
-        tools:listitem="@layout/card_layout">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.99">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categ_RV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            tools:listitem="@layout/card_layout">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -80,13 +88,16 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/under_construction_icon" />
+            android:onClick="addCategoriesFragment"
+            app:srcCompat="@drawable/under_construction_icon"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageView
-            android:id="@+id/undefined_iv"
+            android:id="@+id/remvFrag_iv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="removeFragment"
             app:srcCompat="@drawable/under_construction_icon" />
 
         <ImageView
