@@ -22,7 +22,11 @@ class FullScreenAdapter(/* val context : Context, */var receipts : List<Receipt>
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_full_screen, parent, false)
         return ViewHolder(itemView)
     }
-    override fun onBindViewHolder(holder: FullScreenAdapter.ViewHolder, position: Int) {
+    fun filterList(filterlist : List<Receipt>) {
+        receipts = filterlist
+        notifyDataSetChanged()
+    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val receipt = receipts[position]
         holder.expense_txtView.text = receipt.sum.toString()
         holder.category_txtView.text = receipt.category
@@ -35,18 +39,13 @@ class FullScreenAdapter(/* val context : Context, */var receipts : List<Receipt>
     override fun getItemCount(): Int {
         return receipts.size
     }
-    //försöker filtrera listan med sökning
-    fun filterList(filterlist : List<Receipt>) {
-        receipts = filterlist
-        notifyDataSetChanged()
-    }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var expense_txtView = itemView.findViewById<TextView>(R.id.expense_txt)
-        var category_txtView = itemView.findViewById<TextView>(R.id.category_txt)
-        var paymentMethod_txtView = itemView.findViewById<TextView>(R.id.paymentMethod_txt)
-        var company_txtView = itemView.findViewById<TextView>(R.id.company_txt)
-        var timestamp_txt = itemView.findViewById<TextView>(R.id.timestamp_txt)
-        var comment_txt = itemView.findViewById<TextView>(R.id.comment_txt)
-        var icon_img = itemView.findViewById<ImageView>(R.id.icon_img)
+        val expense_txtView = itemView.findViewById<TextView>(R.id.expense_txt)
+        val category_txtView = itemView.findViewById<TextView>(R.id.category_txt)
+        val paymentMethod_txtView = itemView.findViewById<TextView>(R.id.paymentMethod_txt)
+        val company_txtView = itemView.findViewById<TextView>(R.id.company_txt)
+        val timestamp_txt = itemView.findViewById<TextView>(R.id.timestamp_txt)
+        val comment_txt = itemView.findViewById<TextView>(R.id.comment_txt)
+        val icon_img = itemView.findViewById<ImageView>(R.id.icon_img)
     }
 }

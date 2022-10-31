@@ -86,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:clickable="true"
+        android:backgroundTint="#4EBA28"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout3"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout3"
         app:layout_constraintTop_toTopOf="parent"
@@ -190,7 +191,7 @@
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/time_icon" />
+        app:srcCompat="@drawable/zsearch_this" />
 
     <ImageView
         android:id="@+id/statisticsLink"

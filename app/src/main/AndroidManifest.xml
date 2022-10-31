@@ -37,6 +37,7 @@
             android:exported="false" />
         <activity
             android:name=".ListFullScreen"
+            android:label="Search"
             android:exported="false"/>
         <activity
             android:name=".MainActivity"

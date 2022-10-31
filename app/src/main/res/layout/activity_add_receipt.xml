@@ -48,7 +48,7 @@
         android:layout_marginStart="160dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="159dp"
-        android:backgroundTint="#CE2A5E"
+        android:backgroundTint="#4EBA28"
         android:text="Save"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,17 +56,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/exitAddButton"
         android:layout_width="100dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="#CE2A5E"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#4EBA28"
         android:text="Back"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <EditText
         android:id="@+id/addCompany"
