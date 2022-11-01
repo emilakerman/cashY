@@ -38,15 +38,17 @@ class StatisticsActivity : AppCompatActivity() {
         bills.add(Expenses("House Bills",3))
         bills.add(Expenses("Transport",9))
 
-        var recyclerView=findViewById<RecyclerView>(R.id.categ_RV)
+        val recyclerView=findViewById<RecyclerView>(R.id.categ_RV)
         recyclerView.layoutManager= LinearLayoutManager(this)
 
         val adapter=ExpensesRecyclerAdapter(this,DataManager.catBills)
         recyclerView.adapter= adapter
 
+
+
         switchBtn.setOnClickListener{
             if (switchBtn.isChecked){
-                createBudgeDialog()
+                createBudgetDialog()
                 switchBtn.isChecked=false
 
                 Log.d("!!!", "${switchBtn.isChecked}")
@@ -54,9 +56,9 @@ class StatisticsActivity : AppCompatActivity() {
                 Log.d("!!!", "${switchBtn.isChecked}")
             }
         }
-
-
     }
+
+
     fun addCategoriesFragment(view: View){
         val categoriesFragment = CategoryFragment()
         if(!categoriesFragment.isAdded) {
@@ -80,9 +82,9 @@ class StatisticsActivity : AppCompatActivity() {
         }
 
     }
-    fun createBudgeDialog(){
+    fun createBudgetDialog(){
         val budget= BudgetDialog()
-        budget.show(supportFragmentManager,"!!!")
+        budget.show(supportFragmentManager,"!!!" )
     }
 
 
