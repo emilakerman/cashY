@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 class ExpensesRecyclerAdapter(val context: Context,
                               val expenses: List<Expenses>):RecyclerView
                                 .Adapter<ExpensesRecyclerAdapter.ViewHolder>(){
-    val layoutInflater=LayoutInflater.from(context)
+    val layoutInflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView= layoutInflater.inflate(R.layout.card_layout,parent,false)
