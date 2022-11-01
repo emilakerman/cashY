@@ -42,39 +42,20 @@ class StatisticsActivity : AppCompatActivity() {
         categoriesBtn= findViewById(R.id.statistiks_iv)
         removeFragBtn= findViewById(R.id.remvFrag_iv)
 
+
         db= Firebase.firestore
         auth = Firebase.auth
-
-
-        //reading from database with user identification
-        /*
-        var user= auth.currentUser
-        if(user!=null){
-            db.collection("users")
-                .document(user.uid).collection("receipts")
-                .addSnapshotListener{ snapshot, e->
-                    if(snapshot!=null){
-                        for(document in snapshot.documents){
-                            val item= document.toObject<Receipt>()
-                            Log.d("!!!","${item}")
-                            receiptBills.add(item!!)
-                        }
-                        Log.d("!!!","${receiptBills.size}") //full
-                    }
-                    Log.d("!!!","${receiptBills.size}") //full
-                }
-            //empty
-        }*/
 
         //links the RV-Layout with the View      // RV in Activity
         recyclerView=findViewById(R.id.categ_RV)
         recyclerView.layoutManager= LinearLayoutManager(this)
         setRecyclerDbLista()
 
+
                                                 //Switch btn for Budget popup window
         switchBtn.setOnClickListener{
             if (switchBtn.isChecked){
-                createBudgeDialog()
+                createBudgetDialog()
                 switchBtn.isChecked=false
 
                 Log.d("!!!", "${switchBtn.isChecked}")
@@ -82,9 +63,9 @@ class StatisticsActivity : AppCompatActivity() {
                 Log.d("!!!", "${switchBtn.isChecked}")
             }
         }
-
-
     }
+
+
     fun addCategoriesFragment(view: View){
         val fm=supportFragmentManager.findFragmentByTag("categories_fragment")
         if(fm==null) {
@@ -110,9 +91,9 @@ class StatisticsActivity : AppCompatActivity() {
 
     }
     //creates pop up window for budget
-    fun createBudgeDialog(){
+    fun createBudgetDialog(){
         val budget= BudgetDialog()
-        budget.show(supportFragmentManager,"!!!")
+        budget.show(supportFragmentManager,"!!!" )
     }
     fun setRecyclerDbLista():List<Receipt>{
         val list= mutableListOf<Receipt>()
