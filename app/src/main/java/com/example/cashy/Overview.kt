@@ -98,13 +98,6 @@ class Overview : AppCompatActivity() {
             val settingsLink = Intent(this, SettingsActivity::class.java)
             startActivity(settingsLink)
         }
-        /////popup menu test
-        val card_img = findViewById<ImageView>(R.id.card_img)
-        card_img.setOnClickListener {
-            val popup = PopupMenu(this, card_img)
-            popup.inflate((R.menu.popup))
-            popup.show()
-        }
     }
     fun showTime() {
         val intent1 = Intent(this, ListFullScreen::class.java)
@@ -124,7 +117,7 @@ class Overview : AppCompatActivity() {
                             receipts = mutableListOf()
                             receipts.add(item)
                             cardSum += item.sum!!
-                            cardAmount.text = cardSum.toString()
+                            cardAmount.text = "${cardSum} kr"
                         }
                     }
                 }
@@ -144,7 +137,7 @@ class Overview : AppCompatActivity() {
                             receipts = mutableListOf()
                             receipts.add(item)
                             cashSum += item.sum!!
-                            cashAmount.text = cashSum.toString()
+                            cashAmount.text = "${cashSum} kr"
                         }
                     }
                 }
@@ -189,7 +182,7 @@ class Overview : AppCompatActivity() {
                             receipts = mutableListOf()
                             receipts.add(item)
                             totalSum += item.sum!!
-                            totalspent_txt.text = totalSum.toString()
+                            totalspent_txt.text = "${totalSum} kr"
                         }
                     }
                 }
