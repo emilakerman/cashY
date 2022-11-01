@@ -1,5 +1,6 @@
 package com.example.cashy
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -16,20 +17,21 @@ class BudgetDialog() : DialogFragment() {
     lateinit var testEtPop: EditText
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.budget_popup,container,false)
-        cancelPop=view.findViewById(R.id.cancelBtn)
-        savePop=view.findViewById(R.id.saveBtn)
-        testEtPop=view.findViewById(R.id.popup_Et)
+        val view: View = inflater.inflate(R.layout.budget_popup, container, false)
+        cancelPop = view.findViewById(R.id.cancelBtn)
+        savePop = view.findViewById(R.id.saveBtn)
+        testEtPop = view.findViewById(R.id.popup_Et)
 
-        cancelPop.setOnClickListener{
+        cancelPop.setOnClickListener {
             dismiss()
         }
-        savePop.setOnClickListener{
+        savePop.setOnClickListener {
             //code the logic for the different options available
             dismiss()
         }

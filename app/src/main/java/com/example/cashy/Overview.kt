@@ -7,8 +7,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +24,8 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import java.util.*
+import android.widget.SearchView
 
 
 class Overview : AppCompatActivity() {
@@ -36,6 +42,10 @@ class Overview : AppCompatActivity() {
     var cashSum : Int = 0
     var cardSum : Int = 0
 
+    lateinit var receipts : MutableList<Receipt>
+    lateinit var recyclerView : RecyclerView
+    lateinit var adapter : ExpenseRecycleAdapter
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,10 +61,10 @@ class Overview : AppCompatActivity() {
         val user = Firebase.auth.currentUser
         var uid = user?.uid
 
-        val receipts = mutableListOf<Receipt>()
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        receipts = mutableListOf()
+        recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = ExpenseRecycleAdapter(this, receipts)
+        adapter = ExpenseRecycleAdapter(receipts)
         recyclerView.adapter = adapter
         recyclerView.apply {
             setHasFixedSize(true)
@@ -80,20 +90,13 @@ class Overview : AppCompatActivity() {
         readToPaymentmethodCard()
 
         toAddReceiptButton = findViewById(R.id.floatingActionButton2)
-        toAddReceiptButton.setOnClickListener{
+        toAddReceiptButton.setOnClickListener {
             toAddReceiptButton()
         }
         settings_img = findViewById(R.id.settings_img)
         settings_img.setOnClickListener {
             val settingsLink = Intent(this, SettingsActivity::class.java)
-             startActivity(settingsLink)
-        }
-        /////popup menu test
-        val card_img = findViewById<ImageView>(R.id.card_img)
-        card_img.setOnClickListener {
-            val popup = PopupMenu(this, card_img)
-            popup.inflate((R.menu.popup))
-            popup.show()
+            startActivity(settingsLink)
         }
     }
     fun showTime() {
@@ -111,10 +114,10 @@ class Overview : AppCompatActivity() {
                         val item = document.toObject<Receipt>()
                         if (item != null) {
                             val cardAmount = findViewById<TextView>(R.id.cardAmount)
-                            val receipts = mutableListOf<Receipt>()
+                            receipts = mutableListOf()
                             receipts.add(item)
                             cardSum += item.sum!!
-                            cardAmount.text = cardSum.toString()
+                            cardAmount.text = "${cardSum} kr"
                         }
                     }
                 }
@@ -131,10 +134,10 @@ class Overview : AppCompatActivity() {
                         val item = document.toObject<Receipt>()
                         if (item != null) {
                             val cashAmount = findViewById<TextView>(R.id.cashAmount)
-                            val receipts = mutableListOf<Receipt>()
+                            receipts = mutableListOf()
                             receipts.add(item)
                             cashSum += item.sum!!
-                            cashAmount.text = cashSum.toString()
+                            cashAmount.text = "${cashSum} kr"
                         }
                     }
                 }
@@ -147,16 +150,10 @@ class Overview : AppCompatActivity() {
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                     .addOnSuccessListener { documentSnapshot ->
-                        //recyclerview finns både här och i onCreate... crash issues, låt det vara så här for now
-                        val receipts = mutableListOf<Receipt>()
-                        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-                        recyclerView.layoutManager = LinearLayoutManager(this)
-                        val adapter = ExpenseRecycleAdapter(this, receipts)
+                        receipts = mutableListOf()
+                        recyclerView = findViewById(R.id.recyclerView)
+                        adapter = ExpenseRecycleAdapter(receipts)
                         recyclerView.adapter = adapter
-                        recyclerView.apply {
-                            setHasFixedSize(true)
-                            addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
-                        }
                     for (document in documentSnapshot.documents) {
                         val item = document.toObject<Receipt>()
                         if (item != null) {
@@ -168,7 +165,7 @@ class Overview : AppCompatActivity() {
     }
        fun toAddReceiptButton() {
            val resultButtonIntent =
-               Intent(/* packageContext = */ this, /* cls = */ AddReceipt::class.java)
+               Intent(this, AddReceipt::class.java)
            startActivity(resultButtonIntent)
        }
     //reads total sum of all fields correctly and populates the top total sum textview
@@ -182,10 +179,10 @@ class Overview : AppCompatActivity() {
                         val item = document.toObject<Receipt>()
                         if (item != null) {
                             val totalspent_txt = findViewById<TextView>(R.id.totalSpent_txt)
-                            val receipts = mutableListOf<Receipt>()
+                            receipts = mutableListOf()
                             receipts.add(item)
                             totalSum += item.sum!!
-                            totalspent_txt.text = totalSum.toString()
+                            totalspent_txt.text = "${totalSum} kr"
                         }
                     }
                 }
@@ -193,6 +190,5 @@ class Overview : AppCompatActivity() {
                     Log.w("!!!", "Error getting documents: ", exception)
                 }
         }
-
     }
 }

@@ -36,8 +36,8 @@ class CategoryFragment : Fragment() {
 
         setUpSpinner()
 
-        catRecyclerView.layoutManager=LinearLayoutManager(view.context) //dunno yet which
-        val adapter=ExpensesRecyclerAdapter(view.context,DataManager.catBills)
+        catRecyclerView.layoutManager = LinearLayoutManager(view.context) //dunno yet which
+        val adapter=ExpensesRecyclerAdapter(view.context, DataManager.catBills) //getContext
         catRecyclerView.adapter= adapter
         //el rv del fragment=al recycler de la calse expenses
 
@@ -60,8 +60,8 @@ class CategoryFragment : Fragment() {
 
         catSpiner.onItemSelectedListener= object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                //val selectedItem = parent!!.getItemAtPosition(position)
-                //Toast.makeText(this@CategoryFragment,"Selected: $selectedItem ",Toast.LENGTH_LONG).show()
+                val selectedItem = parent!!.getItemAtPosition(position)
+                Toast.makeText(context,"Selected: $selectedItem ",Toast.LENGTH_LONG).show()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
