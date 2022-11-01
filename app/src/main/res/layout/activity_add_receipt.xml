@@ -16,9 +16,9 @@
         android:ems="10"
         android:hint="Enter amount*"
         android:inputType="number|textPersonName"
+        android:paddingLeft="10dp"
         android:textColor="#FBFBFB"
         android:textColorHint="#FFFFFF"
-        android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,47 +76,51 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/bg_login_register"
         android:ems="10"
-        android:paddingLeft="10dp"
         android:hint="From what company?"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:paddingLeft="10dp"
         android:textColor="#FFF5F5"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addPaymentmethod" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPaymentmethod" />
 
-    <EditText
-        android:id="@+id/addCategory"
+    <Spinner
+        android:id="@+id/spinnerCategory"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/bg_login_register"
         android:ems="10"
-        android:paddingLeft="10dp"
+        android:entries="@array/Categories"
         android:hint="Select category*"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
         android:textColor="#F6F6F6"
         android:textColorHint="#F4F4F4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addValue" />
 
-    <EditText
-        android:id="@+id/addPaymentmethod"
+
+
+    <Spinner
+        android:id="@+id/spinnerPaymentmethod"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/bg_login_register"
         android:ems="10"
-        android:paddingLeft="10dp"
+        android:entries="@array/payMethod"
         android:hint="Select payment method*"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
 
     <TextView
         android:id="@+id/enterStatic"
@@ -140,5 +144,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addMsg" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
