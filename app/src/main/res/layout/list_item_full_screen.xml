@@ -48,7 +48,6 @@
         android:layout_height="38dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="15dp"
-        android:background="#D9ECE3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/sym_action_call" />
@@ -93,5 +92,16 @@
         android:text="comment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timestamp_txt" />
+
+    <ImageView
+        android:id="@+id/removeExpense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="11dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/icon_img"
+        app:layout_constraintEnd_toStartOf="@+id/icon_img"
+        app:srcCompat="@android:drawable/presence_offline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

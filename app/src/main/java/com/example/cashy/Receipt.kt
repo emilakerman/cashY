@@ -14,16 +14,14 @@ data class Receipt(
     var category: String? = null,
     var paymentmethod: String? = null,
     var timestamp: Date? = null,
-    //var img : Int? = null
+    var img : Int? = null
 
-    //var cashOrCard: Enum.Companion = Enum,
-    //var image : String = "",
     //var spinner :Spinner
-)
-    /*
+) {
     init {
         setImageCategory()
     }
+
     fun setImageCategory() {
         when (category) {
             "Other" -> img = R.drawable.other
@@ -31,11 +29,11 @@ data class Receipt(
             "Food & Beverage" -> img = R.drawable.foodbeverage
             "Lifestyle" -> img = R.drawable.lifestyle
             "Transport" -> img = R.drawable.ic_baseline_directions_transit_24
-            //else -> img = R.drawable.temporary
+            else -> img = R.drawable.other
         }
     }
 
-     */
+}
 
 
 
