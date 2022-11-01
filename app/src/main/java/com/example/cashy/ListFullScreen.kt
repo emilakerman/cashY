@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.widget.SearchView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -27,8 +28,8 @@ class ListFullScreen : AppCompatActivity() {
     lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
 
-    lateinit var recyclerView: RecyclerView
-    lateinit var adapter: FullScreenAdapter
+    lateinit var recyclerView : RecyclerView
+    lateinit var adapter : FullScreenAdapter
     lateinit var receipts : MutableList<Receipt>
 
     @SuppressLint("MissingInflatedId")
@@ -48,6 +49,10 @@ class ListFullScreen : AppCompatActivity() {
         receipts = mutableListOf()
         adapter = FullScreenAdapter(receipts)
         recyclerView.adapter = adapter
+        recyclerView.apply {
+            setHasFixedSize(true)
+            addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
+        }
 
         readFrom()
 
@@ -84,6 +89,9 @@ class ListFullScreen : AppCompatActivity() {
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
+                    recyclerView = findViewById(R.id.recyclerViewFullScreen)
+                    adapter = FullScreenAdapter(receipts)
+                    recyclerView.adapter = adapter
                     for (document in documentSnapshot.documents) {
                         val item = document.toObject<Receipt>()
                         if (item != null) {

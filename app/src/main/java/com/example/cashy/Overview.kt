@@ -35,14 +35,16 @@ class Overview : AppCompatActivity() {
     lateinit var timeShow : ImageView
     lateinit var statisticsLink : ImageView
 
-    lateinit var editText : AppCompatEditText
-
     lateinit var db : FirebaseFirestore
     private lateinit var auth: FirebaseAuth
 
     var totalSum : Int = 0
     var cashSum : Int = 0
     var cardSum : Int = 0
+
+    lateinit var receipts : MutableList<Receipt>
+    lateinit var recyclerView : RecyclerView
+    lateinit var adapter : ExpenseRecycleAdapter
 
 
     @SuppressLint("MissingInflatedId")
@@ -59,10 +61,10 @@ class Overview : AppCompatActivity() {
         val user = Firebase.auth.currentUser
         var uid = user?.uid
 
-        val receipts = mutableListOf<Receipt>()
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        receipts = mutableListOf()
+        recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = ExpenseRecycleAdapter(receipts)
+        adapter = ExpenseRecycleAdapter(receipts)
         recyclerView.adapter = adapter
         recyclerView.apply {
             setHasFixedSize(true)
@@ -119,7 +121,7 @@ class Overview : AppCompatActivity() {
                         val item = document.toObject<Receipt>()
                         if (item != null) {
                             val cardAmount = findViewById<TextView>(R.id.cardAmount)
-                            val receipts = mutableListOf<Receipt>()
+                            receipts = mutableListOf()
                             receipts.add(item)
                             cardSum += item.sum!!
                             cardAmount.text = cardSum.toString()
@@ -139,7 +141,7 @@ class Overview : AppCompatActivity() {
                         val item = document.toObject<Receipt>()
                         if (item != null) {
                             val cashAmount = findViewById<TextView>(R.id.cashAmount)
-                            val receipts = mutableListOf<Receipt>()
+                            receipts = mutableListOf()
                             receipts.add(item)
                             cashSum += item.sum!!
                             cashAmount.text = cashSum.toString()
@@ -155,16 +157,10 @@ class Overview : AppCompatActivity() {
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                     .addOnSuccessListener { documentSnapshot ->
-                        //recyclerview finns både här och i onCreate... crash issues, låt det vara så här for now
-                        val receipts = mutableListOf<Receipt>()
-                        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-                        recyclerView.layoutManager = LinearLayoutManager(this)
-                        val adapter = ExpenseRecycleAdapter(receipts)
+                        receipts = mutableListOf()
+                        recyclerView = findViewById(R.id.recyclerView)
+                        adapter = ExpenseRecycleAdapter(receipts)
                         recyclerView.adapter = adapter
-                        recyclerView.apply {
-                            setHasFixedSize(true)
-                            addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
-                        }
                     for (document in documentSnapshot.documents) {
                         val item = document.toObject<Receipt>()
                         if (item != null) {
@@ -190,7 +186,7 @@ class Overview : AppCompatActivity() {
                         val item = document.toObject<Receipt>()
                         if (item != null) {
                             val totalspent_txt = findViewById<TextView>(R.id.totalSpent_txt)
-                            val receipts = mutableListOf<Receipt>()
+                            receipts = mutableListOf()
                             receipts.add(item)
                             totalSum += item.sum!!
                             totalspent_txt.text = totalSum.toString()
