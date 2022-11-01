@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".StatisticsActivity">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/popup_window_view_with_border"
         android:layout_width="wrap_content"
@@ -114,3 +113,4 @@
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

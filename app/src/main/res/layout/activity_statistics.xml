@@ -8,39 +8,35 @@
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/idSwitch"
-        android:layout_width="263dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="24dp"
-        android:thumb="@drawable/thumb"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="304dp"
+        android:layout_marginEnd="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:track="@drawable/statistics_switch_track" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="308dp"
         android:text="CATEGORIES"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/container"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idSwitch"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
         android:id="@+id/container"
-        android:layout_width="409dp"
-        android:layout_height="469dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="290dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -62,11 +58,10 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="404dp"
-        android:layout_height="53dp"
+        android:layout_width="407dp"
+        android:layout_height="67dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
         android:background="@color/white"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,32 +69,27 @@
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/home_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:contentDescription="TODO"
-            app:srcCompat="@drawable/under_construction_icon" />
 
-        <ImageView
+
+        <ImageButton
             android:id="@+id/statistiks_iv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            app:srcCompat="@drawable/add_fragment"
             android:onClick="addCategoriesFragment"
-            app:srcCompat="@drawable/under_construction_icon"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/remvFrag_iv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="removeFragment"
-            app:srcCompat="@drawable/under_construction_icon" />
+            app:srcCompat="@drawable/delete_fragment"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/settings_iv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
