@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">CashY</string>
+    <string-array name="Categories">
+        <item>Categories</item>
+        <item>Food</item>
+        <item>Clothes</item>
+        <item>Films</item>
+        <item>Furniture</item>
+        <item>House Bills</item>
+        <item>Transport</item>
+    </string-array>
+    <string-array name="payMethod">
+        <item>Pay Method</item>
+        <item>Cash</item>
+        <item>Card</item>
+    </string-array>
 </resources>

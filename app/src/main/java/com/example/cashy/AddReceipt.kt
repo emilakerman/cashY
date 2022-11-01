@@ -3,8 +3,12 @@ package com.example.cashy
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -18,7 +22,7 @@ class AddReceipt : AppCompatActivity() {
     lateinit var addValue: EditText
     lateinit var addCategory: EditText
     lateinit var addPaymentmethod: EditText
-
+    //var catOfmany = Receipt().catOfShop
 
     lateinit var db: FirebaseFirestore
     lateinit var auth: FirebaseAuth
@@ -47,8 +51,8 @@ class AddReceipt : AppCompatActivity() {
         addValue = findViewById(R.id.addValue)
         addMsg = findViewById(R.id.addMsg)
         addCompany = findViewById(R.id.addCompany)
-        addCategory = findViewById(R.id.addCategory)
-        addPaymentmethod = findViewById(R.id.addPaymentmethod)
+        //addCategory = findViewById(R.id.addCategory)
+        //addPaymentmethod = findViewById(R.id.addPaymentmethod)
 
         exitButton = findViewById(R.id.exitAddButton)
         exitButton.setOnClickListener{
@@ -57,11 +61,34 @@ class AddReceipt : AppCompatActivity() {
     }
 
     fun saveItem() {
+
+
+        //val spinner = findViewById<Spinner>(R.id.spinner)
         addValue = findViewById(R.id.addValue)
         addMsg = findViewById(R.id.addMsg)
         addCompany = findViewById(R.id.addCompany)
-        addCategory = findViewById(R.id.addCategory)
-        addPaymentmethod = findViewById(R.id.addPaymentmethod)
+       // addCategory = findViewById(R.id.addCategory)
+        //addPaymentmethod = findViewById(R.id.addPaymentmethod)
+
+        //var categorySpinner = resources.getStringArray(R.array.Categories)
+        /*val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item,catOfmany)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }*/
 
         val item = Receipt(
 
@@ -70,7 +97,9 @@ class AddReceipt : AppCompatActivity() {
             notis = addMsg.text.toString(),
             category = addCategory.text.toString(),
             paymentmethod = addPaymentmethod.text.toString(),
-            timestamp = java.util.Date()
+            timestamp = java.util.Date(),
+
+
         )
         addValue.setText("")
         addCompany.setText("")

@@ -1,5 +1,6 @@
 package com.example.cashy
 
+import android.widget.Spinner
 import com.google.firebase.firestore.DocumentId
 import java.util.*
 
@@ -14,6 +15,8 @@ data class Receipt(
     var category: String? = null,
     var paymentmethod: String? = null,
     var timestamp: Date? = null,
+    //val catOfShop: Array<String> = arrayOf("Mat", "Nöje", "Fest", "Test", "Test1")
+
     //var img : Int? = null
 
     //var cashOrCard: Enum.Companion = Enum,
