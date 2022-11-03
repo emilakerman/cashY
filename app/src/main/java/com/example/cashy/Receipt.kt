@@ -15,7 +15,7 @@ data class Receipt(
     var category: String? = null,
     var paymentmethod: String? = null,
     var timestamp: Date? = null,
-    var img : Int? = null,
+    var img : Int? = null
     //val catOfShop: Array<String> = arrayOf("Mat", "Nöje", "Fest", "Test", "Test1")
 
     //var img : Int? = null
@@ -31,7 +31,16 @@ data class Receipt(
 
     fun setImageCategory() {
         when (category) {
-            "Other" -> img = R.drawable.other
+            "Groceries" -> img = R.drawable.food_icon
+            "Housing" -> img = R.drawable.house_icon
+            "Electronics" -> img= R.drawable.electronics_icon
+            "Sports" -> img= R.drawable.sports_icon
+            "Travel" -> img= R.drawable.travel_icon
+            "Fika" -> img= R.drawable.coffee_icon
+
+
+
+            //"Other" -> img = R.drawable.other
             "Entertainment" -> img = R.drawable.entertainment
             "Food & Beverage" -> img = R.drawable.foodbeverage
             "Lifestyle" -> img = R.drawable.lifestyle
