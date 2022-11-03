@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CashY</string>
     <string-array name="Categories">
-        <item>Select category</item>
+        <item>Select category*</item>
         <item>Other</item>
         <item>Entertainment</item>
         <item>Food and Beverage</item>
@@ -10,7 +10,7 @@
         <item>Household</item>
     </string-array>
     <string-array name="payMethod">
-        <item>Select payment method</item>
+        <item>Select payment method*</item>
         <item>Cash</item>
         <item>Card</item>
     </string-array>

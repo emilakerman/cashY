@@ -43,7 +43,7 @@ class AddReceipt : AppCompatActivity() {
 
         saveButton = findViewById(R.id.saveReceiptButton)
         saveButton.setOnClickListener {
-            if (addValue.text.isEmpty() || spinnerCat.selectedItem == "Select category" || spinnerPay.selectedItem == "Select payment method") {
+            if (addValue.text.isEmpty() || spinnerCat.selectedItem == "Select category*" || spinnerPay.selectedItem == "Select payment method*") {
                 Toast.makeText(this, "Please fill all the required fields.", Toast.LENGTH_SHORT)
                     .show()
             } else {
