@@ -45,7 +45,6 @@ class CategoryFragment : Fragment() {
         setUpSpinner()
 
         catRecyclerView.layoutManager=LinearLayoutManager(view.context)
-        setRecyclerFragmentLista()
 
         return view
     }
@@ -64,10 +63,36 @@ class CategoryFragment : Fragment() {
         catSpiner.onItemSelectedListener= object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedItem = parent!!.getItemAtPosition(position)
+                setRecyclerByCategory(selectedItem.toString())
                 Toast.makeText(context,"Selected: $selectedItem ",Toast.LENGTH_LONG).show()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
+        }
+    }
+    fun setRecyclerByCategory(category:String){
+        val user= auth.currentUser
+        if (user!=null) {
+            getBills.clear()
+            Log.d("!!!","$user")
+            //receipts in cashy
+            db.collection("users").document(user.uid)
+                .collection("receipts")
+                .whereEqualTo("category", category)
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        Log.d("!!!", "${document.id} => ${document.data}")
+                        val item= document.toObject<Receipt>()
+                        Log.d("!!!","${item}")
+                        getBills.add(item)
+                    }
+                    Log.d("!!!","size: ${getBills.size}")
+                    set_dbFragmentRv(getBills)
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("!!!", "Error getting documents: ", exception)
+                }
         }
     }
     fun setRecyclerFragmentLista():List<Receipt> {

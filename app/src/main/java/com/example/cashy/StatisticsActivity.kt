@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -26,9 +27,10 @@ class StatisticsActivity : AppCompatActivity() {
 
     lateinit var recyclerView: RecyclerView
     lateinit var switchBtn : SwitchCompat
-    lateinit var categoriesBtn: ImageView //the 2 imgView that manage fragments
-    lateinit var removeFragBtn: ImageView
+    lateinit var categoriesBtn: ImageButton //the 2 imgView that manage fragments
+    lateinit var removeFragBtn: ImageButton
     lateinit var date: TextView
+    lateinit var overviewBtn: ImageButton
 
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
@@ -41,10 +43,13 @@ class StatisticsActivity : AppCompatActivity() {
         switchBtn= findViewById(R.id.idSwitch)  //the 2 imgView that manage fragments
         categoriesBtn= findViewById(R.id.statistiks_iv)
         removeFragBtn= findViewById(R.id.remvFrag_iv)
+        overviewBtn= findViewById(R.id.overview_imgBtn)
 
 
         db= Firebase.firestore
         auth = Firebase.auth
+
+        //addDataTillUser()
 
         //links the RV-Layout with the View      // RV in Activity
         recyclerView=findViewById(R.id.categ_RV)
@@ -63,8 +68,10 @@ class StatisticsActivity : AppCompatActivity() {
                 Log.d("!!!", "${switchBtn.isChecked}")
             }
         }
+        overviewBtn.setOnClickListener {
+            finish()
+        }
     }
-
 
     fun addCategoriesFragment(view: View){
         val fm=supportFragmentManager.findFragmentByTag("categories_fragment")
@@ -124,30 +131,31 @@ class StatisticsActivity : AppCompatActivity() {
     }
     //just creates data i can use for testing
     fun addDataTillUser(){
-        val check1 = Receipt(sum=500, company="IKEA", category = "Housing", paymentmethod = "card")
-        val check2 = Receipt(sum=800, company="Nintendo", category = "Electronics", paymentmethod = "card")
-        val check3 = Receipt(sum=450, company="Sats", category = "Sports", paymentmethod = "cash")
-        val check4 = Receipt(sum=980, company="SL", category = "Transport", paymentmethod = "card")
-        val check5 = Receipt(sum=5000, company="IKEA", category = "Housing", paymentmethod = "cash")
-        val check6 = Receipt(sum=780, company="ICA", category = "Groceries", paymentmethod = "cash")
-        val check7 = Receipt(sum=320, company="Coop", category = "Groceries", paymentmethod = "card")
-        val check8 = Receipt(sum=560, company="Starbucks", category = "Fika", paymentmethod = "card")
-        val check9 = Receipt(sum=7659, company="SAS", category = "Travel", paymentmethod = "card")
-        val check10 = Receipt(sum=4900, company="Microsoft", category = "Electronics", paymentmethod = "card")
-        val check11 = Receipt(sum=20000, company="Apple", category = "Electronics", paymentmethod = "card")
-        val check12 = Receipt(sum=3645, company="Google", category = "Electronics", paymentmethod = "card")
+        val check1 = Receipt(sum=500, company="ICA", category = "Groceries", paymentmethod = "card")
+        val check2 = Receipt(sum=800, company="ICA", category = "Groceries", paymentmethod = "card")
+        val check3 = Receipt(sum=450, company="ICA", category = "Groceries", paymentmethod = "cash")
+
         /*val user= auth.currentUser
         if (user==null){
             return
         }*/
-        val user= auth.currentUser ?: return //it declares user and at the same time if it's null returns back, saving the steps before
-        //add one by one the data above
+        val user= auth.currentUser ?: return //it declares user and at the same time if it's null return back, saving the steps before
+        //add one by one
         db.collection("users").document(user.uid)
             .collection("receipts")
             .add(check1).addOnCompleteListener {
                 Log.d("!!!","Receipt Added")
             }
-
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check2).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check3).addOnCompleteListener {
+                Log.d("!!!", "Receipt Added")
+            }
 
     }
 

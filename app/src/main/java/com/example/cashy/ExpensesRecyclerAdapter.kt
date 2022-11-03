@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
 
 class ExpensesRecyclerAdapter(val context: Context,
@@ -22,7 +23,7 @@ class ExpensesRecyclerAdapter(val context: Context,
         val receipts= receipt[position]
         holder.categoryTextView.text=receipts.category
         holder.transactionTextView.text=receipts.timestamp.toString() //transaction deprecated LOL
-        //holder.imgImageView.setImageResource(receipts.img!!) //setImageResource(images[position]) //setImageResource()
+        holder.imgImageView.setImageResource(receipts.img!!)
         holder.companytxtV.text=receipts.company.toString()
         holder.sumTxtV.text=receipts.sum.toString()
         holder.payMethTxtV.text=receipts.paymentmethod.toString()
