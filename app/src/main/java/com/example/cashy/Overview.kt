@@ -107,7 +107,7 @@ class Overview : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("paymentmethod", "card")
+                .whereEqualTo("paymentmethod", "Card")
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
                     for (document in documentSnapshot.documents) {
@@ -127,7 +127,7 @@ class Overview : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("paymentmethod", "cash")
+                .whereEqualTo("paymentmethod", "Cash")
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
                     for (document in documentSnapshot.documents) {

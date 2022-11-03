@@ -20,9 +20,6 @@ data class Receipt(
 
     //var img : Int? = null
 
-
-
-
     //var spinner :Spinner
 ) {
     init {
@@ -42,13 +39,13 @@ data class Receipt(
 
             //"Other" -> img = R.drawable.other
             "Entertainment" -> img = R.drawable.entertainment
-            "Food & Beverage" -> img = R.drawable.foodbeverage
+            "Food and Beverage" -> img = R.drawable.foodbeverage
             "Lifestyle" -> img = R.drawable.lifestyle
             "Transport" -> img = R.drawable.ic_baseline_directions_transit_24
+            "Household" -> img = R.drawable.ic_baseline_house_24
             else -> img = R.drawable.other
         }
     }
-
 }
 
 

@@ -62,11 +62,11 @@
 
     <Button
         android:id="@+id/button_login"
-        app:cornerRadius="20dp"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:backgroundTint="@color/Button_Color"
         android:text="Login"
-        android:backgroundTint="#CE2A5E"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/textView_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
