@@ -23,11 +23,8 @@ class AddReceipt : AppCompatActivity() {
     lateinit var addCompany: EditText
     lateinit var addValue: EditText
 
-    //var catOfmany = Receipt().catOfShop
-    /// spinners
     lateinit var spinnerCat : Spinner
     lateinit var spinnerPay : Spinner
-
 
     lateinit var db: FirebaseFirestore
     lateinit var auth: FirebaseAuth
@@ -57,10 +54,8 @@ class AddReceipt : AppCompatActivity() {
         addMsg = findViewById(R.id.addMsg)
         addCompany = findViewById(R.id.addCompany)
 
-        /// spinners
         spinnerCat = findViewById(R.id.spinnerCategory)
         spinnerPay = findViewById(R.id.spinnerPaymentmethod)
-
 
         exitButton = findViewById(R.id.exitAddButton)
         exitButton.setOnClickListener{
@@ -73,7 +68,6 @@ class AddReceipt : AppCompatActivity() {
         addMsg = findViewById(R.id.addMsg)
         addCompany = findViewById(R.id.addCompany)
 
-        //spinners
         spinnerCat = findViewById(R.id.spinnerCategory)
         spinnerPay = findViewById(R.id.spinnerPaymentmethod)
 
@@ -104,7 +98,6 @@ class AddReceipt : AppCompatActivity() {
                 }
             }
         }
-
         val item = Receipt(
             sum = addValue.text.toString().toInt(),
             company = addCompany.text.toString(),
@@ -116,8 +109,6 @@ class AddReceipt : AppCompatActivity() {
         addValue.setText("")
         addCompany.setText("")
         addMsg.setText("")
-
-
 
         val user = auth.currentUser
         if (user == null) {
@@ -132,10 +123,8 @@ class AddReceipt : AppCompatActivity() {
                     Toast.LENGTH_SHORT).show()
             }
     }
-
     fun exitActivity(){
         val exitTheActivityIntent = Intent(this, Overview::class.java)
         startActivity(exitTheActivityIntent)
-
     }
 }
