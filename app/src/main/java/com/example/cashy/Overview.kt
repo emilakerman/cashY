@@ -2,17 +2,11 @@ package com.example.cashy
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +19,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import java.util.*
-import android.widget.SearchView
 
 
 class Overview : AppCompatActivity() {
@@ -34,6 +27,8 @@ class Overview : AppCompatActivity() {
     lateinit var settings_img : ImageView
     lateinit var timeShow : ImageView
     lateinit var statisticsLink : ImageView
+
+    lateinit var monthLink : ImageView
 
     lateinit var db : FirebaseFirestore
     private lateinit var auth: FirebaseAuth
@@ -79,6 +74,11 @@ class Overview : AppCompatActivity() {
             val intent = Intent(this, StatisticsActivity::class.java)
             startActivity(intent)
         }
+        monthLink = findViewById(R.id.monthLink)
+        monthLink.setOnClickListener {
+            val intent = Intent(this, DisplayMonths::class.java)
+            startActivity(intent)
+        }
 
         //reads data and populates the recyclerview (also enables the recyclerview)
         readFrom()
@@ -113,7 +113,7 @@ class Overview : AppCompatActivity() {
                     for (document in documentSnapshot.documents) {
                         val item = document.toObject<Receipt>()
                         if (item != null) {
-                            val cardAmount = findViewById<TextView>(R.id.cardAmount)
+                            val cardAmount = findViewById<TextView>(R.id.amountJan)
                             receipts = mutableListOf()
                             receipts.add(item)
                             cardSum += item.sum!!

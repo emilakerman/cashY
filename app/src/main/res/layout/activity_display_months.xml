@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DisplayMonths">
+
+    <FrameLayout
+        android:id="@+id/frameJan"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toStartOf="@+id/frameFeb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/amountJan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameFeb"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frameJan"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/amountFeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameMar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toStartOf="@+id/frameApr"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameJan">
+
+        <TextView
+            android:id="@+id/amountMar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameApr"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frameMar"
+        app:layout_constraintTop_toBottomOf="@+id/frameFeb">
+
+        <TextView
+            android:id="@+id/amountApr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameMay"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toStartOf="@+id/frameJun"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameMar">
+
+        <TextView
+            android:id="@+id/amountMay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameJun"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frameMay"
+        app:layout_constraintTop_toBottomOf="@+id/frameApr">
+
+        <TextView
+            android:id="@+id/amountJun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameJul"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toStartOf="@+id/frameAug"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameMay">
+
+        <TextView
+            android:id="@+id/amountJul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameAug"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frameJul"
+        app:layout_constraintTop_toBottomOf="@+id/frameJun">
+
+        <TextView
+            android:id="@+id/amountAug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameSep"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toStartOf="@+id/frameOct"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameJul">
+
+        <TextView
+            android:id="@+id/amountSep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameOct"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintStart_toEndOf="@+id/frameSep"
+        app:layout_constraintTop_toBottomOf="@+id/frameAug">
+
+        <TextView
+            android:id="@+id/amountOct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameNov"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toStartOf="@+id/frameDec"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameSep">
+
+        <TextView
+            android:id="@+id/amountNov"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameDec"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintStart_toEndOf="@+id/frameNov"
+        app:layout_constraintTop_toBottomOf="@+id/frameOct">
+
+        <TextView
+            android:id="@+id/amountDec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="40dp"
+            android:translationY="30dp" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

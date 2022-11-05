@@ -134,7 +134,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/frameLayout2"
+        android:id="@+id/frameJan"
         android:layout_width="140dp"
         android:layout_height="130dp"
         android:layout_marginStart="40dp"
@@ -162,7 +162,7 @@
             android:translationY="180px" />
 
         <TextView
-            android:id="@+id/cardAmount"
+            android:id="@+id/amountJan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -177,7 +177,7 @@
         android:id="@+id/settings_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toEndOf="@+id/overview_Static"
         app:layout_constraintTop_toTopOf="parent"
@@ -194,14 +194,24 @@
         app:srcCompat="@drawable/zsearch_this" />
 
     <ImageView
+        android:id="@+id/monthLink"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toEndOf="@+id/statisticsLink"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/month_icon" />
+
+    <ImageView
         android:id="@+id/statisticsLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/timeShow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/under_construction_icon" />
+        android:layout_width="31dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toEndOf="@+id/settings_img"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_construction_241" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
