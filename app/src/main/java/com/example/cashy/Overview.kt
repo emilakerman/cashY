@@ -28,6 +28,8 @@ class Overview : AppCompatActivity() {
     lateinit var timeShow : ImageView
     lateinit var statisticsLink : ImageView
 
+
+
     lateinit var monthLink : ImageView
 
     lateinit var db : FirebaseFirestore
@@ -89,6 +91,7 @@ class Overview : AppCompatActivity() {
         //reads total of CARD SUM and adds to correct place
         readToPaymentmethodCard()
 
+
         toAddReceiptButton = findViewById(R.id.floatingActionButton2)
         toAddReceiptButton.setOnClickListener {
             toAddReceiptButton()
@@ -113,7 +116,7 @@ class Overview : AppCompatActivity() {
                     for (document in documentSnapshot.documents) {
                         val item = document.toObject<Receipt>()
                         if (item != null) {
-                            val cardAmount = findViewById<TextView>(R.id.amountJan)
+                            val cardAmount = findViewById<TextView>(R.id.cardAmount)
                             receipts = mutableListOf()
                             receipts.add(item)
                             cardSum += item.sum!!

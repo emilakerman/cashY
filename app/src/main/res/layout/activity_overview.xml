@@ -30,6 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:background="#E9FAF2"
+        app:layout_constraintEnd_toEndOf="@+id/settings_img"
+        app:layout_constraintStart_toEndOf="@+id/settings_img"
         app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
@@ -85,8 +87,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
-        android:clickable="true"
         android:backgroundTint="#4EBA28"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout3"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout3"
         app:layout_constraintTop_toTopOf="parent"
@@ -162,7 +164,7 @@
             android:translationY="180px" />
 
         <TextView
-            android:id="@+id/amountJan"
+            android:id="@+id/cardAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"

@@ -10,23 +10,31 @@
         android:id="@+id/frameJan"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/rounded_shape"
         app:layout_constraintEnd_toStartOf="@+id/frameFeb"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/expensesByMonthTitle">
 
         <TextView
             android:id="@+id/amountJan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text=""
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="40dp"
-            android:translationY="30dp" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/monthJanStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Jan"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
     </FrameLayout>
 
@@ -34,23 +42,31 @@
         android:id="@+id/frameFeb"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="12dp"
         android:background="@drawable/rounded_shape"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/frameMar"
         app:layout_constraintStart_toEndOf="@+id/frameJan"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/expensesByMonthTitle">
 
         <TextView
             android:id="@+id/amountFeb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text=""
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="40dp"
-            android:translationY="30dp" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/monthFebStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Feb"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
     </FrameLayout>
 
@@ -58,23 +74,31 @@
         android:id="@+id/frameMar"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/rounded_shape"
-        app:layout_constraintEnd_toStartOf="@+id/frameApr"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameJan">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frameFeb"
+        app:layout_constraintTop_toBottomOf="@+id/expensesByMonthTitle">
 
         <TextView
             android:id="@+id/amountMar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text=""
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="40dp"
-            android:translationY="30dp" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/monthMarStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Mar"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
     </FrameLayout>
 
@@ -82,23 +106,31 @@
         android:id="@+id/frameApr"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/rounded_shape"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/frameMar"
+        app:layout_constraintEnd_toStartOf="@+id/frameMay"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameFeb">
 
         <TextView
             android:id="@+id/amountApr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text=""
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="40dp"
-            android:translationY="30dp" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/monthAprStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Apr"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
     </FrameLayout>
 
@@ -106,23 +138,31 @@
         android:id="@+id/frameMay"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
         android:background="@drawable/rounded_shape"
         app:layout_constraintEnd_toStartOf="@+id/frameJun"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frameApr"
         app:layout_constraintTop_toBottomOf="@+id/frameMar">
 
         <TextView
             android:id="@+id/amountMay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text=""
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="40dp"
-            android:translationY="30dp" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/monthMayStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="May"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
     </FrameLayout>
 
@@ -130,23 +170,31 @@
         android:id="@+id/frameJun"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/rounded_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/frameMay"
-        app:layout_constraintTop_toBottomOf="@+id/frameApr">
+        app:layout_constraintTop_toBottomOf="@+id/frameMar">
 
         <TextView
             android:id="@+id/amountJun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text=""
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="40dp"
-            android:translationY="30dp" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/monthJunStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Jun"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
     </FrameLayout>
 
@@ -154,23 +202,31 @@
         android:id="@+id/frameJul"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/rounded_shape"
         app:layout_constraintEnd_toStartOf="@+id/frameAug"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameMay">
+        app:layout_constraintTop_toBottomOf="@+id/frameApr">
 
         <TextView
             android:id="@+id/amountJul"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text=""
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="40dp"
-            android:translationY="30dp" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/monthJulStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Jul"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
     </FrameLayout>
 
@@ -178,11 +234,11 @@
         android:id="@+id/frameAug"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
         android:background="@drawable/rounded_shape"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/frameSep"
         app:layout_constraintStart_toEndOf="@+id/frameJul"
         app:layout_constraintTop_toBottomOf="@+id/frameJun">
 
@@ -190,11 +246,19 @@
             android:id="@+id/amountAug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text=""
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="40dp"
-            android:translationY="30dp" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/monthAugStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Aug"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
     </FrameLayout>
 
@@ -202,23 +266,31 @@
         android:id="@+id/frameSep"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/rounded_shape"
-        app:layout_constraintEnd_toStartOf="@+id/frameOct"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameJul">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frameAug"
+        app:layout_constraintTop_toBottomOf="@+id/frameJun">
 
         <TextView
             android:id="@+id/amountSep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text=""
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="40dp"
-            android:translationY="30dp" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/monthSepStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Sep"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
     </FrameLayout>
 
@@ -226,24 +298,31 @@
         android:id="@+id/frameOct"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/rounded_shape"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
-        app:layout_constraintStart_toEndOf="@+id/frameSep"
+        app:layout_constraintEnd_toStartOf="@+id/frameNov"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameAug">
 
         <TextView
             android:id="@+id/amountOct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text=""
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="40dp"
-            android:translationY="30dp" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/monthOctStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Oct"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
     </FrameLayout>
 
@@ -251,23 +330,31 @@
         android:id="@+id/frameNov"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
         android:background="@drawable/rounded_shape"
         app:layout_constraintEnd_toStartOf="@+id/frameDec"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frameOct"
         app:layout_constraintTop_toBottomOf="@+id/frameSep">
 
         <TextView
             android:id="@+id/amountNov"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:layout_gravity="center"
+            android:text=""
             android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="40dp"
-            android:translationY="30dp" />
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/monthNovStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Nov"
+            android:textColor="#000000"
+            android:textSize="12sp" />
 
     </FrameLayout>
 
@@ -275,25 +362,47 @@
         android:id="@+id/frameDec"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/rounded_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.696"
         app:layout_constraintStart_toEndOf="@+id/frameNov"
-        app:layout_constraintTop_toBottomOf="@+id/frameOct">
+        app:layout_constraintTop_toBottomOf="@+id/frameSep">
 
         <TextView
             android:id="@+id/amountDec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:text=""
             android:textColor="#000000"
             android:textSize="24sp"
             android:translationX="40dp"
             android:translationY="30dp" />
 
+        <TextView
+            android:id="@+id/monthDecStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Dec"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/expensesByMonthTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Expenses by month"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

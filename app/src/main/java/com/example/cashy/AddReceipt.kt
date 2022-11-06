@@ -17,11 +17,16 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.DateFormat
+import java.util.*
 
 class AddReceipt : AppCompatActivity() {
     lateinit var addMsg: EditText
     lateinit var addCompany: EditText
     lateinit var addValue: EditText
+
+    val C = Calendar.getInstance()
+    val month = C.get(Calendar.MONTH)
 
     lateinit var spinnerCat : Spinner
     lateinit var spinnerPay : Spinner
@@ -105,6 +110,7 @@ class AddReceipt : AppCompatActivity() {
             category = spinnerCat.selectedItem.toString(),
             paymentmethod = spinnerPay.selectedItem.toString(),
             timestamp = java.util.Date(),
+            monthNo = month.toString()
         )
         addValue.setText("")
         addCompany.setText("")
