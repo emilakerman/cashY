@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
@@ -82,13 +84,13 @@ class DisplayMonths : AppCompatActivity() {
         readToOct()
         readToNov()
         readToDec()
-
     }
     fun readToJan() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "0")
+                .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
@@ -118,6 +120,7 @@ class DisplayMonths : AppCompatActivity() {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "1")
+                .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
@@ -147,6 +150,7 @@ class DisplayMonths : AppCompatActivity() {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "2")
+                .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
@@ -176,6 +180,7 @@ class DisplayMonths : AppCompatActivity() {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "3")
+                .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
@@ -205,6 +210,7 @@ class DisplayMonths : AppCompatActivity() {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "4")
+                .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
@@ -234,6 +240,7 @@ class DisplayMonths : AppCompatActivity() {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "5")
+                .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
@@ -263,6 +270,7 @@ class DisplayMonths : AppCompatActivity() {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "6")
+                .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
@@ -292,6 +300,7 @@ class DisplayMonths : AppCompatActivity() {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "7")
+                .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
@@ -321,6 +330,7 @@ class DisplayMonths : AppCompatActivity() {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "8")
+                .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
@@ -350,6 +360,7 @@ class DisplayMonths : AppCompatActivity() {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "9")
+                .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
@@ -378,8 +389,9 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
            val docRef = db.collection("users").document(user.uid).collection("receipts")
-               .whereEqualTo("monthNo", "10") //means november (kotlin starts counting months at 0)
-                docRef.addSnapshotListener { snapshot, e ->
+            .whereEqualTo("monthNo", "10")
+            .whereEqualTo("year", "2022")
+            docRef.addSnapshotListener { snapshot, e ->
                     if (snapshot != null) {
                         for (document in snapshot.documents) {
                             val item = document.toObject<Receipt>()
@@ -408,6 +420,7 @@ class DisplayMonths : AppCompatActivity() {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "11")
+                .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {

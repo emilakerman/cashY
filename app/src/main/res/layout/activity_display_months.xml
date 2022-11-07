@@ -16,7 +16,7 @@
         android:background="@drawable/rounded_shape"
         app:layout_constraintEnd_toStartOf="@+id/frameFeb"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expensesByMonthTitle">
+        app:layout_constraintTop_toBottomOf="@+id/year2022header">
 
         <TextView
             android:id="@+id/amountJan"
@@ -48,7 +48,7 @@
         android:background="@drawable/rounded_shape"
         app:layout_constraintEnd_toStartOf="@+id/frameMar"
         app:layout_constraintStart_toEndOf="@+id/frameJan"
-        app:layout_constraintTop_toBottomOf="@+id/expensesByMonthTitle">
+        app:layout_constraintTop_toBottomOf="@+id/year2022header">
 
         <TextView
             android:id="@+id/amountFeb"
@@ -80,7 +80,7 @@
         android:background="@drawable/rounded_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/frameFeb"
-        app:layout_constraintTop_toBottomOf="@+id/expensesByMonthTitle">
+        app:layout_constraintTop_toBottomOf="@+id/year2022header">
 
         <TextView
             android:id="@+id/amountMar"
@@ -393,14 +393,14 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/expensesByMonthTitle"
+        android:id="@+id/year2022header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Expenses by month"
+        android:text="2022"
         android:textColor="#000000"
         android:textColorHint="#000000"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

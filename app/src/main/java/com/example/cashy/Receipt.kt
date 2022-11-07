@@ -16,7 +16,11 @@ data class Receipt(
     var paymentmethod: String? = null,
     var timestamp: Date? = null,
     var img : Int? = null,
-    var monthNo : String? = null //månaden sparas
+    var monthNo : String? = null, //månaden sparas
+    var year : String? = null //året sparas
+
+
+    //året sparas
     //val catOfShop: Array<String> = arrayOf("Mat", "Nöje", "Fest", "Test", "Test1")
 
     //var img : Int? = null
