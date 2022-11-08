@@ -111,9 +111,8 @@ class DisplayMonths : AppCompatActivity() {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.add(R.id.container, yearFragment, "year_fragment")
             transaction.commit()
-            Log.d("!!!", "fragment created")
         }else{
-            Toast.makeText(this,"????", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"No more years have been added", Toast.LENGTH_SHORT).show()
         }
     }
     fun previousYear(view: View){ //ligger i "onclick"
@@ -123,7 +122,7 @@ class DisplayMonths : AppCompatActivity() {
             transaction.remove(yearFragment)
             transaction.commit()
         }else{
-            Toast.makeText(this,"not found", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"2022 is the first year of the app", Toast.LENGTH_SHORT).show()
         }
     }
     fun readToJan() {

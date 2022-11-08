@@ -48,6 +48,12 @@ class YearFragment : Fragment() {
 
         staticYear = view.findViewById(R.id.staticYear)
         staticYear.text = "2023"
+
+
+
+
+
+
         return view
 
 
