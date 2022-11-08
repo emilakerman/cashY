@@ -6,8 +6,6 @@ import java.util.*
 
 data class Receipt(
     val id: String = "",
-    //var time =
-    //val category: Enum.Companion = Enum,
     @DocumentId var documentId: String?="",
     var sum: Int? = null, // Här ville jag ge en int- Användaren kan endast användas INT
     var company: String? = null,
@@ -18,14 +16,6 @@ data class Receipt(
     var img : Int? = null,
     var monthNo : String? = null, //månaden sparas
     var year : String? = null //året sparas
-
-
-    //året sparas
-    //val catOfShop: Array<String> = arrayOf("Mat", "Nöje", "Fest", "Test", "Test1")
-
-    //var img : Int? = null
-
-    //var spinner :Spinner
 ) {
     init {
         setImageCategory()

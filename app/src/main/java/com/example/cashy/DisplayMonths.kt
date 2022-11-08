@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -37,6 +37,14 @@ class DisplayMonths : AppCompatActivity() {
     lateinit var frameNov : FrameLayout
     lateinit var frameDec : FrameLayout
 
+    lateinit var backButton : FloatingActionButton
+
+    //fragment imagebuttons
+    lateinit var previousYear : ImageButton
+    lateinit var nextYear : ImageButton
+
+    lateinit var staticYear : Button
+
     var sumJan = 0
     var sumFeb = 0
     var sumMar = 0
@@ -58,6 +66,17 @@ class DisplayMonths : AppCompatActivity() {
 
         db = Firebase.firestore
         auth = Firebase.auth
+
+        //fragment imagebuttons
+        previousYear = findViewById(R.id.previousYear)
+        nextYear = findViewById(R.id.nextYear)
+
+        backButton = findViewById(R.id.backToOverview)
+        backButton.setOnClickListener {
+            finish()
+        }
+        staticYear = findViewById(R.id.staticYear)
+        staticYear.text = "2022"
 
         frameJan = findViewById(R.id.frameJan)
         frameFeb = findViewById(R.id.frameFeb)
@@ -84,6 +103,28 @@ class DisplayMonths : AppCompatActivity() {
         readToOct()
         readToNov()
         readToDec()
+    }
+    fun nextYear(view: View){ //ligger i "onclick"
+        val fm = supportFragmentManager.findFragmentByTag("year_fragment")
+        if (fm == null) {
+            val yearFragment = YearFragment()
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.add(R.id.container, yearFragment, "year_fragment")
+            transaction.commit()
+            Log.d("!!!", "fragment created")
+        }else{
+            Toast.makeText(this,"????", Toast.LENGTH_SHORT).show()
+        }
+    }
+    fun previousYear(view: View){ //ligger i "onclick"
+        val yearFragment = supportFragmentManager.findFragmentByTag("year_fragment")
+        if (yearFragment != null){
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.remove(yearFragment)
+            transaction.commit()
+        }else{
+            Toast.makeText(this,"not found", Toast.LENGTH_SHORT).show()
+        }
     }
     fun readToJan() {
         val user = auth.currentUser
