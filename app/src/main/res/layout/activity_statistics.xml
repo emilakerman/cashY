@@ -10,10 +10,24 @@
         android:id="@+id/idSwitch"
         android:layout_width="70dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="136dp"
         app:layout_constraintBottom_toTopOf="@+id/container"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="Pick Date"
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintBottom_toTopOf="@+id/container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -21,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         android:text="CATEGORIES"
         android:textColor="@color/black"
         android:textSize="20dp"
@@ -72,6 +86,13 @@
 
 
         <ImageButton
+            android:id="@+id/overview_imgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/home_icon" />
+
+        <ImageButton
             android:id="@+id/statistiks_iv"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -88,13 +109,12 @@
             android:onClick="removeFragment"
             app:srcCompat="@drawable/delete_fragment"
             tools:ignore="SpeakableTextPresentCheck" />
-
         <ImageButton
-            android:id="@+id/overview_imgBtn"
+            android:id="@+id/calendarView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/home_icon" />
+            app:srcCompat="@drawable/calendar_icon" />
 
     </LinearLayout>
 

@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_window_background"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
     tools:context=".StatisticsActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/popup_window_view_with_border"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         app:cardBackgroundColor="#FFFFFF"
@@ -23,93 +23,82 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/popup_window_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/popup_window_background_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:layout_margin="2dp"
-            app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="0dp"
-            app:cardMaxElevation="0dp"
-            app:cardPreventCornerOverlap="false">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/popup_window_background_container"
-                android:layout_width="265dp"
-                android:layout_height="295dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/background_front"
-                android:minHeight="170dp">
+            android:background="@drawable/background_front"
+            android:minHeight="170dp">
 
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/popup_window_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:background="#4EBA28"
-                    android:gravity="center"
-                    android:text="Add Expense"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    app:autoSizeMaxTextSize="24dp"
-                    app:autoSizeTextType="uniform"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/popup_window_title"
+                android:layout_width="201dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="4dp"
+                android:background="#4EBA28"
+                android:gravity="center"
+                android:text="Add Expense"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:autoSizeMaxTextSize="24dp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:id="@+id/popup_Et"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:background="#ffffff"
-                    android:ems="10"
-                    android:hint="Save Something New"
-                    android:inputType="textPersonName"
-                    app:layout_constraintBottom_toTopOf="@+id/saveBtn"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/popup_window_title" />
+            <EditText
+                android:id="@+id/popup_Et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:background="#ffffff"
+                android:ems="10"
+                android:hint="Save Something New"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popup_window_title" />
 
-                <Button
-                    android:id="@+id/cancelBtn"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="110dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="#851635"
-                    android:text="Cancel"
-                    android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.11"
-                    app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/cancelBtn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="16dp"
+                android:background="#851635"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.11"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <Button
-                    android:id="@+id/saveBtn"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="110dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="#1D8516"
-                    android:text="Save"
-                    android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.896"
-                    app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/saveBtn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="110dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="16dp"
+                android:background="#1D8516"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.896"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
