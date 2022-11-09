@@ -14,9 +14,9 @@ data class Receipt(
     var paymentmethod: String? = null,
     var timestamp: Date? = null,
     var img : Int? = null,
+    var monthNo : String? = null, //månaden sparas
+    var year : String? = null //året sparas
     var day : String?= null,
-    var monthNo : String?= null,
-    var year : String?= null,
     var fullDate: String?= null
 ) {
     init {
