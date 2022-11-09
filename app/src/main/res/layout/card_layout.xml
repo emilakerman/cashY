@@ -9,7 +9,7 @@
     app:cardBackgroundColor="@color/Primary_Color"
     app:cardCornerRadius="20dp"
     app:cardElevation="6dp"
-    app:contentPadding="4dp">
+    app:contentPadding="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,16 +33,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_category"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
             android:layout_toEndOf="@+id/item_img"
             android:text="Transactions"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/item_img"
-            app:layout_constraintTop_toBottomOf="@+id/item_category"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintStart_toEndOf="@+id/item_img" />
 
         <TextView
             android:id="@+id/sumCatTxView"
@@ -63,11 +60,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             android:layout_toEndOf="@+id/item_img"
             android:text="Category"
             android:textColor="@color/white"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/item_img"
             app:layout_constraintTop_toTopOf="parent" />
@@ -76,12 +73,13 @@
             android:id="@+id/companyTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="20dp"
             android:text="Company"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/sumCatTxView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/item_transaction"
+            app:layout_constraintStart_toEndOf="@+id/item_img"
+            app:layout_constraintTop_toBottomOf="@+id/item_category" />
 
         <TextView
             android:id="@+id/payMethodTextView"

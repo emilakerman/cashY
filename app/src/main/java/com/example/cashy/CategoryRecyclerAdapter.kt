@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class CategoryRecyclerAdapter(val context: Context,
-                              val expenses: List<Expenses>):RecyclerView
+                              val receipt: List<Receipt>):RecyclerView
                                 .Adapter<CategoryRecyclerAdapter.ViewHolder>(){
-    val layoutInflater=LayoutInflater.from(context)
+    val layoutInflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView= layoutInflater.inflate(R.layout.card_layout,parent,false)
@@ -19,20 +19,30 @@ class CategoryRecyclerAdapter(val context: Context,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val expense= expenses[position]
-        holder.categoryTextView.text=expense.category
-        holder.transactionTextView.text=expense.transactions.toString()
-        holder.imgImageView.setImageResource(expense.img!!) //setImageResource(images[position]) //setImageResource()
+        val receipts= receipt[position]
+        holder.categoryTextView.text=receipts.category
+        holder.transactionTextView.text=receipts.fullDate //transaction deprecated LOL
+        holder.imgImageView.setImageResource(receipts.img!!)
+        holder.companytxtV.text=receipts.company.toString()
+        holder.sumTxtV.text=receipts.sum.toString()+" Kr"
+        holder.payMethTxtV.text=receipts.paymentmethod.toString()
     }
 
     override fun getItemCount(): Int {
-        return expenses.size
+        return receipt.size
     }
 
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         var categoryTextView=itemView.findViewById<TextView>(R.id.item_category)
-        var transactionTextView=itemView.findViewById<TextView>(R.id.item_transaction)
+        var transactionTextView=itemView.findViewById<TextView>(R.id.item_transaction) //could be timestamp
         var imgImageView=itemView.findViewById<ImageView>(R.id.item_img)
+        var companytxtV= itemView.findViewById<TextView>(R.id.companyTextView)
+        var sumTxtV= itemView.findViewById<TextView>(R.id.sumCatTxView)
+        var payMethTxtV= itemView.findViewById<TextView>(R.id.payMethodTextView)
+
+        init {
+            //here itemView.setOnClickListener{}
+        }
 
     }
 

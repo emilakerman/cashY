@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">CashY</string>
+    <string name="crows_symbol">Kr</string>
     <string-array name="Categories">
         <item>Select Category*</item>
         <item>Electronics</item>
         <item>Sports</item>
         <item>Groceries</item>
         <item>Fika</item>
+        <item>Travel</item>
         <item>Housing</item>
         <item>Other</item>
         <item>Entertainment</item>

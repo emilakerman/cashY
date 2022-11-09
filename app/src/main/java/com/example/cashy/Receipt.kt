@@ -16,14 +16,27 @@ data class Receipt(
     var img : Int? = null,
     var monthNo : String? = null, //månaden sparas
     var year : String? = null //året sparas
+    var day : String?= null,
+    var fullDate: String?= null
 ) {
     init {
         setImageCategory()
+        setTime()
+    }
+    fun setTime(){
+        val c=Calendar.getInstance()
+
+
+        day= c.get(Calendar.DAY_OF_MONTH).toString().padStart(2,'0')
+        monthNo= (c.get(Calendar.MONTH) + 1).toString()
+        year= c.get(Calendar.YEAR).toString()
+
+        fullDate="$day.$monthNo.$year"
     }
 
     fun setImageCategory() {
         when (category) {
-            "Groceries" -> img = R.drawable.food_icon
+            "Groceries","Food" -> img = R.drawable.food_icon
             "Housing" -> img = R.drawable.house_icon
             "Electronics" -> img= R.drawable.electronics_icon
             "Sports" -> img= R.drawable.sports_icon
