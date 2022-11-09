@@ -6,8 +6,6 @@ import java.util.*
 
 data class Receipt(
     val id: String = "",
-    //var time =
-    //val category: Enum.Companion = Enum,
     @DocumentId var documentId: String?="",
     var sum: Int? = null, // Här ville jag ge en int- Användaren kan endast användas INT
     var company: String? = null,
@@ -15,20 +13,30 @@ data class Receipt(
     var category: String? = null,
     var paymentmethod: String? = null,
     var timestamp: Date? = null,
-    var img : Int? = null
-    //val catOfShop: Array<String> = arrayOf("Mat", "Nöje", "Fest", "Test", "Test1")
-
-    //var img : Int? = null
-
-    //var spinner :Spinner
+    var img : Int? = null,
+    var day : String?= null,
+    var monthNo : String?= null,
+    var year : String?= null,
+    var fullDate: String?= null
 ) {
     init {
         setImageCategory()
+        setTime()
+    }
+    fun setTime(){
+        val c=Calendar.getInstance()
+
+
+        day= c.get(Calendar.DAY_OF_MONTH).toString().padStart(2,'0')
+        monthNo= (c.get(Calendar.MONTH) + 1).toString()
+        year= c.get(Calendar.YEAR).toString()
+
+        fullDate="$day.$monthNo.$year"
     }
 
     fun setImageCategory() {
         when (category) {
-            "Groceries" -> img = R.drawable.food_icon
+            "Groceries","Food" -> img = R.drawable.food_icon
             "Housing" -> img = R.drawable.house_icon
             "Electronics" -> img= R.drawable.electronics_icon
             "Sports" -> img= R.drawable.sports_icon

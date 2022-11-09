@@ -75,7 +75,6 @@ class CategoryFragment : Fragment() {
         if (user!=null) {
             getBills.clear()
             Log.d("!!!","$user")
-            //receipts in cashy
             db.collection("users").document(user.uid)
                 .collection("receipts")
                 .whereEqualTo("category", category)
@@ -95,29 +94,8 @@ class CategoryFragment : Fragment() {
                 }
         }
     }
-    fun setRecyclerFragmentLista():List<Receipt> {
-        val user=auth.currentUser
-        if(user!=null){
-            db.collection("users")
-                .document(user.uid).collection("receipts")
-                .addSnapshotListener{ snapshot, e->
-                    if(snapshot!=null){
-                        for(document in snapshot.documents){
-                            val item= document.toObject<Receipt>()
-                            Log.d("!!!","${item}")
-                            getBills.add(item!!)
-                        }
-                        Log.d("!!!","${getBills.size}") //full
-                    }
-                    set_dbFragmentRv(getBills)
-                    Log.d("!!!","${getBills.size}") //full
-                }
-            //empty
-        }
-        return getBills
-    }
     fun set_dbFragmentRv(list: List<Receipt>){
-        val adapter=ExpensesRecyclerAdapter(requireView().context, list) //getContext()
+        val adapter=CategoryRecyclerAdapter(requireView().context, list) //getContext()
         catRecyclerView.adapter= adapter
         //fragment RV adapter= expensesRV adapter
     }
