@@ -24,13 +24,10 @@ import java.util.*
 class Overview : AppCompatActivity() {
 
     lateinit var toAddReceiptButton : FloatingActionButton
-    lateinit var settings_img : ImageView
     lateinit var timeShow : ImageView
-    lateinit var statisticsLink : ImageView
-
-
-
-    lateinit var monthLink : ImageView
+    lateinit var statisticsLink : Button
+    lateinit var settingsLink : Button
+    lateinit var monthLink : Button
 
     lateinit var db : FirebaseFirestore
     private lateinit var auth: FirebaseAuth
@@ -96,8 +93,8 @@ class Overview : AppCompatActivity() {
         toAddReceiptButton.setOnClickListener {
             toAddReceiptButton()
         }
-        settings_img = findViewById(R.id.settings_img)
-        settings_img.setOnClickListener {
+        settingsLink = findViewById(R.id.settingsLink)
+        settingsLink.setOnClickListener {
             val settingsLink = Intent(this, SettingsActivity::class.java)
             startActivity(settingsLink)
         }
