@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/Button_Color"
+        android:backgroundTint="@color/cashy_green"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@id/recyclerViewFullScreen"
         app:layout_constraintEnd_toEndOf="@id/recyclerViewFullScreen"
