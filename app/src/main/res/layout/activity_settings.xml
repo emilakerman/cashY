@@ -9,34 +9,12 @@
     tools:context=".SettingsActivity">
 
 
-    <Button
-        android:id="@+id/buttonLogOut"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:background="#FFFFFF"
-        android:text="Log Out"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:backgroundTint="#DD1382" />
-
-    
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/Button_Color"
-        android:clickable="true"
-        android:translationX="10dp"
-        android:translationY="-50dp"
-        app:srcCompat="@drawable/lasyear"
-        tools:ignore="SpeakableTextPresentCheck" />
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        app:srcCompat="@drawable/cashy_logo" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -49,6 +27,39 @@
         android:layout_marginBottom="1dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/row" />
+
+    <Button
+        android:id="@+id/buttonLogOut"
+        android:layout_width="190dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:backgroundTint="@color/cashy_green"
+        android:text="Log Out"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:backgroundTint="@color/cashy_green" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:translationY="-70dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="right"
+            android:backgroundTint="@color/cashy_green"
+            android:clickable="true"
+            android:translationY="10dp"
+            app:srcCompat="@drawable/lasyear"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </FrameLayout>
 
 
 </LinearLayout>
