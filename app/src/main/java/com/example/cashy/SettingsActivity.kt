@@ -17,20 +17,20 @@ class SettingsActivity : AppCompatActivity() {
 
     private val settingList = ArrayList<Settings>()
     lateinit var logoutButtonView: Button
-    //lateinit var backButton : FloatingActionButton
+    lateinit var backButton : FloatingActionButton
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         supportActionBar?.hide()
-/*
+
         backButton = findViewById(R.id.floatingActionButton)
         backButton.setOnClickListener {
             finish()
         }
 
- */
+
 
 
         logoutButtonView = findViewById(R.id.buttonLogOut)
