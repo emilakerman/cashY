@@ -27,12 +27,13 @@ class StatisticsActivity : AppCompatActivity() {
     var receiptBills= mutableListOf<Receipt>()
 
     lateinit var recyclerView: RecyclerView
-    lateinit var switchBtn : SwitchCompat
+    //lateinit var switchBtn : SwitchCompat
     lateinit var categoriesBtn: ImageButton //the 2 imgView that manage fragments
     lateinit var removeFragBtn: ImageButton
     lateinit var overviewBtn: ImageButton
     lateinit var calendarBtn: ImageButton
     lateinit var dateBox: EditText
+    lateinit var dailyBudget:EditText
 
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
@@ -42,13 +43,13 @@ class StatisticsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_statistics)
         supportActionBar?.hide()
 
-        switchBtn= findViewById(R.id.idSwitch)  //the 2 imgView that manage fragments
+        //switchBtn= findViewById(R.id.idSwitch)  //the 2 imgView that manage fragments
         categoriesBtn= findViewById(R.id.statistiks_iv)
         removeFragBtn= findViewById(R.id.remvFrag_iv)
         overviewBtn= findViewById(R.id.overview_imgBtn)
         calendarBtn= findViewById(R.id.calendarView)
         dateBox=findViewById(R.id.dateTextView)
-
+        //dailyBudget=findViewById(R.id.dailyBeditTxt)
 
         db= Firebase.firestore
         auth = Firebase.auth
@@ -61,7 +62,7 @@ class StatisticsActivity : AppCompatActivity() {
         setRecyclerDbLista()
 
 
-                                                //Switch btn for Budget popup window
+        /*                                        //Switch btn for Budget popup window
         switchBtn.setOnClickListener{
             if (switchBtn.isChecked){
                 createBudgetDialog()
@@ -71,7 +72,7 @@ class StatisticsActivity : AppCompatActivity() {
             }else{
                 Log.d("!!!", "${switchBtn.isChecked}")
             }
-        }
+        }*/
         calendarBtn.setOnClickListener { showDatePickerDialog() }
 
         overviewBtn.setOnClickListener {
@@ -118,7 +119,7 @@ class StatisticsActivity : AppCompatActivity() {
     }
     private fun onDateSelected(day: Int, month: Int, year:Int) {
         var mo= month+1
-        dateBox.setText("You selected day $day.$mo.$year")
+        dateBox.setText("You selected day: $day.$mo.$year")
         addCalendarFragment(day.toString().padStart(2,'0'),
             mo.toString().padStart(2,'0'),
             year.toString())
@@ -134,8 +135,10 @@ class StatisticsActivity : AppCompatActivity() {
     }
     //creates pop up window for budget
     fun createBudgetDialog(){
+        var budgetAmmount=""
         val budget= BudgetDialog()
         budget.show(supportFragmentManager,"!!!" )
+        dailyBudget.setText(budget.popUpBudget)
     }
     //RV adapter acording to list needed
     fun dbRecyclerView(list: List<Receipt>){
@@ -195,30 +198,30 @@ class StatisticsActivity : AppCompatActivity() {
     }
     //just creates data i can use for testing
     fun addDataTillUser(){
-        val check1 = Receipt(sum=199, company="Clubbing", category = "Lifestyle", paymentmethod = "card")
-        val check2 = Receipt(sum=1100, company="Holidays", category = "Lifestyle", paymentmethod = "card")
-        val check3 = Receipt(sum=630, company="Fashion", category = "Lifestyle", paymentmethod = "cash")
+        val check1 = Receipt(sum=199, company="Hem", category = "Housing", paymentmethod = "Card")
+        val check2 = Receipt(sum=1100, company="Hem", category = "Housing", paymentmethod = "Card")
+        val check3 = Receipt(sum=630, company="Hem", category = "Housing", paymentmethod = "Cash")
         /*
-        val check4 = Receipt(sum=980, company="Apple", category = "Electronics", paymentmethod = "card")
-        val check5 = Receipt(sum=200, company="Media Markt", category = "Electronics", paymentmethod = "cash")
-        val check6 = Receipt(sum=780, company="Microsoft", category = "Electronics", paymentmethod = "cash")
-        val check7 = Receipt(sum=320, company="Google", category = "Electronics", paymentmethod = "card")
-        val check8 = Receipt(sum=560, company="SATS", category = "Sports", paymentmethod = "card")
-        val check9 = Receipt(sum=245, company="24Fitness", category = "Sports", paymentmethod = "card")
-        val check10 = Receipt(sum=490, company="Nike", category = "Sports", paymentmethod = "card")
-        val check11 = Receipt(sum=674, company="Under Armour", category = "Sports", paymentmethod = "card")
-        val check12 = Receipt(sum=2000, company="SAS", category = "Travel", paymentmethod = "card")
-        val check13 = Receipt(sum=6500, company="Iberia", category = "Travel", paymentmethod = "card")
-        val check14 = Receipt(sum=678, company="AIR-tifacts", category = "Travel", paymentmethod = "cash")
-        val check15 = Receipt(sum=5320, company="Vueling", category = "Travel", paymentmethod = "cash")
-        val check16 = Receipt(sum=76, company="Starbucks", category = "Fika", paymentmethod = "card")
-        val check17 = Receipt(sum=98, company="Espresso House", category = "Fika", paymentmethod = "cash")
-        val check18 = Receipt(sum=350, company="Bars", category = "Fika", paymentmethod = "card")
-        val check19 = Receipt(sum=250, company="Starbucks", category = "Fika", paymentmethod = "card")
-        val check20 = Receipt(sum=125, company="Espresso House", category = "Fika", paymentmethod = "cash")
-        val check21 = Receipt(sum=768, company="Nintendo", category = "Entertainment", paymentmethod = "card")
-        val check22 = Receipt(sum=365, company="Fnac", category = "Entertainment", paymentmethod = "cash")
-        val check23 = Receipt(sum=1650, company="PlayStation", category = "Entertainment", paymentmethod = "cash")
+        val check4 = Receipt(sum=980, company="Apple", category = "Electronics", paymentmethod = "Card")
+        val check5 = Receipt(sum=200, company="Media Markt", category = "Electronics", paymentmethod = "Cash")
+        val check6 = Receipt(sum=780, company="Microsoft", category = "Electronics", paymentmethod = "Cash")
+        val check7 = Receipt(sum=320, company="Google", category = "Electronics", paymentmethod = "Card")
+        val check8 = Receipt(sum=560, company="SATS", category = "Sports", paymentmethod = "Card")
+        val check9 = Receipt(sum=245, company="24Fitness", category = "Sports", paymentmethod = "Card")
+        val check10 = Receipt(sum=490, company="Nike", category = "Sports", paymentmethod = "Card")
+        val check11 = Receipt(sum=674, company="Under Armour", category = "Sports", paymentmethod = "Card")
+        val check12 = Receipt(sum=2000, company="SAS", category = "Travel", paymentmethod = "Card")
+        val check13 = Receipt(sum=6500, company="Iberia", category = "Travel", paymentmethod = "Card")
+        val check14 = Receipt(sum=678, company="AIR-tifacts", category = "Travel", paymentmethod = "Cash")
+        val check15 = Receipt(sum=5320, company="Vueling", category = "Travel", paymentmethod = "Cash")
+        val check16 = Receipt(sum=76, company="Starbucks", category = "Fika", paymentmethod = "Card")
+        val check17 = Receipt(sum=98, company="Espresso House", category = "Fika", paymentmethod = "Cash")
+        val check18 = Receipt(sum=350, company="Bars", category = "Fika", paymentmethod = "Card")
+        val check19 = Receipt(sum=250, company="Starbucks", category = "Fika", paymentmethod = "Card")
+        val check20 = Receipt(sum=125, company="Espresso House", category = "Fika", paymentmethod = "Cash")
+        val check21 = Receipt(sum=768, company="Nintendo", category = "Entertainment", paymentmethod = "Card")
+        val check22 = Receipt(sum=365, company="Fnac", category = "Entertainment", paymentmethod = "Cash")
+        val check23 = Receipt(sum=1650, company="PlayStation", category = "Entertainment", paymentmethod = "Cash")
         */
         /*val user= auth.currentUser
         if (user==null){

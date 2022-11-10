@@ -25,7 +25,7 @@
     <item android:state_checked="true"
         android:state_enabled="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/cashy_turquoise"/>
+            <solid android:color="@color/cashy_green"/>
             <corners android:radius="20dp"/>
             <stroke android:width="1dp"
                 android:color="@color/white"/>
@@ -36,7 +36,7 @@
     <item android:state_checked="false"
         android:state_enabled="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/cashy_turquoise"/>
+            <solid android:color="@color/cashy_green"/>
             <corners android:radius="20dp"/>
             <stroke android:width="1dp"
                 android:color="@color/white"/>

@@ -1,5 +1,6 @@
 package com.example.cashy
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
@@ -16,12 +17,13 @@ class DatePickerFragment(val listener:(day: Int, month: Int, year: Int)-> Unit)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val C= Calendar.getInstance()
-        val day=C.get(Calendar.DAY_OF_MONTH)
-        val month=C.get(Calendar.MONTH)
-        val year=C.get(Calendar.YEAR)
+        val c= Calendar.getInstance()
+        val day=c.get(Calendar.DAY_OF_MONTH)
+        val month=c.get(Calendar.MONTH)
+        val year=c.get(Calendar.YEAR)
 
-        val picker=DatePickerDialog(activity as Context, this, year, month, day)
+        val picker=DatePickerDialog(activity as Context,R.style.datePickerTheme, this, year, month, day)
+        picker.datePicker.maxDate= c.timeInMillis
         return picker
     }
 }
