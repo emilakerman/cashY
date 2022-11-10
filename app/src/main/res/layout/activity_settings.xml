@@ -8,30 +8,20 @@
     android:padding="8dp"
     tools:context=".SettingsActivity">
 
-
     <Button
         android:id="@+id/buttonLogOut"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         android:background="#FFFFFF"
         android:text="Log Out"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:backgroundTint="#DD1382" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="394dp"
-        android:layout_height="540dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="1dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/row" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -39,9 +29,22 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/Button_Color"
         android:clickable="true"
-        android:translationX="300dp"
-        android:translationY="90dp"
-        app:srcCompat="@drawable/lasyear" />
+        android:translationX="10dp"
+        android:translationY="-50dp"
+        app:srcCompat="@drawable/lasyear"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="394dp"
+        android:layout_height="540dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="1dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/row" />
 
 
 </LinearLayout>
