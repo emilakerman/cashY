@@ -29,9 +29,9 @@
         android:id="@+id/frameLayout3"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:background="#E9FAF2"
-        app:layout_constraintEnd_toEndOf="@+id/settings_img"
-        app:layout_constraintStart_toEndOf="@+id/settings_img"
+        android:background="@color/cashy_lightlightgreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
@@ -41,7 +41,7 @@
         android:layout_width="88dp"
         android:layout_height="26dp"
         android:layout_marginStart="40dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Activity"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -67,6 +67,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="15dp"
         android:text="Total Expenses"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout3" />
 
@@ -87,53 +88,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:backgroundTint="#4EBA28"
+        android:backgroundTint="@color/cashy_green"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout3"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout3"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_input_add"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="140dp"
-        android:layout_height="130dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/rounded_shape"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalSpent_txt">
-
-        <TextView
-            android:id="@+id/cash_static"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cash"
-            android:textColor="#000000"
-            android:translationX="30px"
-            android:translationY="180px" />
-
-        <TextView
-            android:id="@+id/cashAmount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:translationX="30px"
-            android:translationY="230px" />
-
-        <ImageView
-            android:id="@+id/cash_img"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:translationX="30px"
-            android:translationY="30px"
-            app:srcCompat="@drawable/ic_baseline_money_24" />
-    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/frameJan"
@@ -160,8 +121,8 @@
             android:layout_height="wrap_content"
             android:text="Card"
             android:textColor="#000000"
-            android:translationX="30px"
-            android:translationY="180px" />
+            android:translationX="100px"
+            android:translationY="30px" />
 
         <TextView
             android:id="@+id/cardAmount"
@@ -171,49 +132,93 @@
             android:textColor="#000000"
             android:textSize="24sp"
             android:translationX="30px"
+            android:translationY="80px" />
+
+        <ImageView
+            android:id="@+id/cash_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:translationX="30px"
+            android:translationY="180px"
+            app:srcCompat="@drawable/ic_baseline_money_24" />
+
+        <TextView
+            android:id="@+id/cash_static"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cash"
+            android:textColor="#000000"
+            android:translationX="100px"
+            android:translationY="180px" />
+
+        <TextView
+            android:id="@+id/cashAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="0"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:translationX="30px"
             android:translationY="230px" />
 
     </FrameLayout>
-
-    <ImageView
-        android:id="@+id/settings_img"
-        android:layout_width="32dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toEndOf="@+id/overview_Static"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/info_black" />
 
     <ImageView
         android:id="@+id/timeShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/zsearch_this" />
 
-    <ImageView
+    <Button
         android:id="@+id/monthLink"
-        android:layout_width="30dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toEndOf="@+id/statisticsLink"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/month_icon" />
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/cashy_lightlightgreen"
+        android:drawableLeft="@drawable/monthyear_calendar"
+        android:text="Months years"
+        android:textColor="@color/black"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toTopOf="@+id/statisticsLink"
+        app:layout_constraintStart_toStartOf="@+id/statisticsLink"
+        app:layout_constraintTop_toTopOf="@+id/frameJan"
+        tools:ignore="TouchTargetSizeCheck" />
 
-    <ImageView
+    <Button
+        android:id="@+id/settingsLink"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/cashy_lightlightgreen"
+        android:drawableLeft="@drawable/info_black"
+        android:text="Information"
+        android:textColor="@color/black"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@+id/frameJan"
+        app:layout_constraintStart_toStartOf="@+id/statisticsLink"
+        app:layout_constraintTop_toBottomOf="@+id/statisticsLink"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
         android:id="@+id/statisticsLink"
-        android:layout_width="31dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toEndOf="@+id/settings_img"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_construction_241" />
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/cashy_lightlightgreen"
+        android:drawableLeft="@drawable/categoryview"
+        android:text="Categories"
+        android:textColor="@color/black"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toTopOf="@+id/settingsLink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frameJan"
+        app:layout_constraintTop_toBottomOf="@+id/monthLink"
+        tools:ignore="TouchTargetSizeCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

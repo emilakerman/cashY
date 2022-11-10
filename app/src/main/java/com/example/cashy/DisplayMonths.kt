@@ -129,7 +129,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "0")
+                .whereEqualTo("monthNo", "1")
                 .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
@@ -159,7 +159,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "1")
+                .whereEqualTo("monthNo", "2")
                 .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
@@ -189,7 +189,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "2")
+                .whereEqualTo("monthNo", "3")
                 .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
@@ -219,7 +219,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "3")
+                .whereEqualTo("monthNo", "4")
                 .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
@@ -249,7 +249,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "4")
+                .whereEqualTo("monthNo", "5")
                 .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
@@ -279,7 +279,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "5")
+                .whereEqualTo("monthNo", "6")
                 .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
@@ -309,7 +309,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "6")
+                .whereEqualTo("monthNo", "7")
                 .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
@@ -339,7 +339,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "7")
+                .whereEqualTo("monthNo", "8")
                 .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
@@ -369,7 +369,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "8")
+                .whereEqualTo("monthNo", "9")
                 .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
@@ -399,7 +399,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "9")
+                .whereEqualTo("monthNo", "10")
                 .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
@@ -429,7 +429,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
            val docRef = db.collection("users").document(user.uid).collection("receipts")
-            .whereEqualTo("monthNo", "10")
+            .whereEqualTo("monthNo", "11")
             .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                     if (snapshot != null) {
@@ -459,7 +459,7 @@ class DisplayMonths : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "11")
+                .whereEqualTo("monthNo", "12")
                 .whereEqualTo("year", "2022")
             docRef.addSnapshotListener { snapshot, e ->
                 if (snapshot != null) {
