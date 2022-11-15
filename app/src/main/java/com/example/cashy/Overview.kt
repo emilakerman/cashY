@@ -79,7 +79,7 @@ class Overview : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //reads data and populates the recyclerview (also enables the recyclerview)
+        //reads data and populates the recyclerview
         readFrom()
         //reads total SUM data and adds to total sum up top
         readTotalSum()
