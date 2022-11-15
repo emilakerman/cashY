@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -40,6 +41,10 @@ class Overview : AppCompatActivity() {
     lateinit var recyclerView : RecyclerView
     lateinit var adapter : ExpenseRecycleAdapter
 
+    val c = Calendar.getInstance()
+    var currentMonth = (c.get(Calendar.MONTH) + 1).toString()
+    var currentYear = c.get(Calendar.YEAR).toString()
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,10 +65,7 @@ class Overview : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = ExpenseRecycleAdapter(receipts)
         recyclerView.adapter = adapter
-        recyclerView.apply {
-            setHasFixedSize(true)
-            addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
-        }
+
         timeShow = findViewById(R.id.timeShow)
         timeShow.setOnClickListener {
             showTime()
@@ -103,11 +105,12 @@ class Overview : AppCompatActivity() {
         val intent1 = Intent(this, ListFullScreen::class.java)
         startActivity(intent1)
     }
-    fun readToPaymentmethodCard() {
-        val user = auth.currentUser
+    fun readToPaymentmethodCard(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
             db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("paymentmethod", "Card")
+                .whereEqualTo("monthNo", currentMonth)
+                .whereEqualTo("year", currentYear)
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
                     for (document in documentSnapshot.documents) {
@@ -123,11 +126,12 @@ class Overview : AppCompatActivity() {
                 }
         }
     }
-    fun readToPaymentmethodCash() {
-        val user = auth.currentUser
+    fun readToPaymentmethodCash(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
             db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("paymentmethod", "Cash")
+                .whereEqualTo("monthNo", currentMonth)
+                .whereEqualTo("year", currentYear)
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
                     for (document in documentSnapshot.documents) {
@@ -143,21 +147,24 @@ class Overview : AppCompatActivity() {
                 }
         }
     }
-    fun readFrom() {
-        val user = auth.currentUser
+    @SuppressLint("SuspiciousIndentation")
+    fun readFrom(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
-            db.collection("users").document(user.uid).collection("receipts")
+            val docRef = db.collection("users").document(user.uid).collection("receipts")
+                //.whereEqualTo("monthNo", currentMonth)
+                //.whereEqualTo("year", currentYear)
                 .orderBy("timestamp", Query.Direction.DESCENDING)
-                .get()
-                    .addOnSuccessListener { documentSnapshot ->
+                docRef.addSnapshotListener { snapshot, e ->
                         receipts = mutableListOf()
                         recyclerView = findViewById(R.id.recyclerView)
                         adapter = ExpenseRecycleAdapter(receipts)
                         recyclerView.adapter = adapter
-                    for (document in documentSnapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            receipts.add(item)
+                    if (snapshot != null) {
+                        for (document in snapshot.documents) {
+                            val item = document.toObject<Receipt>()
+                            if (item != null) {
+                                receipts.add(item)
+                            }
                         }
                     }
                 }
@@ -169,10 +176,11 @@ class Overview : AppCompatActivity() {
            startActivity(resultButtonIntent)
        }
     //reads total sum of all fields correctly and populates the top total sum textview
-    private fun readTotalSum() {
-        val user = auth.currentUser
+    private fun readTotalSum(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
             db.collection("users").document(user.uid).collection("receipts")
+                .whereEqualTo("monthNo", currentMonth)
+                .whereEqualTo("year", currentYear)
                 .get()
                 .addOnSuccessListener { documentSnapshot ->
                     for (document in documentSnapshot.documents) {

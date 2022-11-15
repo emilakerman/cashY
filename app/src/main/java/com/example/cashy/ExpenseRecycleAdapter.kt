@@ -13,10 +13,8 @@ import org.w3c.dom.Text
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ExpenseRecycleAdapter(/*val context : Context, */var receipts : List<Receipt>) :
+class ExpenseRecycleAdapter(var receipts : List<Receipt>) :
     RecyclerView.Adapter<ExpenseRecycleAdapter.ViewHolder>() {
-
-    //val layoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -32,11 +30,6 @@ class ExpenseRecycleAdapter(/*val context : Context, */var receipts : List<Recei
     }
     override fun getItemCount(): Int {
         return receipts.size
-    }
-    //försöker filtrera listan med sökning
-    fun filterList(filterlist : List<Receipt>) {
-        receipts = filterlist
-        notifyDataSetChanged()
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var expense_txtView = itemView.findViewById<TextView>(R.id.expense_txt)

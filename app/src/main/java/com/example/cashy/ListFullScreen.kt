@@ -32,6 +32,10 @@ class ListFullScreen : AppCompatActivity() {
     lateinit var adapter : FullScreenAdapter
     lateinit var receipts : MutableList<Receipt>
 
+    val c = Calendar.getInstance()
+    var currentMonth = (c.get(Calendar.MONTH) + 1).toString()
+    var currentYear = c.get(Calendar.YEAR).toString()
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +90,8 @@ class ListFullScreen : AppCompatActivity() {
         val user = auth.currentUser
         if (user != null) {
             db.collection("users").document(user.uid).collection("receipts")
+                //.whereEqualTo("monthNo", currentMonth)
+                //.whereEqualTo("year", currentYear)
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener { documentSnapshot ->

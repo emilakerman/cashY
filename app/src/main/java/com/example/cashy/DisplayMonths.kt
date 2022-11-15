@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -448,6 +449,9 @@ class DisplayMonths : AppCompatActivity() {
                                     in 20000..24999 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
                                     in 25000..29999 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                     in 30000..1000000000 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
+                                }
+                                if (sumNov >= 100000) {
+                                    amountNovView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
                                 }
                             }
                         }
