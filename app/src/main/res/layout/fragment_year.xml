@@ -144,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Oct"
+                android:text="@string/october"
                 android:textColor="#000000"
                 android:textSize="12sp" />
 
@@ -299,7 +299,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="May"
+                android:text="@string/may"
                 android:textColor="#000000"
                 android:textSize="12sp" />
 

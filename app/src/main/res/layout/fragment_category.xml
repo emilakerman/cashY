@@ -35,7 +35,7 @@
         android:layout_weight="1"
         android:background="@color/cashy_grey"
         android:gravity="center"
-        android:text="Category:"
+        android:text="@string/category"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout4"

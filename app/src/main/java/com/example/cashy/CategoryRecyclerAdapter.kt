@@ -24,7 +24,7 @@ class CategoryRecyclerAdapter(val context: Context,
         holder.transactionTextView.text=receipts.fullDate //transaction deprecated LOL
         holder.imgImageView.setImageResource(receipts.img!!)
         holder.companytxtV.text=receipts.company.toString()
-        holder.sumTxtV.text=receipts.sum.toString()+" Kr"
+        holder.sumTxtV.text=receipts.sum.toString()+" kr"
         holder.payMethTxtV.text=receipts.paymentmethod.toString()
     }
 

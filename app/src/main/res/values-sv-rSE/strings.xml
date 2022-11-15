@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="expense_tracker">Spåra utgifter</string>
+    <string name="get_started">Kom igång</string>
+    <string name="login">Logga in</string>
+    <string name="no_account_question">Inget konto? Skapa konto nu</string>
+    <string name="email">E-post</string>
+    <string name="password">Lösenord</string>
+    <string name="register">Register</string>
+    <string name="already_account_question">Har du redan ett konto? Logga in nu</string>
+    <string name="overview">Översikt</string>
+    <string name="card">Kort</string>
+    <string name="cash">Kontant</string>
+    <string name="activity">Aktivitet</string>
+    <string name="total_expenses">Totala utgifter</string>
+    <string name="months_years">Månader År</string>
+    <string name="categories">Kategorier</string>
+    <string name="information">Information</string>
+    <string name="enter_expense">Mata in utgift</string>
+    <string name="enter_amount">Mata in belopp*</string>
+    <string name="select_category">Välj kategori*</string>
+    <string name="select_pay">Välj betalningsmetod*</string>
+    <string name="what_company">Från vilket företag?</string>
+    <string name="enter_comment">Skriv en kommentar</string>
+    <string name="save">Spara</string>
+    <string name="fields_marked_with">Fält markerad med en stjärna (*) är obligatoriska</string>
+    <string name="shown_in_sek">Numbers shown in SEK (kr)*</string>
+    <string name="colors_reflect">Färger reflekterar hur mycket du spenderat*</string>
+    <string name="january">Jan</string>
+    <string name="february">Feb</string>
+    <string name="march">Mar</string>
+    <string name="april">Apr</string>
+    <string name="may">Maj</string>
+    <string name="june">Jun</string>
+    <string name="july">Jul</string>
+    <string name="august">Aug</string>
+    <string name="september">Sep</string>
+    <string name="october">Okt</string>
+    <string name="november">Nov</string>
+    <string name="december">Dec</string>
+    <string name="transactions">Transaktioner</string>
+    <string name="pick_date">Valt datum</string>
+    <string name="category">Kategori</string>
+    <string name="total">Totalt</string>
+    <string name="company">Företag</string>
+    <string name="transactions_lower_case">Transaktioner</string>
+    <string name="card_cash">Kort/Kontant</string>
+    <string name="search">Sök</string>
+
+
+
+
+
+
+    <string name="app_name">CashY</string>
+    <string name="crows_symbol">Kr</string>
+    <string-array name="Categories">
+        <item>Select Category*</item>
+        <item>Electronics</item>
+        <item>Sports</item>
+        <item>Groceries</item>
+        <item>Fika</item>
+        <item>Travel</item>
+        <item>Housing</item>
+        <item>Other</item>
+        <item>Entertainment</item>
+        <item>Food and Beverage</item>
+        <item>Lifestyle</item>
+        <item>Transport</item>
+        <item>Household</item>
+    </string-array>
+    <string-array name="payMethod">
+        <item>Select payment method*</item>
+        <item>Cash</item>
+        <item>Card</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

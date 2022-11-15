@@ -133,7 +133,6 @@ class AddReceipt : AppCompatActivity() {
             }
     }
     fun exitActivity(){
-        val exitTheActivityIntent = Intent(this, Overview::class.java)
-        startActivity(exitTheActivityIntent)
+        finish()
     }
 }

@@ -42,7 +42,7 @@ class BudgetDialog() : DialogFragment() {
             //dismiss()
             if(rentEditTxt.text.toString()!=""){
                 budgetEditTxt.setText(rentEditTxt.text)
-                popUpBudget=budgetEditTxt.text.toString()+"Kr"
+                popUpBudget=budgetEditTxt.text.toString()+"kr"
                 dismiss()
 
             }
