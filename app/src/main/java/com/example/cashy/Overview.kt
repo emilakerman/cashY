@@ -107,20 +107,21 @@ class Overview : AppCompatActivity() {
     }
     fun readToPaymentmethodCard(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
-            db.collection("users").document(user.uid).collection("receipts")
+            val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("paymentmethod", "Card")
                 .whereEqualTo("monthNo", currentMonth)
                 .whereEqualTo("year", currentYear)
-                .get()
-                .addOnSuccessListener { documentSnapshot ->
-                    for (document in documentSnapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val cardAmount = findViewById<TextView>(R.id.cardAmount)
-                            receipts = mutableListOf()
-                            receipts.add(item)
-                            cardSum += item.sum!!
-                            cardAmount.text = "${cardSum} kr"
+                docRef.addSnapshotListener { snapshot, e ->
+                    if (snapshot != null) {
+                        for (document in snapshot.documents) {
+                            val item = document.toObject<Receipt>()
+                            if (item != null) {
+                                val cardAmount = findViewById<TextView>(R.id.cardAmount)
+                                receipts = mutableListOf()
+                                receipts.add(item)
+                                cardSum += item.sum!!
+                                cardAmount.text = "${cardSum} kr"
+                            }
                         }
                     }
                 }
@@ -128,20 +129,21 @@ class Overview : AppCompatActivity() {
     }
     fun readToPaymentmethodCash(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
-            db.collection("users").document(user.uid).collection("receipts")
+            val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("paymentmethod", "Cash")
                 .whereEqualTo("monthNo", currentMonth)
                 .whereEqualTo("year", currentYear)
-                .get()
-                .addOnSuccessListener { documentSnapshot ->
-                    for (document in documentSnapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val cashAmount = findViewById<TextView>(R.id.cashAmount)
-                            receipts = mutableListOf()
-                            receipts.add(item)
-                            cashSum += item.sum!!
-                            cashAmount.text = "${cashSum} kr"
+                docRef.addSnapshotListener { snapshot, e ->
+                    if (snapshot != null) {
+                        for (document in snapshot.documents) {
+                            val item = document.toObject<Receipt>()
+                            if (item != null) {
+                                val cashAmount = findViewById<TextView>(R.id.cashAmount)
+                                receipts = mutableListOf()
+                                receipts.add(item)
+                                cashSum += item.sum!!
+                                cashAmount.text = "${cashSum} kr"
+                            }
                         }
                     }
                 }
@@ -178,24 +180,22 @@ class Overview : AppCompatActivity() {
     //reads total sum of all fields correctly and populates the top total sum textview
     private fun readTotalSum(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
-            db.collection("users").document(user.uid).collection("receipts")
+            val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", currentMonth)
                 .whereEqualTo("year", currentYear)
-                .get()
-                .addOnSuccessListener { documentSnapshot ->
-                    for (document in documentSnapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val totalspent_txt = findViewById<TextView>(R.id.totalSpent_txt)
-                            receipts = mutableListOf()
-                            receipts.add(item)
-                            totalSum += item.sum!!
-                            totalspent_txt.text = "${totalSum} kr"
+                docRef.addSnapshotListener { snapshot, e ->
+                    if (snapshot != null) {
+                        for (document in snapshot.documents) {
+                            val item = document.toObject<Receipt>()
+                            if (item != null) {
+                                val totalspent_txt = findViewById<TextView>(R.id.totalSpent_txt)
+                                receipts = mutableListOf()
+                                receipts.add(item)
+                                totalSum += item.sum!!
+                                totalspent_txt.text = "${totalSum} kr"
+                            }
                         }
                     }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w("!!!", "Error getting documents: ", exception)
                 }
         }
     }
