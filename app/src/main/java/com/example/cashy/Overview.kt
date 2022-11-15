@@ -105,6 +105,7 @@ class Overview : AppCompatActivity() {
         val intent1 = Intent(this, ListFullScreen::class.java)
         startActivity(intent1)
     }
+    @SuppressLint("SuspiciousIndentation")
     fun readToPaymentmethodCard(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
