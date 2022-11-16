@@ -16,7 +16,7 @@ data class Receipt(
     var img : Int? = null,
     var monthNo : String? = null, //månaden sparas
     var year : String? = null, //året sparas
-    var day : String?= null,
+    var day : String? = null,
     var fullDate: String?= null
 ) {
     init {
