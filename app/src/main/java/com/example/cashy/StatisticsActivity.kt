@@ -27,11 +27,10 @@ import com.google.firebase.ktx.Firebase
 
 class StatisticsActivity : AppCompatActivity() {
 
-    var receiptBills= mutableListOf<Receipt>()
-
     lateinit var addButton : FloatingActionButton
 
     lateinit var recyclerView: RecyclerView
+    lateinit var barRecyclerView: RecyclerView
     //lateinit var switchBtn : SwitchCompat
     lateinit var categoriesBtn: ImageButton //the 2 imgView that manage fragments
     lateinit var removeFragBtn: ImageButton
@@ -64,6 +63,9 @@ class StatisticsActivity : AppCompatActivity() {
         recyclerView=findViewById(R.id.categ_RV)
         recyclerView.layoutManager= LinearLayoutManager(this)
         readFromDatabase()
+        //Bar RecyclerView
+        barRecyclerView=findViewById(R.id.barRV)
+        barRecyclerView.layoutManager= LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
 
 
         overviewBtn.setOnClickListener {
@@ -193,6 +195,10 @@ class StatisticsActivity : AppCompatActivity() {
         val adapter=CategoryRecyclerAdapter(this,list)
         recyclerView.adapter= adapter
     }
+    fun progressBarRV(dbList:List<Receipt>){
+        val barAdapter=BarRecyclerAdapter(this,dbList)
+        barRecyclerView.adapter= barAdapter
+    }
     fun readFromDatabase(){
         val list= mutableListOf<Receipt>()
         val user= auth.currentUser
@@ -202,22 +208,46 @@ class StatisticsActivity : AppCompatActivity() {
                 .addSnapshotListener{ snapshot, e->
 
                     var existingCategories= mutableListOf<String>()
+                    var getMonth= mutableListOf<String>()
                     if(snapshot!=null){
                         for(document in snapshot.documents){
                             val item= document.toObject<Receipt>()
-                            //Log.d("!!!","${item}")
                             list.add(item!!)
 
                             if (item.category !in existingCategories){
                                 existingCategories.add(item.category!!)
                             }
+                            if (item.monthNo !in getMonth){
+                                getMonth.add(item.monthNo!!)
+                            }
                         }
                     }       //takes a function that returns a list to set the RV
+                    progressBarRV(filterByMonth(getMonth,list))
                     setAdapters(filterByCategory(existingCategories,list))
                 }
         }
     }
     //takes 2 lists to create a filtered list for the RV
+    fun filterByMonth(monthList:List<String>, dbList:List<Receipt>): MutableList<Receipt>{
+        var countList = mutableListOf<Receipt>()
+        val year="2022"
+        for (month in monthList) {
+            var total = 0
+            //Creates a month
+            val count = Receipt(category = month, monthNo = month)
+            for (item in dbList) {
+                //that month of that year
+                if (item.monthNo == month && item.year==year) {
+                    total += item.sum!!
+                }
+            }
+            count.sum=total
+            countList.add(count)
+        }
+        countList.sortBy { it.category?.toInt() }
+        Log.d("!!!","${countList.size}")
+        return countList
+    }
     fun filterByCategory(categories:List<String>, dbList:List<Receipt>):MutableList<Receipt>{
         var countList= mutableListOf<Receipt>()
         for (category in categories){
@@ -243,6 +273,33 @@ class StatisticsActivity : AppCompatActivity() {
         val check1 = Receipt(sum=199, company="Hem", category = "Housing", paymentmethod = "Card")
         val check2 = Receipt(sum=1100, company="Hem", category = "Housing", paymentmethod = "Card")
         val check3 = Receipt(sum=630, company="Hem", category = "Housing", paymentmethod = "Cash")
+
+        val check4 = Receipt(sum=980, company="Apple", category = "Electronics", paymentmethod = "Card")
+
+        val check5 = Receipt(sum=200, company="Media Markt", category = "Electronics", paymentmethod = "Cash")
+        val check6 = Receipt(sum=780, company="Microsoft", category = "Electronics", paymentmethod = "Cash")
+        val check7 = Receipt(sum=320, company="Google", category = "Electronics", paymentmethod = "Card")
+
+        val check8 = Receipt(sum=560, company="SATS", category = "Sports", paymentmethod = "Card")
+        val check9 = Receipt(sum=245, company="24Fitness", category = "Sports", paymentmethod = "Card")
+        val check10 = Receipt(sum=490, company="Nike", category = "Sports", paymentmethod = "Card")
+        val check11 = Receipt(sum=674, company="Under Armour", category = "Sports", paymentmethod = "Card")
+        val check12 = Receipt(sum=2000, company="SAS", category = "Travel", paymentmethod = "Card")
+
+        val check13 = Receipt(sum=6500, company="Iberia", category = "Travel", paymentmethod = "Card")
+
+        val check14 = Receipt(sum=678, company="AIR-tifacts", category = "Travel", paymentmethod = "Cash")
+        val check15 = Receipt(sum=5320, company="Vueling", category = "Travel", paymentmethod = "Cash")
+        val check16 = Receipt(sum=76, company="Starbucks", category = "Fika", paymentmethod = "Card")
+        val check17 = Receipt(sum=98, company="Espresso House", category = "Fika", paymentmethod = "Cash")
+
+        val check18 = Receipt(sum=350, company="Bars", category = "Fika", paymentmethod = "Card")
+        val check19 = Receipt(sum=250, company="Starbucks", category = "Fika", paymentmethod = "Card")
+        val check20 = Receipt(sum=125, company="Espresso House", category = "Fika", paymentmethod = "Cash")
+
+        val check21 = Receipt(sum=768, company="Nintendo", category = "Entertainment", paymentmethod = "Card")
+        val check22 = Receipt(sum=365, company="Fnac", category = "Entertainment", paymentmethod = "Cash")
+        val check23 = Receipt(sum=1650, company="PlayStation", category = "Entertainment", paymentmethod = "Cash")
         /*val user= auth.currentUser
         if (user==null){
             return
@@ -254,16 +311,122 @@ class StatisticsActivity : AppCompatActivity() {
             .add(check1).addOnCompleteListener {
                 Log.d("!!!","Receipt Added")
             }
-
         db.collection("users").document(user.uid)
             .collection("receipts")
             .add(check2).addOnCompleteListener {
                 Log.d("!!!","Receipt Added")
             }
+
         db.collection("users").document(user.uid)
             .collection("receipts")
             .add(check3).addOnCompleteListener {
                 Log.d("!!!", "Receipt Added")
+            }
+
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check4).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check5).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check6).addOnCompleteListener {
+                Log.d("!!!", "Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check7).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check8).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check9).addOnCompleteListener {
+                Log.d("!!!", "Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check10).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check11).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check12).addOnCompleteListener {
+                Log.d("!!!", "Receipt Added")
+            }
+
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check13).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check14).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check15).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check16).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check17).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check18).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check19).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check20).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check21).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check22).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
+            }
+        db.collection("users").document(user.uid)
+            .collection("receipts")
+            .add(check23).addOnCompleteListener {
+                Log.d("!!!","Receipt Added")
             }
 
     }
