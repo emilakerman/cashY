@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
@@ -27,6 +28,7 @@ class CalendarFragment : Fragment() {
 
     lateinit var dateRecyclerView: RecyclerView
     var byDateList= mutableListOf<Receipt>()
+    lateinit var dateBox: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,26 +36,26 @@ class CalendarFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_calendar, container, false)
-
+        dateBox=view.findViewById(R.id.dateCalEditTxt)
         dateRecyclerView= view.findViewById(R.id.calendarReView)
         dateRecyclerView.layoutManager= LinearLayoutManager(view.context)
 
         setRecyclerByDate()
-        Log.d("!!!","$day.$month.$year")
 
         return view
     }
-    fun setDbFragmentRv(list: List<Receipt>){
+    fun setAdapters(list: List<Receipt>){
         val adapter=CategoryRecyclerAdapter(requireView().context, list) //getContext()
         dateRecyclerView.adapter= adapter
         //fragment RV adapter= categoryRV adapter
     }
     fun setRecyclerByDate(){
         val user= auth.currentUser
+
         if (user!=null) {
             byDateList.clear()
+            dateBox.setText("")
             Log.d("!!!","$user")
-            //receipts in cashy
             db.collection("users").document(user.uid)
                 .collection("receipts")
                 .whereEqualTo("day", day?.padStart(2,'0'))
@@ -64,11 +66,10 @@ class CalendarFragment : Fragment() {
                     for (document in documents) {
                         Log.d("!!!", "${document.id} => ${document.data}")
                         val item= document.toObject<Receipt>()
-                        Log.d("!!!","${item}")
                         byDateList.add(item)
                     }
-                    Log.d("!!!","size: ${byDateList.size}")
-                    setDbFragmentRv(byDateList)
+                    dateBox.setText("You selected day: $day.$month.$year")
+                    setAdapters(byDateList)
                 }
                 .addOnFailureListener { exception ->
                     Log.w("!!!", "Error getting documents: ", exception)
