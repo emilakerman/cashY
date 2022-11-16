@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -149,6 +150,9 @@ class DisplayMonths : AppCompatActivity() {
                                 in 25000..29999 -> frameJan.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                 in 30000..1000000000 -> frameJan.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
+                            if (sumJan >= 100000) {
+                                amountJanView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                            }
                         }
                     }
                 }
@@ -178,6 +182,9 @@ class DisplayMonths : AppCompatActivity() {
                                 in 20000..24999 -> frameFeb.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
                                 in 25000..29999 -> frameFeb.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                 in 30000..1000000000 -> frameFeb.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
+                            }
+                            if (sumFeb >= 100000) {
+                                amountFebView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
                             }
                         }
                     }
@@ -209,6 +216,9 @@ class DisplayMonths : AppCompatActivity() {
                                 in 25000..29999 -> frameMar.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                 in 30000..1000000000 -> frameMar.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
+                            if (sumMar >= 100000) {
+                                amountMarView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                            }
                         }
                     }
                 }
@@ -238,6 +248,9 @@ class DisplayMonths : AppCompatActivity() {
                                 in 20000..24999 -> frameApr.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
                                 in 25000..29999 -> frameApr.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                 in 30000..1000000000 -> frameApr.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
+                            }
+                            if (sumApr >= 100000) {
+                                amountAprView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
                             }
                         }
                     }
@@ -269,6 +282,9 @@ class DisplayMonths : AppCompatActivity() {
                                 in 25000..29999 -> frameMay.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                 in 30000..1000000000 -> frameMay.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
+                            if (sumMay >= 100000) {
+                                amountMayView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                            }
                         }
                     }
                 }
@@ -298,6 +314,9 @@ class DisplayMonths : AppCompatActivity() {
                                 in 20000..24999 -> frameJun.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
                                 in 25000..29999 -> frameJun.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                 in 30000..1000000000 -> frameJun.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
+                            }
+                            if (sumJun >= 100000) {
+                                amountJunView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
                             }
                         }
                     }
@@ -329,6 +348,9 @@ class DisplayMonths : AppCompatActivity() {
                                 in 25000..29999 -> frameJul.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                 in 30000..1000000000 -> frameJul.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
+                            if (sumJul >= 100000) {
+                                amountJulView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                            }
                         }
                     }
                 }
@@ -358,6 +380,9 @@ class DisplayMonths : AppCompatActivity() {
                                 in 20000..24999 -> frameAug.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
                                 in 25000..29999 -> frameAug.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                 in 30000..1000000000 -> frameAug.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
+                            }
+                            if (sumAug >= 100000) {
+                                amountAugView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
                             }
                         }
                     }
@@ -389,6 +414,9 @@ class DisplayMonths : AppCompatActivity() {
                                 in 25000..29999 -> frameSep.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                 in 30000..1000000000 -> frameSep.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
+                            if (sumSep >= 100000) {
+                                amountSepView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                            }
                         }
                     }
                 }
@@ -418,6 +446,9 @@ class DisplayMonths : AppCompatActivity() {
                                 in 20000..24999 -> frameOct.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
                                 in 25000..29999 -> frameOct.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                 in 30000..1000000000 -> frameOct.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
+                            }
+                            if (sumOct >= 100000) {
+                                amountOctView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
                             }
                         }
                     }
@@ -449,6 +480,9 @@ class DisplayMonths : AppCompatActivity() {
                                     in 25000..29999 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                     in 30000..1000000000 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                                 }
+                                if (sumNov >= 100000) {
+                                    amountNovView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                }
                             }
                         }
                     }
@@ -478,6 +512,9 @@ class DisplayMonths : AppCompatActivity() {
                                 in 20000..24999 -> frameDec.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
                                 in 25000..29999 -> frameDec.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                 in 30000..1000000000 -> frameDec.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
+                            }
+                            if (sumDec >= 100000) {
+                                amountDecView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
                             }
                         }
                     }

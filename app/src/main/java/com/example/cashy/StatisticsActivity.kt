@@ -1,6 +1,8 @@
 package com.example.cashy
 
 import android.content.DialogInterface
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,6 +28,8 @@ import com.google.firebase.ktx.Firebase
 class StatisticsActivity : AppCompatActivity() {
 
     var receiptBills= mutableListOf<Receipt>()
+
+    lateinit var addButton : FloatingActionButton
 
     lateinit var recyclerView: RecyclerView
     //lateinit var switchBtn : SwitchCompat
@@ -37,8 +42,7 @@ class StatisticsActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
 
-
-
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
@@ -61,10 +65,19 @@ class StatisticsActivity : AppCompatActivity() {
         recyclerView.layoutManager= LinearLayoutManager(this)
         readFromDatabase()
 
+
         overviewBtn.setOnClickListener {
             finish()
         }
-        /*
+
+        addButton = findViewById(R.id.floatingActionButton3)
+        addButton.setOnClickListener {
+            val intent = Intent(this, AddReceipt::class.java)
+            startActivity(intent)
+        }
+
+
+        /*    //Switch btn for Budget popup window
         switchBtn.setOnClickListener{
             if (switchBtn.isChecked){
                 //createBudgetDialog()
