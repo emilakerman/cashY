@@ -1,15 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/calendarContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cashy_grey"
-    tools:context=".CalendarFragment">
+    tools:context=".CalendarFragment"
+    android:orientation="horizontal">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calendarReView"
+    <LinearLayout
+        android:id="@+id/linearLO"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/card_layout" />
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/dateCalEditTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:clickable="false"
+            android:focusable="false"
+            android:hint="Pick a date!"
+            android:inputType="textPersonName"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLO">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/calendarReView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/card_layout" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

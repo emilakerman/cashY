@@ -83,18 +83,16 @@ class CategoryFragment : Fragment() {
                     for (document in documents) {
                         Log.d("!!!", "${document.id} => ${document.data}")
                         val item= document.toObject<Receipt>()
-                        Log.d("!!!","${item}")
                         getBills.add(item)
                     }
-                    Log.d("!!!","size: ${getBills.size}")
-                    set_dbFragmentRv(getBills)
+                    setAdapters(getBills)
                 }
                 .addOnFailureListener { exception ->
                     Log.w("!!!", "Error getting documents: ", exception)
                 }
         }
     }
-    fun set_dbFragmentRv(list: List<Receipt>){
+    fun setAdapters(list: List<Receipt>){
         val adapter=CategoryRecyclerAdapter(requireView().context, list) //getContext()
         catRecyclerView.adapter= adapter
         //fragment RV adapter= expensesRV adapter
