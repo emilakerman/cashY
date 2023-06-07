@@ -1,15 +1,12 @@
 package com.example.cashy
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
-import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -17,18 +14,17 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.text.DateFormat
 import java.util.*
 
-class AddReceipt : AppCompatActivity() {
-    lateinit var addMsg: EditText
-    lateinit var addCompany: EditText
-    lateinit var addValue: EditText
+class AddReceiptActivity : AppCompatActivity() {
+    private lateinit var addMsg: EditText
+    private lateinit var addCompany: EditText
+    private lateinit var addValue: EditText
 
-    val M = Calendar.getInstance()
-    val month = M.get(Calendar.MONTH)
-    val Y = Calendar.getInstance()
-    val year = Y.get(Calendar.YEAR)
+    private val M = Calendar.getInstance()
+    private val month = M.get(Calendar.MONTH)
+    private val Y = Calendar.getInstance()
+    private val year = Y.get(Calendar.YEAR)
 
     lateinit var spinnerCat : Spinner
     lateinit var spinnerPay : Spinner
@@ -69,7 +65,7 @@ class AddReceipt : AppCompatActivity() {
             exitActivity()
         }
     }
-    fun saveItem() {
+    private fun saveItem() {
 
         addValue = findViewById(R.id.addValue)
         addMsg = findViewById(R.id.addMsg)
@@ -110,8 +106,8 @@ class AddReceipt : AppCompatActivity() {
             company = addCompany.text.toString(),
             notis = addMsg.text.toString(),
             category = spinnerCat.selectedItem.toString(),
-            paymentmethod = spinnerPay.selectedItem.toString(),
-            timestamp = java.util.Date(),
+            paymentMethod = spinnerPay.selectedItem.toString(),
+            timestamp = Date(),
             monthNo = month.toString(),
             year = year.toString()
         )
@@ -119,10 +115,7 @@ class AddReceipt : AppCompatActivity() {
         addCompany.setText("")
         addMsg.setText("")
 
-        val user = auth.currentUser
-        if (user == null) {
-            return
-        }
+        val user = auth.currentUser ?: return
 
         db.collection("users").document(user.uid).collection("receipts")
             .add(item)
@@ -132,7 +125,7 @@ class AddReceipt : AppCompatActivity() {
                     Toast.LENGTH_SHORT).show()
             }
     }
-    fun exitActivity(){
+    private fun exitActivity(){
         finish()
     }
 }

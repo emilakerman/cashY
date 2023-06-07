@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class Register : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
@@ -24,7 +24,7 @@ class Register : AppCompatActivity() {
 
         val loginText : TextView = findViewById(R.id.textView_login)
         loginText.setOnClickListener {
-            val intent = Intent(this, Login::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
         val registerButton : Button = findViewById(R.id.button_register)
@@ -55,7 +55,7 @@ class Register : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success
 
-                    val intent = Intent(this, Overview::class.java)
+                    val intent = Intent(this, OverviewActivity::class.java)
                     startActivity(intent)
 
                     Toast.makeText(baseContext, "Success.",

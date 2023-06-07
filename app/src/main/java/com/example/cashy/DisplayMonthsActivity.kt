@@ -1,13 +1,14 @@
 package com.example.cashy
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.View
-import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -16,14 +17,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import java.util.*
 
-class DisplayMonths : AppCompatActivity() {
+class DisplayMonthsActivity : AppCompatActivity() {
 
-    lateinit var db : FirebaseFirestore
+    private lateinit var db : FirebaseFirestore
     private lateinit var auth: FirebaseAuth
 
-    lateinit var dates : MutableList<Receipt>
+    private lateinit var dates : MutableList<Receipt>
 
     lateinit var frameJan : FrameLayout
     lateinit var frameFeb : FrameLayout
@@ -40,11 +40,13 @@ class DisplayMonths : AppCompatActivity() {
 
     lateinit var backButton : FloatingActionButton
 
-    //fragment imagebuttons
+    //fragment imageButtons
     lateinit var previousYear : ImageButton
     lateinit var nextYear : ImageButton
 
     lateinit var staticYear : Button
+
+
 
     var sumJan = 0
     var sumFeb = 0
@@ -59,7 +61,8 @@ class DisplayMonths : AppCompatActivity() {
     var sumNov = 0
     var sumDec = 0
 
-    @SuppressLint("MissingInflatedId")
+    var monthSums = mutableListOf(sumJan, sumFeb, sumMar, sumApr, sumMay, sumJun, sumJul, sumAug, sumSep, sumOct, sumNov, sumDec)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_months)
@@ -68,7 +71,7 @@ class DisplayMonths : AppCompatActivity() {
         db = Firebase.firestore
         auth = Firebase.auth
 
-        //fragment imagebuttons
+        //fragment imageButtons
         previousYear = findViewById(R.id.previousYear)
         nextYear = findViewById(R.id.nextYear)
 
@@ -92,6 +95,8 @@ class DisplayMonths : AppCompatActivity() {
         frameNov = findViewById(R.id.frameNov)
         frameDec = findViewById(R.id.frameDec)
 
+        // this should really be handled by a loop /arvid
+        /*
         readToJan()
         readToFeb()
         readToMar()
@@ -104,8 +109,15 @@ class DisplayMonths : AppCompatActivity() {
         readToOct()
         readToNov()
         readToDec()
+        */
+        // this should work better (i hope)
+        val monthFrames = mutableListOf(frameJan, frameFeb, frameMar, frameApr, frameMay, frameJun, frameJul, frameAug, frameSep, frameOct, frameNov, frameDec)
+        val amountViews = mutableListOf<TextView>(findViewById(R.id.amountJan), findViewById(R.id.amountFeb), findViewById(R.id.amountMar), findViewById(R.id.amountApr), findViewById(R.id.amountMay), findViewById(R.id.amountJun), findViewById(R.id.amountJul), findViewById(R.id.amountAug), findViewById(R.id.amountSep), findViewById(R.id.amountOct), findViewById(R.id.amountNov), findViewById(R.id.amountDec))
+        readToMonths(monthFrames, amountViews)
+
+
     }
-    fun nextYear(view: View){ //ligger i "onclick"
+    fun nextYear(view : View) { //ligger i "onclick"
         val fm = supportFragmentManager.findFragmentByTag("year_fragment")
         if (fm == null) {
             val yearFragment = YearFragment()
@@ -116,7 +128,7 @@ class DisplayMonths : AppCompatActivity() {
             Toast.makeText(this,"No more years have been added", Toast.LENGTH_SHORT).show()
         }
     }
-    fun previousYear(view: View){ //ligger i "onclick"
+    fun previousYear(view : View) { //ligger i "onclick"
         val yearFragment = supportFragmentManager.findFragmentByTag("year_fragment")
         if (yearFragment != null){
             val transaction = supportFragmentManager.beginTransaction()
@@ -126,13 +138,51 @@ class DisplayMonths : AppCompatActivity() {
             Toast.makeText(this,"2022 is the first year of the app", Toast.LENGTH_SHORT).show()
         }
     }
-    fun readToJan() {
+
+    //what is this repetition? trying to put together a more generic function /arvid
+    //i can't really test this function properly due to the firestore security rules, but i think this will work
+    private fun readToMonths(monthFrames: MutableList<FrameLayout>, amountViews : MutableList<TextView>) {
+        val user = auth.currentUser
+        if (user != null) {
+            amountViews.forEachIndexed { index, amountView ->
+                val docRef = db.collection("users").document(user.uid).collection("receipts")
+                    .whereEqualTo("monthNo", "${index + 1}")
+                    .whereEqualTo("year", "2022")
+                docRef.addSnapshotListener { snapshot, _ ->
+                    if (snapshot != null) {
+                        for (document in snapshot.documents) {
+                            val item = document.toObject<Receipt>()
+                            if (item != null) {
+                                dates = mutableListOf()
+                                dates.add(item)
+                                monthSums[index] += item.sum!!
+                                amountView.text = monthSums[index].toString()
+                                val monthFrame = monthFrames[index]
+                                when (monthSums[index]) {
+                                    in 1000..9999 -> monthFrame.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
+                                    in 10000..14999 -> monthFrame.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
+                                    in 15000..19999 -> monthFrame.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
+                                    in 20000..24999 -> monthFrame.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
+                                    in 25000..29999 -> monthFrame.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
+                                    in 30000..1000000000 -> monthFrame.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
+                                }
+                                if (monthSums[index] >= 100000) {
+                                    amountView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    private fun readToJan() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "1")
                 .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
                         val item = document.toObject<Receipt>()
@@ -151,7 +201,7 @@ class DisplayMonths : AppCompatActivity() {
                                 in 30000..1000000000 -> frameJan.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
                             if (sumJan >= 100000) {
-                                amountJanView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                amountJanView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }
@@ -159,13 +209,13 @@ class DisplayMonths : AppCompatActivity() {
             }
         }
     }
-    fun readToFeb() {
+    private fun readToFeb() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "2")
                 .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
                         val item = document.toObject<Receipt>()
@@ -184,7 +234,7 @@ class DisplayMonths : AppCompatActivity() {
                                 in 30000..1000000000 -> frameFeb.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
                             if (sumFeb >= 100000) {
-                                amountFebView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                amountFebView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }
@@ -192,13 +242,13 @@ class DisplayMonths : AppCompatActivity() {
             }
         }
     }
-    fun readToMar() {
+    private fun readToMar() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "3")
                 .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
                         val item = document.toObject<Receipt>()
@@ -217,7 +267,7 @@ class DisplayMonths : AppCompatActivity() {
                                 in 30000..1000000000 -> frameMar.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
                             if (sumMar >= 100000) {
-                                amountMarView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                amountMarView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }
@@ -225,13 +275,13 @@ class DisplayMonths : AppCompatActivity() {
             }
         }
     }
-    fun readToApr() {
+    private fun readToApr() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "4")
                 .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
                         val item = document.toObject<Receipt>()
@@ -250,7 +300,7 @@ class DisplayMonths : AppCompatActivity() {
                                 in 30000..1000000000 -> frameApr.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
                             if (sumApr >= 100000) {
-                                amountAprView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                amountAprView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }
@@ -258,13 +308,13 @@ class DisplayMonths : AppCompatActivity() {
             }
         }
     }
-    fun readToMay() {
+    private fun readToMay() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "5")
                 .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
                         val item = document.toObject<Receipt>()
@@ -283,7 +333,7 @@ class DisplayMonths : AppCompatActivity() {
                                 in 30000..1000000000 -> frameMay.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
                             if (sumMay >= 100000) {
-                                amountMayView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                amountMayView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }
@@ -291,13 +341,13 @@ class DisplayMonths : AppCompatActivity() {
             }
         }
     }
-    fun readToJun() {
+    private fun readToJun() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "6")
                 .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
                         val item = document.toObject<Receipt>()
@@ -316,7 +366,7 @@ class DisplayMonths : AppCompatActivity() {
                                 in 30000..1000000000 -> frameJun.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
                             if (sumJun >= 100000) {
-                                amountJunView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                amountJunView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }
@@ -324,13 +374,13 @@ class DisplayMonths : AppCompatActivity() {
             }
         }
     }
-    fun readToJul() {
+    private fun readToJul() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "7")
                 .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
                         val item = document.toObject<Receipt>()
@@ -349,7 +399,7 @@ class DisplayMonths : AppCompatActivity() {
                                 in 30000..1000000000 -> frameJul.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
                             if (sumJul >= 100000) {
-                                amountJulView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                amountJulView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }
@@ -357,13 +407,13 @@ class DisplayMonths : AppCompatActivity() {
             }
         }
     }
-    fun readToAug() {
+    private fun readToAug() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "8")
                 .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
                         val item = document.toObject<Receipt>()
@@ -382,7 +432,7 @@ class DisplayMonths : AppCompatActivity() {
                                 in 30000..1000000000 -> frameAug.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
                             if (sumAug >= 100000) {
-                                amountAugView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                amountAugView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }
@@ -390,13 +440,13 @@ class DisplayMonths : AppCompatActivity() {
             }
         }
     }
-    fun readToSep() {
+    private fun readToSep() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "9")
                 .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
                         val item = document.toObject<Receipt>()
@@ -415,7 +465,7 @@ class DisplayMonths : AppCompatActivity() {
                                 in 30000..1000000000 -> frameSep.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
                             if (sumSep >= 100000) {
-                                amountSepView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                amountSepView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }
@@ -423,13 +473,13 @@ class DisplayMonths : AppCompatActivity() {
             }
         }
     }
-    fun readToOct() {
+    private fun readToOct() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "10")
                 .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
                         val item = document.toObject<Receipt>()
@@ -448,7 +498,7 @@ class DisplayMonths : AppCompatActivity() {
                                 in 30000..1000000000 -> frameOct.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
                             if (sumOct >= 100000) {
-                                amountOctView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                amountOctView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }
@@ -456,13 +506,13 @@ class DisplayMonths : AppCompatActivity() {
             }
         }
     }
-    fun readToNov() {
+    private fun readToNov() {
         val user = auth.currentUser
         if (user != null) {
            val docRef = db.collection("users").document(user.uid).collection("receipts")
             .whereEqualTo("monthNo", "11")
             .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                     if (snapshot != null) {
                         for (document in snapshot.documents) {
                             val item = document.toObject<Receipt>()
@@ -481,7 +531,7 @@ class DisplayMonths : AppCompatActivity() {
                                     in 30000..1000000000 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                                 }
                                 if (sumNov >= 100000) {
-                                    amountNovView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                    amountNovView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                                 }
                             }
                         }
@@ -489,13 +539,13 @@ class DisplayMonths : AppCompatActivity() {
                 }
         }
     }
-    fun readToDec() {
+    private fun readToDec() {
         val user = auth.currentUser
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", "12")
                 .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, e ->
+            docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {
                         val item = document.toObject<Receipt>()
@@ -514,7 +564,7 @@ class DisplayMonths : AppCompatActivity() {
                                 in 30000..1000000000 -> frameDec.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                             }
                             if (sumDec >= 100000) {
-                                amountDecView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F);
+                                amountDecView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }

@@ -1,8 +1,8 @@
 package com.example.cashy
 
-import android.widget.Spinner
 import com.google.firebase.firestore.DocumentId
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 data class Receipt(
     val id: String = "",
@@ -11,7 +11,7 @@ data class Receipt(
     var company: String? = null,
     var notis: String? = null,
     var category: String? = null,
-    var paymentmethod: String? = null,
+    var paymentMethod: String? = null,
     var timestamp: Date? = null,
     var img : Int? = null,
     var monthNo : String? = null, //månaden sparas
@@ -23,7 +23,7 @@ data class Receipt(
         setImageCategory()
         setTime()
     }
-    fun setTime(){
+    private fun setTime(){
         val c=Calendar.getInstance()
 
 
@@ -34,24 +34,20 @@ data class Receipt(
         fullDate="$day.$monthNo.$year"
     }
 
-    fun setImageCategory() {
-        when (category) {
-            "Groceries","Food" -> img = R.drawable.food_icon
-            "Housing" -> img = R.drawable.house_icon
-            "Electronics" -> img= R.drawable.electronics_icon
-            "Sports" -> img= R.drawable.sports_icon
-            "Travel" -> img= R.drawable.travel_icon
-            "Fika" -> img= R.drawable.coffee_icon
-
-
-
-            //"Other" -> img = R.drawable.other
-            "Entertainment" -> img = R.drawable.entertainment
-            "Food and Beverage" -> img = R.drawable.foodbeverage
-            "Lifestyle" -> img = R.drawable.lifestyle
-            "Transport" -> img = R.drawable.ic_baseline_directions_transit_24
-            "Household" -> img = R.drawable.ic_baseline_house_24
-            else -> img = R.drawable.other
+    private fun setImageCategory() {
+        img = when (category) {
+            "Groceries","Food" -> R.drawable.food_icon
+            "Housing" -> R.drawable.house_icon
+            "Electronics" -> R.drawable.electronics_icon
+            "Sports" -> R.drawable.sports_icon
+            "Travel" -> R.drawable.travel_icon
+            "Fika" -> R.drawable.coffee_icon
+            "Entertainment" -> R.drawable.entertainment
+            "Food and Beverage" -> R.drawable.foodbeverage
+            "Lifestyle" -> R.drawable.lifestyle
+            "Transport" -> R.drawable.ic_baseline_directions_transit_24
+            "Household" -> R.drawable.ic_baseline_house_24
+            else -> R.drawable.other
         }
     }
 }

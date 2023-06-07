@@ -8,10 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class CategoryRecyclerAdapter(val context: Context,
-                              val receipt: List<Receipt>):RecyclerView
-                                .Adapter<CategoryRecyclerAdapter.ViewHolder>(){
-    val layoutInflater: LayoutInflater = LayoutInflater.from(context)
+class CategoryRecyclerAdapter(val context: Context, val receipt: List<Receipt>) : RecyclerView.Adapter<CategoryRecyclerAdapter.ViewHolder>()
+{
+    private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView= layoutInflater.inflate(R.layout.card_layout,parent,false)
@@ -25,7 +24,7 @@ class CategoryRecyclerAdapter(val context: Context,
         holder.imgImageView.setImageResource(receipts.img!!)
         holder.companytxtV.text=receipts.company.toString()
         holder.sumTxtV.text=receipts.sum.toString()+" kr"
-        holder.payMethTxtV.text=receipts.paymentmethod.toString()
+        holder.payMethTxtV.text=receipts.paymentMethod.toString()
     }
 
     override fun getItemCount(): Int {

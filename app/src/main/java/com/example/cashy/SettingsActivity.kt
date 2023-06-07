@@ -19,7 +19,7 @@ class SettingsActivity : AppCompatActivity() {
     lateinit var logoutButtonView: Button
     lateinit var backButton : FloatingActionButton
 
-    @SuppressLint("MissingInflatedId")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -30,11 +30,7 @@ class SettingsActivity : AppCompatActivity() {
             finish()
         }
 
-
-
-
         logoutButtonView = findViewById(R.id.buttonLogOut)
-//        logoutButtonView.layoutManager = LinearLayoutManager(this)
         logoutButtonView.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val i = Intent(this, MainActivity::class.java)
@@ -43,9 +39,7 @@ class SettingsActivity : AppCompatActivity() {
 
         initData()
         setRecyclerView()
-
     }
-
 
     private fun setRecyclerView() {
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
@@ -55,8 +49,6 @@ class SettingsActivity : AppCompatActivity() {
         recyclerView.adapter = settingAdapter
         recyclerView.setHasFixedSize(true)
     }
-
-
     private fun initData() {
         settingList.add(
             Settings(
@@ -96,15 +88,5 @@ class SettingsActivity : AppCompatActivity() {
                 "These Terms and the use of the Services are governed by the laws of Sweden, except for its conflicts of laws principles. All claims arising out of or relating to these Terms or the Service shall be resolved by the public Swedish courts, whereby the District Court of Stockholm shall be the court of first instance."
             )
         )
-        /*
-        settingList.add(
-            Settings(
-                "GDPR",
-                "Subheading Text",
-                "Section text",
-                "Description text should be entered here."
-            )
-        )
-         */
     }
 }

@@ -1,12 +1,12 @@
-package com.example.cashy
+package com.example.cashy.fragments
 
-import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
+import com.example.cashy.R
 import java.util.*
 
 class DatePickerFragment(val listener:(day: Int, month: Int, year: Int)-> Unit)
@@ -22,7 +22,8 @@ class DatePickerFragment(val listener:(day: Int, month: Int, year: Int)-> Unit)
         val month=c.get(Calendar.MONTH)
         val year=c.get(Calendar.YEAR)
 
-        val picker=DatePickerDialog(activity as Context,R.style.datePickerTheme, this, year, month, day)
+        val picker=DatePickerDialog(activity as Context,
+            R.style.datePickerTheme, this, year, month, day)
         picker.datePicker.maxDate= c.timeInMillis
         return picker
     }

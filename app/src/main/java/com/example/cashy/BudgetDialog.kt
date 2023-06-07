@@ -1,9 +1,7 @@
 package com.example.cashy
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,25 +11,20 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialogFragment
-import androidx.fragment.app.DialogFragment
 
-class BudgetDialog() : AppCompatDialogFragment() {
-    lateinit var cancelPop: Button
-    lateinit var savePop: Button
-    lateinit var budgetEditTxt: EditText
-    lateinit var rentView: TextView
-    lateinit var rentEditTxt: EditText
+class BudgetDialog : AppCompatDialogFragment() {
+    private lateinit var cancelPop: Button
+    private lateinit var savePop: Button
+    private lateinit var budgetEditTxt: EditText
+    private lateinit var rentView: TextView
+    private lateinit var rentEditTxt: EditText
     var popUpBudget=""
 
-
-
-
-    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view: View = inflater.inflate(R.layout.budget_popup, container, false)
         cancelPop = view.findViewById(R.id.cancelBtn)
         savePop = view.findViewById(R.id.saveBtn)
@@ -47,7 +40,7 @@ class BudgetDialog() : AppCompatDialogFragment() {
         savePop.setOnClickListener {
             //code the logic for the different options available
             if(rentEditTxt.text.isNotEmpty()){
-                budgetEditTxt.setText(rentEditTxt.text)
+                budgetEditTxt.text = rentEditTxt.text
                 popUpBudget=budgetEditTxt.text.toString()+"Kr"
                 Log.d("!!!","Budget is: $popUpBudget")
                 dismiss()
@@ -63,9 +56,4 @@ class BudgetDialog() : AppCompatDialogFragment() {
 
         return super.onCreateDialog(savedInstanceState)
     }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
-
 }

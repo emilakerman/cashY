@@ -1,14 +1,12 @@
 package com.example.cashy
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
-
+import androidx.fragment.app.Fragment
+// would like to move file this to the "fragments" folder, but it might break things
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -37,27 +35,18 @@ class YearFragment : Fragment() {
         }
     }
 
-    @SuppressLint("MissingInflatedId")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_year, container, false)
+        val view = inflater.inflate(R.layout.fragment_year, container, false)
 
         staticYear = view.findViewById(R.id.staticYear)
         staticYear.text = "2023"
 
-
-
-
-
-
         return view
-
-
-
     }
 
     companion object {
@@ -76,8 +65,6 @@ class YearFragment : Fragment() {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
-
-
                 }
             }
     }

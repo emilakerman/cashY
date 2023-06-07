@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cashy.R
 import com.example.cashy.Settings
 
-class SettingAdapter(val context: Context, val settingList: List<Settings>) :
+class SettingAdapter(val context: Context, private val settingList: List<Settings>) :
     RecyclerView.Adapter<SettingAdapter.SettingVH>() {
-
-    val layoutInflater = LayoutInflater.from(context)
 
     class SettingVH (itemView: View) : RecyclerView.ViewHolder(itemView){
 
@@ -24,8 +22,6 @@ class SettingAdapter(val context: Context, val settingList: List<Settings>) :
         var descriptionTxt : TextView = itemView.findViewById(R.id.description)
         var linearLayout : LinearLayout = itemView.findViewById(R.id.linearLayout)
         var expandablelayout : RelativeLayout = itemView.findViewById(R.id.expandable_layout)
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SettingVH {
@@ -56,7 +52,5 @@ class SettingAdapter(val context: Context, val settingList: List<Settings>) :
             settings.expandable = !settings.expandable
             notifyItemChanged(position)
         }
-
     }
-
 }

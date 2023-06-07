@@ -1,14 +1,10 @@
 package com.example.cashy
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -20,10 +16,9 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import java.util.*
 
 
-class ListFullScreen : AppCompatActivity() {
+class ListFullScreenActivity : AppCompatActivity() {
 
     lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
@@ -32,11 +27,7 @@ class ListFullScreen : AppCompatActivity() {
     lateinit var adapter : FullScreenAdapter
     lateinit var receipts : MutableList<Receipt>
 
-    val c = Calendar.getInstance()
-    var currentMonth = (c.get(Calendar.MONTH) + 1).toString()
-    var currentYear = c.get(Calendar.YEAR).toString()
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_full_screen)
@@ -44,10 +35,6 @@ class ListFullScreen : AppCompatActivity() {
 
         db = Firebase.firestore
         auth = Firebase.auth
-
-        //finding the current user and assigning a variable to the user id
-        val user = Firebase.auth.currentUser
-        var uid = user?.uid
 
         recyclerView = findViewById(R.id.recyclerViewFullScreen)
         receipts = mutableListOf()
@@ -65,7 +52,7 @@ class ListFullScreen : AppCompatActivity() {
 
         val goBack = findViewById<FloatingActionButton>(R.id.backButton)
         goBack.setOnClickListener {
-            val intent = Intent(this, Overview::class.java)
+            val intent = Intent(this, OverviewActivity::class.java)
             startActivity(intent)
         }
     }
@@ -86,12 +73,10 @@ class ListFullScreen : AppCompatActivity() {
         })
         return true
     }
-    fun readFrom() {
+    private fun readFrom() {
         val user = auth.currentUser
         if (user != null) {
             db.collection("users").document(user.uid).collection("receipts")
-                //.whereEqualTo("monthNo", currentMonth)
-                //.whereEqualTo("year", currentYear)
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener { documentSnapshot ->

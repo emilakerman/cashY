@@ -7,7 +7,7 @@
     android:background="@color/cashy_grey"
     android:orientation="horizontal"
     android:padding="4dp"
-    tools:context=".CategoryFragment">
+    tools:context=".fragments.CategoryFragment">
 
     <Spinner
         android:id="@+id/catSpinner"

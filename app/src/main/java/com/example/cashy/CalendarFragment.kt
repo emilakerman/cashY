@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+// would like to move this file to the "fragments" folder, but it might break things
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 private const val ARG_PARAM3 = "param3"
@@ -44,12 +45,12 @@ class CalendarFragment : Fragment() {
 
         return view
     }
-    fun setAdapters(list: List<Receipt>){
+    private fun setAdapters(list: List<Receipt>){
         val adapter=CategoryRecyclerAdapter(requireView().context, list) //getContext()
         dateRecyclerView.adapter= adapter
         //fragment RV adapter= categoryRV adapter
     }
-    fun setRecyclerByDate(){
+    private fun setRecyclerByDate(){
         val user= auth.currentUser
 
         if (user!=null) {
@@ -68,6 +69,7 @@ class CalendarFragment : Fragment() {
                         val item= document.toObject<Receipt>()
                         byDateList.add(item)
                     }
+                    // this should done with resource strings with placeholders instead, like what the warning suggests /arvid
                     dateBox.setText("You selected day: $day.$month.$year")
                     setAdapters(byDateList)
                 }

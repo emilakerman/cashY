@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CashY"
         tools:targetApi="31">
         <activity
-            android:name=".DisplayMonths"
+            android:name=".DisplayMonthsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -28,22 +28,22 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Register"
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".Overview"
+            android:name=".OverviewActivity"
             android:exported="false" />
         <activity
-            android:name=".AddReceipt"
+            android:name=".AddReceiptActivity"
             android:exported="false" />
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".ListFullScreen"
+            android:name=".ListFullScreenActivity"
             android:exported="false"
             android:label="Search" />
         <activity

@@ -6,8 +6,6 @@ data class Expenses(var category: String, var transactions: Int,var img: Int?=nu
         setImgCategory()
     }
 
-
-
     fun setImgCategory(){
         when (category){
             "Food" -> img=R.drawable.food_icon

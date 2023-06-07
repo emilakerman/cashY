@@ -1,17 +1,11 @@
 package com.example.cashy
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
-import java.util.*
-import kotlin.collections.ArrayList
 
 class ExpenseRecycleAdapter(var receipts : List<Receipt>) :
     RecyclerView.Adapter<ExpenseRecycleAdapter.ViewHolder>() {
@@ -24,7 +18,7 @@ class ExpenseRecycleAdapter(var receipts : List<Receipt>) :
         val receipt = receipts[position]
         holder.expense_txtView.text = receipt.sum.toString()
         holder.category_txtView.text = receipt.category
-        holder.paymentMethod_txtView.text = receipt.paymentmethod
+        holder.paymentMethod_txtView.text = receipt.paymentMethod
         holder.company_txtView.text = receipt.company
         holder.icon_img.setImageResource(receipt.img!!)
     }
