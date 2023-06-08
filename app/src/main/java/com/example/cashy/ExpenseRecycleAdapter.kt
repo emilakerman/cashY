@@ -14,6 +14,7 @@ class ExpenseRecycleAdapter(var receipts : List<Receipt>) :
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return ViewHolder(itemView)
     }
+    
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val receipt = receipts[position]
         holder.expense_txtView.text = receipt.sum.toString()
@@ -22,9 +23,11 @@ class ExpenseRecycleAdapter(var receipts : List<Receipt>) :
         holder.company_txtView.text = receipt.company
         holder.icon_img.setImageResource(receipt.img!!)
     }
+
     override fun getItemCount(): Int {
         return receipts.size
     }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var expense_txtView = itemView.findViewById<TextView>(R.id.expense_txt)
         var category_txtView = itemView.findViewById<TextView>(R.id.category_txt)

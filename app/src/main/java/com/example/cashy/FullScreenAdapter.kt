@@ -7,10 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FullScreenAdapter(/* val context : Context, */var receipts : List<Receipt>) :
+class FullScreenAdapter(var receipts : List<Receipt>) :
     RecyclerView.Adapter<FullScreenAdapter.ViewHolder>() {
-
-    //val layoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_full_screen, parent, false)
@@ -20,6 +18,7 @@ class FullScreenAdapter(/* val context : Context, */var receipts : List<Receipt>
         receipts = filterlist
         notifyDataSetChanged()
     }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val receipt = receipts[position]
         holder.expense_txtView.text = receipt.sum.toString()
@@ -30,9 +29,11 @@ class FullScreenAdapter(/* val context : Context, */var receipts : List<Receipt>
         holder.comment_txt.text = receipt.notis
         holder.icon_img.setImageResource(receipt.img!!)
     }
+
     override fun getItemCount(): Int {
         return receipts.size
     }
+    
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val expense_txtView = itemView.findViewById<TextView>(R.id.expense_txt)
         val category_txtView = itemView.findViewById<TextView>(R.id.category_txt)

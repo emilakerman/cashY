@@ -7,15 +7,15 @@ import java.util.Date
 data class Receipt(
     val id: String = "",
     @DocumentId var documentId: String?="",
-    var sum: Int? = null, // Här ville jag ge en int- Användaren kan endast användas INT
+    var sum: Int? = null, // 
     var company: String? = null,
     var notis: String? = null,
     var category: String? = null,
     var paymentMethod: String? = null,
     var timestamp: Date? = null,
     var img : Int? = null,
-    var monthNo : String? = null, //månaden sparas
-    var year : String? = null, //året sparas
+    var monthNo : String? = null, // saves the month
+    var year : String? = null, // saves the year
     var day : String? = null,
     var fullDate: String?= null
 ) {
@@ -23,7 +23,8 @@ data class Receipt(
         setImageCategory()
         setTime()
     }
-    private fun setTime(){
+
+    private fun setTime() {
         val c=Calendar.getInstance()
 
 
@@ -51,19 +52,3 @@ data class Receipt(
         }
     }
 }
-
-
-
-/*enum class category(){
-    FOODBEVARAGE,
-    ENTERTAIMENT,
-    NOJE,
-    RESOR,
-    BARN,
-
-}
-enum class cashOrCard(){
-    CARD,
-    CASH
-
-}*/

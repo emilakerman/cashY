@@ -49,7 +49,8 @@ class AddReceiptActivity : AppCompatActivity() {
             if (addValue.text.isEmpty() || spinnerCat.selectedItem == "Select Category*" || spinnerPay.selectedItem == "Select payment method*") {
                 Toast.makeText(this, "Please fill all the required fields.", Toast.LENGTH_SHORT)
                     .show()
-            } else {
+            }
+            else {
                 saveItem()
             }
         }
@@ -65,6 +66,8 @@ class AddReceiptActivity : AppCompatActivity() {
             exitActivity()
         }
     }
+
+    // gets the input data and uses it to create a receipt object that is uploaded to firestore /arvid
     private fun saveItem() {
 
         addValue = findViewById(R.id.addValue)
@@ -88,6 +91,7 @@ class AddReceiptActivity : AppCompatActivity() {
                 }
             }
         }
+
         if (spinnerPay != null) {
             spinnerPay.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -101,6 +105,7 @@ class AddReceiptActivity : AppCompatActivity() {
                 }
             }
         }
+
         val item = Receipt(
             sum = addValue.text.toString().toInt(),
             company = addCompany.text.toString(),
@@ -111,6 +116,7 @@ class AddReceiptActivity : AppCompatActivity() {
             monthNo = month.toString(),
             year = year.toString()
         )
+
         addValue.setText("")
         addCompany.setText("")
         addMsg.setText("")
@@ -125,7 +131,7 @@ class AddReceiptActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT).show()
             }
     }
-    private fun exitActivity(){
+    private fun exitActivity() {
         finish()
     }
 }

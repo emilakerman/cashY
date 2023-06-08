@@ -49,6 +49,7 @@ class SettingsActivity : AppCompatActivity() {
         recyclerView.adapter = settingAdapter
         recyclerView.setHasFixedSize(true)
     }
+
     private fun initData() {
         settingList.add(
             Settings(

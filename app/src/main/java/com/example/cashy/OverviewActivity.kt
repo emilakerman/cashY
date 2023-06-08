@@ -53,7 +53,7 @@ class OverviewActivity : AppCompatActivity() {
         db = Firebase.firestore
         auth = Firebase.auth
 
-        //finding the current user and assigning a variable to the user id //This is not used??? The Firestore functions get the logged in user from the lateinit auth variable instead, removing it /arvid
+        //finding the current user and assigning a variable to the user id //This is not used? The Firestore functions get the logged in user from the lateinit auth variable instead, removing it /arvid
 
 
         receipts = mutableListOf()
@@ -91,17 +91,21 @@ class OverviewActivity : AppCompatActivity() {
         toAddReceiptButton.setOnClickListener {
             toAddReceiptButton()
         }
+
         settingsLink = findViewById(R.id.settingsLink)
         settingsLink.setOnClickListener {
             val settingsLink = Intent(this, SettingsActivity::class.java)
             startActivity(settingsLink)
         }
     }
+
     private fun showTime() {
         val intent = Intent(this, ListFullScreenActivity::class.java)
         startActivity(intent)
     }
 
+    // reads the user's receipts from firebase from the current month where the purchase has been made with card
+    // then it adds the data to the lateinit list of receipts and shows how much money was spent on each /arvid
     private fun readToPaymentMethodCard(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
@@ -125,6 +129,9 @@ class OverviewActivity : AppCompatActivity() {
             }
         }
     }
+
+    // reads the user's receipts from firebase from the current month where the purchase has been made with cash
+    // then it adds the data to the lateinit list of receipts and shows how much money was spent on each /arvid    
     private fun readToPaymentMethodCash(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
@@ -148,6 +155,9 @@ class OverviewActivity : AppCompatActivity() {
             }
         }
     }
+
+    // gets all of the user's receipts from firestore
+    // then it adds the data to the lateinit list of receipts and shows how much money was spent on each /arvid
     private fun readFrom(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
@@ -171,18 +181,19 @@ class OverviewActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun toAddReceiptButton() {
         val resultButtonIntent =
             Intent(this, AddReceiptActivity::class.java)
         startActivity(resultButtonIntent)
     }
+
     //reads total sum of all fields correctly and populates the top total sum textview
     private fun readTotalSum(user: FirebaseUser? = auth.currentUser) {
         if (user != null) {
             val docRef = db.collection("users").document(user.uid).collection("receipts")
                 .whereEqualTo("monthNo", currentMonth)
                 .whereEqualTo("year", currentYear)
-            // this is why you don't just suppress the warnings, this was an easy thing to fix /arvid
             docRef.addSnapshotListener { snapshot, _ ->
                 if (snapshot != null) {
                     for (document in snapshot.documents) {

@@ -32,7 +32,6 @@ class ListFullScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_full_screen)
 
-
         db = Firebase.firestore
         auth = Firebase.auth
 
@@ -49,13 +48,13 @@ class ListFullScreenActivity : AppCompatActivity() {
 
         adapter.notifyDataSetChanged()
 
-
         val goBack = findViewById<FloatingActionButton>(R.id.backButton)
         goBack.setOnClickListener {
             val intent = Intent(this, OverviewActivity::class.java)
             startActivity(intent)
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.search_menu, menu)
@@ -66,6 +65,7 @@ class ListFullScreenActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return false
             }
+
             override fun onQueryTextChange(msg: String): Boolean {
                 filter(msg)
                 return false
@@ -73,6 +73,8 @@ class ListFullScreenActivity : AppCompatActivity() {
         })
         return true
     }
+
+    // reads the user's receipts from firebase and adds them to a list that is shown to the user in a recycler view /arvid
     private fun readFrom() {
         val user = auth.currentUser
         if (user != null) {
@@ -92,6 +94,7 @@ class ListFullScreenActivity : AppCompatActivity() {
                 }
         }
     }
+
     fun filter(text: String) {
         val filteredList : MutableList<Receipt> = mutableListOf()
         for (item in receipts) {

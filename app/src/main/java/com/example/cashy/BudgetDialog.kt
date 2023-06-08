@@ -37,6 +37,7 @@ class BudgetDialog : AppCompatDialogFragment() {
         cancelPop.setOnClickListener {
             dismiss()
         }
+        
         savePop.setOnClickListener {
             //code the logic for the different options available
             if(rentEditTxt.text.isNotEmpty()){

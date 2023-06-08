@@ -79,6 +79,7 @@ class DisplayMonthsActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             finish()
         }
+        
         staticYear = findViewById(R.id.staticYear)
         staticYear.text = "2022"
 
@@ -96,51 +97,40 @@ class DisplayMonthsActivity : AppCompatActivity() {
         frameDec = findViewById(R.id.frameDec)
 
         // this should really be handled by a loop /arvid
-        /*
-        readToJan()
-        readToFeb()
-        readToMar()
-        readToApr()
-        readToMay()
-        readToJun()
-        readToJul()
-        readToAug()
-        readToSep()
-        readToOct()
-        readToNov()
-        readToDec()
-        */
         // this should work better (i hope)
         val monthFrames = mutableListOf(frameJan, frameFeb, frameMar, frameApr, frameMay, frameJun, frameJul, frameAug, frameSep, frameOct, frameNov, frameDec)
         val amountViews = mutableListOf<TextView>(findViewById(R.id.amountJan), findViewById(R.id.amountFeb), findViewById(R.id.amountMar), findViewById(R.id.amountApr), findViewById(R.id.amountMay), findViewById(R.id.amountJun), findViewById(R.id.amountJul), findViewById(R.id.amountAug), findViewById(R.id.amountSep), findViewById(R.id.amountOct), findViewById(R.id.amountNov), findViewById(R.id.amountDec))
         readToMonths(monthFrames, amountViews)
-
-
     }
-    fun nextYear(view : View) { //ligger i "onclick"
+
+    fun nextYear(view : View) { // this function is attached to the element in the XML file's "onclick", shows the data for the next year /arvid
         val fm = supportFragmentManager.findFragmentByTag("year_fragment")
         if (fm == null) {
             val yearFragment = YearFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.add(R.id.container, yearFragment, "year_fragment")
             transaction.commit()
-        }else{
+        }
+        else {
             Toast.makeText(this,"No more years have been added", Toast.LENGTH_SHORT).show()
         }
     }
-    fun previousYear(view : View) { //ligger i "onclick"
+
+    fun previousYear(view : View) { // this function is attached to the element in the XML file's "onclick", shows the data for the previous year /arvid
         val yearFragment = supportFragmentManager.findFragmentByTag("year_fragment")
-        if (yearFragment != null){
+        if (yearFragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.remove(yearFragment)
             transaction.commit()
-        }else{
+        } 
+        else {
             Toast.makeText(this,"2022 is the first year of the app", Toast.LENGTH_SHORT).show()
         }
     }
 
     //what is this repetition? trying to put together a more generic function /arvid
     //i can't really test this function properly due to the firestore security rules, but i think this will work
+    // this function fetches all of the users receipts from firestore, sorted by month, and adds the data to each months Framelayout
     private fun readToMonths(monthFrames: MutableList<FrameLayout>, amountViews : MutableList<TextView>) {
         val user = auth.currentUser
         if (user != null) {
@@ -166,405 +156,10 @@ class DisplayMonthsActivity : AppCompatActivity() {
                                     in 25000..29999 -> monthFrame.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
                                     in 30000..1000000000 -> monthFrame.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
                                 }
+
                                 if (monthSums[index] >= 100000) {
                                     amountView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                                 }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private fun readToJan() {
-        val user = auth.currentUser
-        if (user != null) {
-            val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "1")
-                .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                if (snapshot != null) {
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val amountJanView = findViewById<TextView>(R.id.amountJan)
-                            dates = mutableListOf()
-                            dates.add(item)
-                            sumJan += item.sum!!
-                            amountJanView.text = sumJan.toString()
-                            when (sumJan) {
-                                in 1000..9999 -> frameJan.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                in 10000..14999 -> frameJan.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                in 15000..19999 -> frameJan.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                in 20000..24999 -> frameJan.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                in 25000..29999 -> frameJan.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                in 30000..1000000000 -> frameJan.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                            }
-                            if (sumJan >= 100000) {
-                                amountJanView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private fun readToFeb() {
-        val user = auth.currentUser
-        if (user != null) {
-            val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "2")
-                .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                if (snapshot != null) {
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val amountFebView = findViewById<TextView>(R.id.amountFeb)
-                            dates = mutableListOf()
-                            dates.add(item)
-                            sumFeb += item.sum!!
-                            amountFebView.text = sumFeb.toString()
-                            when (sumFeb) {
-                                in 1000..9999 -> frameFeb.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                in 10000..14999 -> frameFeb.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                in 15000..19999 -> frameFeb.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                in 20000..24999 -> frameFeb.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                in 25000..29999 -> frameFeb.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                in 30000..1000000000 -> frameFeb.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                            }
-                            if (sumFeb >= 100000) {
-                                amountFebView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private fun readToMar() {
-        val user = auth.currentUser
-        if (user != null) {
-            val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "3")
-                .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                if (snapshot != null) {
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val amountMarView = findViewById<TextView>(R.id.amountMar)
-                            dates = mutableListOf()
-                            dates.add(item)
-                            sumMar += item.sum!!
-                            amountMarView.text = sumMar.toString()
-                            when (sumMar) {
-                                in 1000..9999 -> frameMar.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                in 10000..14999 -> frameMar.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                in 15000..19999 -> frameMar.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                in 20000..24999 -> frameMar.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                in 25000..29999 -> frameMar.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                in 30000..1000000000 -> frameMar.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                            }
-                            if (sumMar >= 100000) {
-                                amountMarView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private fun readToApr() {
-        val user = auth.currentUser
-        if (user != null) {
-            val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "4")
-                .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                if (snapshot != null) {
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val amountAprView = findViewById<TextView>(R.id.amountApr)
-                            dates = mutableListOf()
-                            dates.add(item)
-                            sumApr += item.sum!!
-                            amountAprView.text = sumApr.toString()
-                            when (sumApr) {
-                                in 1000..9999 -> frameApr.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                in 10000..14999 -> frameApr.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                in 15000..19999 -> frameApr.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                in 20000..24999 -> frameApr.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                in 25000..29999 -> frameApr.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                in 30000..1000000000 -> frameApr.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                            }
-                            if (sumApr >= 100000) {
-                                amountAprView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private fun readToMay() {
-        val user = auth.currentUser
-        if (user != null) {
-            val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "5")
-                .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                if (snapshot != null) {
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val amountMayView = findViewById<TextView>(R.id.amountMay)
-                            dates = mutableListOf()
-                            dates.add(item)
-                            sumMay += item.sum!!
-                            amountMayView.text = sumMay.toString()
-                            when (sumMay) {
-                                in 1000..9999 -> frameMay.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                in 10000..14999 -> frameMay.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                in 15000..19999 -> frameMay.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                in 20000..24999 -> frameMay.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                in 25000..29999 -> frameMay.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                in 30000..1000000000 -> frameMay.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                            }
-                            if (sumMay >= 100000) {
-                                amountMayView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private fun readToJun() {
-        val user = auth.currentUser
-        if (user != null) {
-            val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "6")
-                .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                if (snapshot != null) {
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val amountJunView = findViewById<TextView>(R.id.amountJun)
-                            dates = mutableListOf()
-                            dates.add(item)
-                            sumJun += item.sum!!
-                            amountJunView.text = sumJun.toString()
-                            when (sumJun) {
-                                in 1000..9999 -> frameJun.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                in 10000..14999 -> frameJun.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                in 15000..19999 -> frameJun.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                in 20000..24999 -> frameJun.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                in 25000..29999 -> frameJun.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                in 30000..1000000000 -> frameJun.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                            }
-                            if (sumJun >= 100000) {
-                                amountJunView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private fun readToJul() {
-        val user = auth.currentUser
-        if (user != null) {
-            val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "7")
-                .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                if (snapshot != null) {
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val amountJulView = findViewById<TextView>(R.id.amountJul)
-                            dates = mutableListOf()
-                            dates.add(item)
-                            sumJul += item.sum!!
-                            amountJulView.text = sumJul.toString()
-                            when (sumJul) {
-                                in 1000..9999 -> frameJul.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                in 10000..14999 -> frameJul.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                in 15000..19999 -> frameJul.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                in 20000..24999 -> frameJul.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                in 25000..29999 -> frameJul.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                in 30000..1000000000 -> frameJul.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                            }
-                            if (sumJul >= 100000) {
-                                amountJulView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private fun readToAug() {
-        val user = auth.currentUser
-        if (user != null) {
-            val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "8")
-                .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                if (snapshot != null) {
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val amountAugView = findViewById<TextView>(R.id.amountAug)
-                            dates = mutableListOf()
-                            dates.add(item)
-                            sumAug += item.sum!!
-                            amountAugView.text = sumAug.toString()
-                            when (sumAug) {
-                                in 1000..9999 -> frameAug.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                in 10000..14999 -> frameAug.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                in 15000..19999 -> frameAug.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                in 20000..24999 -> frameAug.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                in 25000..29999 -> frameAug.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                in 30000..1000000000 -> frameAug.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                            }
-                            if (sumAug >= 100000) {
-                                amountAugView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private fun readToSep() {
-        val user = auth.currentUser
-        if (user != null) {
-            val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "9")
-                .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                if (snapshot != null) {
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val amountSepView = findViewById<TextView>(R.id.amountSep)
-                            dates = mutableListOf()
-                            dates.add(item)
-                            sumSep += item.sum!!
-                            amountSepView.text = sumSep.toString()
-                            when (sumSep) {
-                                in 1000..9999 -> frameSep.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                in 10000..14999 -> frameSep.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                in 15000..19999 -> frameSep.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                in 20000..24999 -> frameSep.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                in 25000..29999 -> frameSep.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                in 30000..1000000000 -> frameSep.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                            }
-                            if (sumSep >= 100000) {
-                                amountSepView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private fun readToOct() {
-        val user = auth.currentUser
-        if (user != null) {
-            val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "10")
-                .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                if (snapshot != null) {
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val amountOctView = findViewById<TextView>(R.id.amountOct)
-                            dates = mutableListOf()
-                            dates.add(item)
-                            sumOct += item.sum!!
-                            amountOctView.text = sumOct.toString()
-                            when (sumOct) {
-                                in 1000..9999 -> frameOct.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                in 10000..14999 -> frameOct.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                in 15000..19999 -> frameOct.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                in 20000..24999 -> frameOct.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                in 25000..29999 -> frameOct.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                in 30000..1000000000 -> frameOct.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                            }
-                            if (sumOct >= 100000) {
-                                amountOctView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private fun readToNov() {
-        val user = auth.currentUser
-        if (user != null) {
-           val docRef = db.collection("users").document(user.uid).collection("receipts")
-            .whereEqualTo("monthNo", "11")
-            .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                    if (snapshot != null) {
-                        for (document in snapshot.documents) {
-                            val item = document.toObject<Receipt>()
-                            if (item != null) {
-                                val amountNovView = findViewById<TextView>(R.id.amountNov)
-                                dates = mutableListOf()
-                                dates.add(item)
-                                sumNov += item.sum!!
-                                amountNovView.text = sumNov.toString()
-                                when (sumNov) {
-                                    in 1000..9999 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                    in 10000..14999 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                    in 15000..19999 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                    in 20000..24999 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                    in 25000..29999 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                    in 30000..1000000000 -> frameNov.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                                }
-                                if (sumNov >= 100000) {
-                                    amountNovView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
-                                }
-                            }
-                        }
-                    }
-                }
-        }
-    }
-    private fun readToDec() {
-        val user = auth.currentUser
-        if (user != null) {
-            val docRef = db.collection("users").document(user.uid).collection("receipts")
-                .whereEqualTo("monthNo", "12")
-                .whereEqualTo("year", "2022")
-            docRef.addSnapshotListener { snapshot, _ ->
-                if (snapshot != null) {
-                    for (document in snapshot.documents) {
-                        val item = document.toObject<Receipt>()
-                        if (item != null) {
-                            val amountDecView = findViewById<TextView>(R.id.amountDec)
-                            dates = mutableListOf()
-                            dates.add(item)
-                            sumDec += item.sum!!
-                            amountDecView.text = sumDec.toString()
-                            when (sumDec) {
-                                in 1000..9999 -> frameDec.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape2)
-                                in 10000..14999 -> frameDec.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape3)
-                                in 15000..19999 -> frameDec.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape4)
-                                in 20000..24999 -> frameDec.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape5)
-                                in 25000..29999 -> frameDec.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape6)
-                                in 30000..1000000000 -> frameDec.background = ContextCompat.getDrawable(this, R.drawable.rounded_shape7_final)
-                            }
-                            if (sumDec >= 100000) {
-                                amountDecView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20F)
                             }
                         }
                     }

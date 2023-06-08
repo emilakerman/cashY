@@ -45,12 +45,12 @@ class CalendarFragment : Fragment() {
 
         return view
     }
-    private fun setAdapters(list: List<Receipt>){
+    private fun setAdapters(list: List<Receipt>) {
         val adapter=CategoryRecyclerAdapter(requireView().context, list) //getContext()
         dateRecyclerView.adapter= adapter
         //fragment RV adapter= categoryRV adapter
     }
-    private fun setRecyclerByDate(){
+    private fun setRecyclerByDate() {
         val user= auth.currentUser
 
         if (user!=null) {

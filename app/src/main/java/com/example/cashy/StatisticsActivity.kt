@@ -32,7 +32,7 @@ class StatisticsActivity : AppCompatActivity() {
     private lateinit var removeFragBtn: ImageButton
     private lateinit var overviewBtn: ImageButton
     private lateinit var calendarBtn: ImageButton
-    private lateinit var dailyBudget:TextView
+    private lateinit var dailyBudget: TextView
 
     lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -42,7 +42,6 @@ class StatisticsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_statistics)
         supportActionBar?.hide()
 
-        //switchBtn= findViewById(R.id.idSwitch)  //the 2 imgView that manage fragments
         categoriesBtn= findViewById(R.id.statistiks_iv)
         removeFragBtn= findViewById(R.id.remvFrag_iv)
         overviewBtn= findViewById(R.id.overview_imgBtn)
@@ -71,56 +70,39 @@ class StatisticsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /*    //Switch btn for Budget popup window
-        switchBtn.setOnClickListener{
-            if (switchBtn.isChecked){
-                //createBudgetDialog()
-                withEditText()
-                switchBtn.isChecked=false
-                Log.d("!!!", "${switchBtn.isChecked}")
-            }else{
-                Log.d("!!!", "${switchBtn.isChecked}")
-            }
-        }*/
         calendarBtn.setOnClickListener { showDatePickerDialog() }
     }
-    fun createBudgetDialog(){
+
+    fun createBudgetDialog() {
         var budgetAmount=""
         val budget= BudgetDialog()
-        budget.show(supportFragmentManager,"budget_dialog" )
+        budget.show(supportFragmentManager,"budget_dialog")
         dailyBudget.text = budget.popUpBudget
         Log.d("!!!","Budget in main: ${dailyBudget.text}")
     }
+
     fun withEditText() {
-        //dailyBudget.setText("")
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogLayout = inflater.inflate(R.layout.budget_popup, null)
         val editText = dialogLayout.findViewById<EditText>(R.id.budgetET)
-        with(builder){
+
+        with(builder) {
             setTitle("Daily Budget.")
-            setPositiveButton("save"){dialog, which ->
+            setPositiveButton("save") { dialog, which ->
                 dailyBudget.text=editText.getText().toString()
                 Log.d("!!!","Budget is: $dailyBudget")
             }
-            setNegativeButton("cancel"){dialog, which ->
+            setNegativeButton("cancel") { dialog, which ->
 
             }
             setView(dialogLayout)
             show()
         }
-        /*builder.setTitle("Daily Budget.")
-        builder.setView(dialogLayout)
-        builder.setPositiveButton("save") { dialogInterface, i ->
-            dailyBudget.setText(editText.text.toString()+ " Kr")
-            Log.d("!!!","Budget is: $dailyBudget")
-            Toast.makeText(applicationContext, "Budget is " + editText.text.toString(),
-                Toast.LENGTH_SHORT).show()
-        }
-        builder.show()*/
     }
 
-    fun addCategoriesFragment(view: View){
+    // creates a fragment for the categories, and adds it to the container view /arvid
+    fun addCategoriesFragment(view: View) {
         val fm=supportFragmentManager.findFragmentByTag("categories_fragment")
         if(fm==null) {
             val categoriesFragment = CategoryFragment()
@@ -128,41 +110,49 @@ class StatisticsActivity : AppCompatActivity() {
             transaction.add(R.id.container, categoriesFragment, "categories_fragment")
             transaction.commit()
             Log.d("!!!", "fragment created")
-        }else{
+        }
+        else {
             Toast.makeText(this,"Checked",Toast.LENGTH_SHORT).show()
         }
     }
+
+    // removes the fragments for categories and the calendar /arvid
     fun removeFragment() {
         val categoriesFragment= supportFragmentManager.findFragmentByTag("categories_fragment")
         val calendarFragment=supportFragmentManager.findFragmentByTag("calendar_fragment")
-        if(categoriesFragment!=null){
+        if(categoriesFragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.remove(categoriesFragment)
             transaction.commit()
-        }else{
+        }
+        else {
             Toast.makeText(this,"Categories Fragment not found", Toast.LENGTH_SHORT).show()
         }
-        if(calendarFragment!=null){
+
+        if(calendarFragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.remove(calendarFragment)
             transaction.commit()
-            //dateBox.setText("")
-        }else{
-            Toast.makeText(this,"Categories Fragment not found", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            Toast.makeText(this,"Calendar Fragment not found", Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun showDatePickerDialog() {
         val datePicker= DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
         datePicker.show(supportFragmentManager,"Date_Picker")
     }
-    private fun onDateSelected(day: Int, month: Int, year:Int) {
+
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
         val mo= month+1
-        //dateBox.setText("You selected day: $day.$mo.$year")
         addCalendarFragment(day.toString().padStart(2,'0'),
             mo.toString().padStart(2,'0'),
             year.toString())
     }
-    private fun addCalendarFragment(day:String, month:String, year: String){
+
+    // creates a fragment for the calendar and adds it to the container view /arvid
+    private fun addCalendarFragment(day: String, month: String, year: String) {
         val fm = supportFragmentManager.findFragmentByTag("calendar_fragment")
         val calendarFragment = CalendarFragment.newInstance(day, month, year)
         if(fm!=null){
@@ -170,7 +160,7 @@ class StatisticsActivity : AppCompatActivity() {
             transaction.remove(fm)
             transaction.commit()
         }else{
-            Toast.makeText(this,"Categories Fragment not found", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Calendar Fragment not found", Toast.LENGTH_SHORT).show()
         }
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.container, calendarFragment, "calendar_fragment")
@@ -178,16 +168,21 @@ class StatisticsActivity : AppCompatActivity() {
         Log.d("!!!", "calendar fragment created")
         Log.d("!!!","$day.$month.$year")
     }
+
     //RV adapter according to list needed
-    private fun setAdapters(list: List<Receipt>){
+    private fun setAdapters(list: List<Receipt>) {
         val adapter=CategoryRecyclerAdapter(this,list)
         recyclerView.adapter= adapter
     }
-    private fun progressBarRV(dbList:List<Receipt>){
+
+    private fun progressBarRV(dbList: List<Receipt>) {
         val barAdapter=BarRecyclerAdapter(this,dbList)
         barRecyclerView.adapter= barAdapter
     }
-    private fun readFromDatabase(){
+
+    // reads all of the current user's receipts from firestore, and adds it to the list of receipts 
+    // if the category or purchase month of a receipt doesn't exist, it's created and added to their respective lists /arvid
+    private fun readFromDatabase() {
         val list= mutableListOf<Receipt>()
         val user= auth.currentUser
         if(user!=null){
@@ -196,15 +191,16 @@ class StatisticsActivity : AppCompatActivity() {
                 .addSnapshotListener{ snapshot, _ ->
                     val existingCategories= mutableListOf<String>()
                     val getMonth= mutableListOf<String>()
-                    if(snapshot!=null){
+                    if(snapshot!=null) {
                         for(document in snapshot.documents){
                             val item= document.toObject<Receipt>()
                             list.add(item!!)
 
-                            if (item.category !in existingCategories){
+                            if (item.category !in existingCategories) {
                                 existingCategories.add(item.category!!)
                             }
-                            if (item.monthNo !in getMonth){
+
+                            if (item.monthNo !in getMonth) {
                                 getMonth.add(item.monthNo!!)
                             }
                         }
@@ -215,14 +211,16 @@ class StatisticsActivity : AppCompatActivity() {
                 }
         }
     }
+
     //takes 2 lists to create a filtered list for the RV
-    private fun filterByMonth(monthList:List<String>, dbList:List<Receipt>): MutableList<Receipt>{
+    private fun filterByMonth(monthList: List<String>, dbList: List<Receipt>): MutableList<Receipt> {
         val countList = mutableListOf<Receipt>()
         val year="2022"
         for (month in monthList) {
             var total = 0
             //Creates a month
             val count = Receipt(category = month, monthNo = month)
+
             for (item in dbList) {
                 //that month of that year
                 if (item.monthNo == month && item.year==year) {
@@ -232,18 +230,21 @@ class StatisticsActivity : AppCompatActivity() {
             count.sum=total
             countList.add(count)
         }
+
         countList.sortBy { it.category?.toInt() }
         Log.d("!!!","${countList.size}")
         return countList
     }
-    private fun filterByCategory(categories:List<String>, dbList:List<Receipt>):MutableList<Receipt>{
+
+    // filters the receipt list by category /arvid
+    private fun filterByCategory(categories: List<String>, dbList:List<Receipt>): MutableList<Receipt> {
         val countList= mutableListOf<Receipt>()
-        for (category in categories){
+        for (category in categories) {
             var total=0
             var transactions=0
             val count=Receipt(category=category)
-            for (item in dbList){
-                if (item.category==category){
+            for (item in dbList) {
+                if (item.category==category) {
                     total+=item.sum!!
                     transactions++
                 }

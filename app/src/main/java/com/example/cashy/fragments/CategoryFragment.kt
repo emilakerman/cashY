@@ -51,7 +51,7 @@ class CategoryFragment : Fragment() {
     }
 
 
-    private fun setUpSpinner(){
+    private fun setUpSpinner() {
         //adapter for array values [needs context(associated to fragment?), list(values-Array), layout(predefined-LO)]
         val adapter = ArrayAdapter.createFromResource(catSpinner.context,
             R.array.Categories,
@@ -71,7 +71,8 @@ class CategoryFragment : Fragment() {
             }
         }
     }
-    fun setRecyclerByCategory(category:String){
+
+    fun setRecyclerByCategory(category:String) {
         val user= auth.currentUser
         if (user!=null) {
             getBills.clear()
@@ -93,7 +94,8 @@ class CategoryFragment : Fragment() {
                 }
         }
     }
-    private fun setAdapters(list: List<Receipt>){
+
+    private fun setAdapters(list: List<Receipt>) {
         val adapter= CategoryRecyclerAdapter(requireView().context, list) //getContext()
         catRecyclerView.adapter= adapter
         //fragment RV adapter= expensesRV adapter

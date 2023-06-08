@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class BarRecyclerAdapter (val context: Context,
-                          val receipt: List<Receipt>): RecyclerView.Adapter<BarRecyclerAdapter.ViewHolder>(){
+                          val receipt: List<Receipt>): RecyclerView.Adapter<BarRecyclerAdapter.ViewHolder>() {
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,7 +20,7 @@ class BarRecyclerAdapter (val context: Context,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val receipts= receipt[position]
-        when(receipts.category){
+        when(receipts.category) {
             // this should done with resource strings instead, like what the warning suggests /arvid
             "1"-> holder.box1Txt.text="Jan"
             "2"-> holder.box1Txt.text="Feb"
@@ -45,11 +45,11 @@ class BarRecyclerAdapter (val context: Context,
     override fun getItemCount(): Int {
         return receipt.size
     }
-    inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+
+    inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
         var bar=itemView.findViewById<ProgressBar>(R.id.progressRvBar)
         var box1Txt=itemView.findViewById<TextView>(R.id.txtBar1)
         var box2Txt=itemView.findViewById<TextView>(R.id.txtBar2)
-
     }
 
     private fun getMaxValue(): Int {
@@ -59,7 +59,8 @@ class BarRecyclerAdapter (val context: Context,
         }
         return listOfNumbers.max()
     }
-    private fun barCurrentProgress(progress: Int, view:ProgressBar){
+
+    private fun barCurrentProgress(progress: Int, view:ProgressBar) {
         ObjectAnimator
             .ofInt(view, "progress", progress)
             .setDuration(2000)

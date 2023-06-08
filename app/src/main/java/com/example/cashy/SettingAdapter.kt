@@ -14,7 +14,7 @@ import com.example.cashy.Settings
 class SettingAdapter(val context: Context, private val settingList: List<Settings>) :
     RecyclerView.Adapter<SettingAdapter.SettingVH>() {
 
-    class SettingVH (itemView: View) : RecyclerView.ViewHolder(itemView){
+    class SettingVH (itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var titleTxt : TextView = itemView.findViewById(R.id.title_name)
         var subheadingTxt : TextView = itemView.findViewById(R.id.subheading)

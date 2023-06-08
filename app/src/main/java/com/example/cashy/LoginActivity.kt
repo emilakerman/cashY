@@ -41,6 +41,8 @@ class LoginActivity : AppCompatActivity() {
             performLogin()
         }
     }
+
+    // if the user has filled in both email and password, tries to log in with firebase auth /arvid
     private fun performLogin() {
         val email : EditText = findViewById(R.id.editText_email_login)
         val password : EditText = findViewById(R.id.editText_password_login)
@@ -59,12 +61,10 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this, OverviewActivity::class.java)
                     startActivity(intent)
 
-                    Toast.makeText(baseContext, "Success.",
-                        Toast.LENGTH_SHORT).show()
-
-                } else {
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "Success.", Toast.LENGTH_SHORT).show()
+                } 
+                else {
+                    Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener {
